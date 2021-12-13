@@ -4,6 +4,8 @@ import styled from "styled-components";
 const Grid = (props) => {
   const {
     is_flex,
+    is_wrap,
+    column,
     width,
     padding,
     margin,
@@ -17,10 +19,13 @@ const Grid = (props) => {
     overflow,
     border,
     radius,
+    bold,
   } = props;
 
   const styles = {
     is_flex: is_flex,
+    is_wrap: is_wrap,
+    column: column,
     width: width,
     height: height,
     margin: margin,
@@ -32,6 +37,7 @@ const Grid = (props) => {
     overflow: overflow,
     border: border,
     radius: radius,
+    bold: bold
   };
 
   return (
@@ -46,6 +52,8 @@ const Grid = (props) => {
 Grid.defaultProps = {
   children: null,
   is_flex: false,
+  is_wrap: false,
+  column: false,
   width: "100%",
   height: false,
   padding: false,
@@ -64,19 +72,18 @@ const GridBox = styled.div`
   max-width: 500px;
   width: ${(props) => props.width};
   box-sizing: border-box;
-  ${(props) => (props.height ? `height: ${props.height};` : "")}
-  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
-  ${(props) => (props.is_flex ? "display: flex; align-items: center;" : "")}
-  ${(props) => (props.position ? `position: ${props.position};` : "")}
-  ${(props) => (props.border ? `border: ${props.border};` : "")}
-  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
-  ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")}
-  &::-webkit-scrollbar {
-    //Chrome, Safari, Opera
-    display: none;
-  }
+  ${(props) => (props.height ? `height: ${props.height};` : "")};
+  ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+  ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
+  ${(props) => (props.is_flex ? "display: flex; align-items: center;" : "")};
+  ${(props) => (props.position ? `position: ${props.position};` : "")};
+  ${(props) => (props.border ? `border: ${props.border};` : "")};
+  ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
+  ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
+  ${(props) => (props.is_wrap ? `flex-wrap: wrap` : "")};
+  ${(props) => (props.column ? "flex-dicrection: column" : "")};
+  border: 2px solid #000;
 `;
 export default Grid;
