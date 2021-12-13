@@ -10,6 +10,7 @@ const Main = (props) => {
     <React.Fragment>
       <Header></Header>
       <Profile></Profile>
+      
 
     </React.Fragment>
   )
