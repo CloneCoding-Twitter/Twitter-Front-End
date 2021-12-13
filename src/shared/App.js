@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { userCreators as userActions } from "../redux/modules/user";
+import styled from "styled-components";
+import GlobalStyles from "../components/GlobalStyles";
 
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
@@ -13,15 +15,14 @@ import SignUp from "../pages/SignUp";
 import LogIn from "../pages/LogIn";
 import Profile from "../components/Profile";
 
-import styled from "styled-components";
-
 function App() {
   return (
     <React.Fragment>
+      <GlobalStyles />
       <ConnectedRouter history={history}>
-        <Route exact path="/" component={Main}></Route>
+        <Route exact path="/" component={LogIn}></Route>
         <Route exact path="/signup" component={SignUp}></Route>
-        <Route exact path="login" component={LogIn}></Route>
+        <Route exact path="/main" component={Main}></Route>
       </ConnectedRouter>
     </React.Fragment>
   );
