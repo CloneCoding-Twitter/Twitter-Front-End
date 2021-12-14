@@ -1,9 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-import api from '../../shared/api';
-import axios from "axios";
-import { initial } from "lodash";
+import api from '../../shared/api' 
 
 // action
 const GET_ARTICLE = 'GET_ARTICLE';
