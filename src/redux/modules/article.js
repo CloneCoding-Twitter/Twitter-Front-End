@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
+import api from '../../shared/api';
 import axios from "axios";
 import { initial } from "lodash";
 
@@ -26,6 +27,7 @@ const initialState = {
 
 const initialArticle = {
   // id: 1,
+  // loginId: '',
   nickname: '',
   content: '',
   image: ''
@@ -35,24 +37,38 @@ const initialArticle = {
 const getArticleDB = () => {
   return async function(dispatch, getState, {history}) {
     dispatch(loading(true))
-    const initial = {
-      ...initialArticle
-    }
 
-    dispatch(getArticle(initial));
+    await api.get("/api/article")
+    .then(res => {
+      console.log(res);
+      dispatch(getArticle(res));
+    }).catch(err => {
+      console.log('게시물 조회 오류', err)
+    })
+
   }
 }
 
 const addArticleDB = (content, image) => {
   return async function(dispatch, getState, {history}) {
     const form = new FormData();
-    form.append('image', image);
+    form.append('img', image);
     form.append('content', content);
 
     // console.log(content, image) 확인완료
     // axios 요청
+    await api.post("/api/article", form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }).then((res) => {
+      console.log(res.data);
+      dispatch(addArticle(res.data));
+      // history.replace('/home');
+    }).catch(err => {
+      console.log("게시물 등록 오류", err)
+    })
 
-    history.replace('/home');
   }
 }
 
@@ -64,8 +80,18 @@ const editArticleDB = (id, content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
+    await api.put(`/api/article/${id}`,form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      }
+    }).then(res => {
+      console.log(res.data);
+      dispatch(editArticle(res.data));
+      // history.replace('/home');
+    }).catch(err => {
+      console.log("게시물 수정 오류", err)
+    })
 
-    history.replace('/home');
   }
 }
 
@@ -73,8 +99,12 @@ const deleteArticleDB = (id) => {
   return async function(dispatch, getState, {history}) {
     // console.log(id) 확인완료
     // axios 요청
+    await api.delete(`/api/article/${id}`)
+    .then(() => {
+      dispatch(deleteArticle(id));
+    })
 
-    history.replace('/home');
+    // history.replace('/home');
   }
 }
 
@@ -90,7 +120,7 @@ export default handleActions(
 
     [ADD_ARTICLE]: (state, action) => 
       produce(state, (draft) => {
-        draft.list.unshift(action.payload.article)
+        draft.list.unshift(action.payload.article);
       }),
 
     [EDIT_ARTICLE]: (state, action) => 
