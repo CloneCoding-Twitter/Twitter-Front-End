@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+
 const Text = (props) => {
   const {
     bold,
@@ -55,14 +56,17 @@ const Text = (props) => {
     return <Sns onClick={__onClick}>소셜 계정으로 로그인 </Sns>;
   }
 
+
+  const styles = {bold: bold, color: color, size: size, margin};
   return (
-    <React.Fragment>
-      <P {...styles}>{children}</P>
-    </React.Fragment>
-  );
+      <P {...styles}>
+          {children}
+      </P>
+  )
 };
 
-Text.defalutProps = {
+Text.defaultProps = {
+  children: null,
   bold: false,
   color: "#222831",
   size: "14px",
@@ -73,50 +77,14 @@ Text.defalutProps = {
   justify: false,
   padding: false,
   is_footTxT: false,
+
 };
+
 const P = styled.p`
-  font-family: "GmarketSansMedium";
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
-  font-weight: ${(props) => props.bold};
-  ${(props) => (props.padding ? `padding:${props.padding};` : "")}
-  ${(props) => (props.justify ? `justify-content:${props.justify};` : "")}
-  ${(props) => (props.margin ? `margin:${props.margin};` : "")};
-  ${(props) => (props.center ? "text-align: center" : "")};
-`;
-
-const Div = styled.div`
-  font-family: "Comfortaa";
-  font-weight: 700;
-  color: aliceblue;
-  font-size: 2em;
-  font-weight: 800;
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-`;
-const Sns = styled.div`
-  text-align: center;
-  padding: 20px 0;
-  &::before {
-    position: absolute;
-    top: 28px;
-    left: 50px;
-    width: 108px;
-    height: 1px;
-    content: "";
-    background: #eee;
-  }
-  &::after {
-    position: absolute;
-    top: 28px;
-    right: 50px;
-    width: 108px;
-    height: 1px;
-    content: "";
-    background: #eee;
-  }
+  font-weight: ${(props) => (props.bold? "800" : "400")};
+  ${(props) => (props.margin? `margin: ${props.margin};` : '')}
 `;
 
 const FootTxt = styled.p`

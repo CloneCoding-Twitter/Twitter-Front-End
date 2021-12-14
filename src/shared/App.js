@@ -5,7 +5,7 @@ import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
 import { Route } from "react-router-dom";
 
-import Main from "../pages/Main";
+import Home from "../pages/Home";
 import LoginCard from "../pages/LoginCard";
 import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUpCard";
@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/" component={LogIn}></Route>
         <Route exact path="/logincard" component={LoginCard}></Route>
         <Route exact path="/signupcard" component={SignUp}></Route>
-        <Route exact path="/main" component={Main}></Route>
+        <Route exact path="/home" component={Home}></Route>
       </ConnectedRouter>
     </React.Fragment>
   );

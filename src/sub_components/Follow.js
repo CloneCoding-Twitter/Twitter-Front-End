@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Profile = (props) => {
+const Follow = (props) => {
 
 
-  return (
+  return(
     <React.Fragment>
-
+      
     </React.Fragment>
   )
 }
 
-export default Profile;
+export default Follow;
