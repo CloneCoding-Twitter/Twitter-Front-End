@@ -28,7 +28,7 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-const apis = {
+export const apis = {
   //로그인
   login: (data) =>
     instance.post("/user/login", {
@@ -45,4 +45,7 @@ const apis = {
       passwordCheck: data.passwordCheck,
     }),
 };
-export default apis;
+
+
+
+export default instance;
