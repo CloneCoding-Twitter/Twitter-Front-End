@@ -9,23 +9,31 @@ import { history } from "../redux/configureStore";
 import { Route } from "react-router-dom";
 import { Grid } from "../elements/index";
 
-import Header from "../components/Header";
-import Main from "../pages/Main";
+import Home from "../pages/Home";
 import SignUp from "../pages/SignUp";
 import LogIn from "../pages/LogIn";
-import Profile from "../components/Profile";
+import SideMenu from "../components/SideMenu";
+import Header from '../components/Header'
 
 function App() {
   return (
     <React.Fragment>
-      <GlobalStyles />
-      <ConnectedRouter history={history}>
-        <Route exact path="/" component={LogIn}></Route>
-        <Route exact path="/signup" component={SignUp}></Route>
-        <Route exact path="/main" component={Main}></Route>
-      </ConnectedRouter>
+        <Grid is_flex>
+          <Header/>
+          <Grid width='275px'>
+            <SideMenu/>
+          </Grid>
+          <GlobalStyles />
+          <ConnectedRouter history={history}>
+            <Route exact path="/" component={LogIn}></Route>
+            <Route exact path="/signup" component={SignUp}></Route>
+            <Route exact path="/home" component={Home}></Route>
+          </ConnectedRouter>
+        </Grid>
     </React.Fragment>
   );
 }
-// test
+
+
+
 export default App;

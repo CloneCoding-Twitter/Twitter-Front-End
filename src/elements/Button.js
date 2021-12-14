@@ -7,6 +7,7 @@ const Button = (props) => {
     width,
     font_color,
     font_size,
+    center,
     text,
     children,
     padding,
@@ -23,6 +24,7 @@ const Button = (props) => {
     width,
     font_color,
     font_size,
+    center,
     text,
     children,
     padding,
@@ -56,9 +58,10 @@ Button.defaultProps = {
   width: '100%',
   font_color: '#0F1419',
   font_size: false,
+  center: false,
   text: false,
   children: null,
-  padding: '15px 0',
+  padding: '12px',
   margin: false,
   bg: false,
   _onClick: () => {},
@@ -88,7 +91,7 @@ const ElButton = styled.button`
 const RoundButton = styled.button`
   width: ${(props) => props.width};
   padding: ${(props) => props.padding};
-  margin: ${(props) => props.margin? '' : '4px 0 0'};
+  margin: ${(props) => props.margin};
   color: ${props => props.font_color? `${props.font_color}`: "#0F1419"};
   font-size: ${props => props.font_size? `${props.font_size}`: "19px"};
   font-weight: ${(props) => (props.bold ? "600" : "")};
@@ -98,6 +101,7 @@ const RoundButton = styled.button`
   border-radius: 9999px;
   background: ${props => props.bg? `${props.bg}`: '#1DA1F2'};
   position: ${(props) => (props.position ? `${props.position}` : "")};
+  ${(props) => (props.center ? "display: flex; align-items: center;" : "")};
   &:hover {
     ${props => props.is_menuHover?
       "background: #d5d7db;"

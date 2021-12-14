@@ -15,6 +15,7 @@ const Grid = (props) => {
     _onClick,
     position,
     justify,
+    align,
     height,
     overflow,
     border,
@@ -34,6 +35,7 @@ const Grid = (props) => {
     center: center,
     position: position,
     justify: justify,
+    align: align,
     overflow: overflow,
     border: border,
     radius: radius,
@@ -54,7 +56,7 @@ Grid.defaultProps = {
   is_flex: false,
   is_wrap: false,
   column: false,
-  width: "100%",
+  width: "auto",
   height: false,
   padding: false,
   margin: false,
@@ -62,6 +64,7 @@ Grid.defaultProps = {
   center: false,
   position: false,
   justify: false,
+  align: false,
   overflow: false,
   border: false,
   // radius: false,
@@ -69,21 +72,23 @@ Grid.defaultProps = {
 };
 
 const GridBox = styled.div`
-  width: 500px;
   width: ${(props) => props.width};
+  height: 100%;
   box-sizing: border-box;
   ${(props) => (props.height ? `height: ${props.height};` : "")};
   ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
+  ${(props) => (props.align ? `align-items: ${props.align};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
-  ${(props) => (props.is_flex ? "display: flex; align-items: center;" : "")};
+  ${(props) => (props.is_flex ? "display: flex;" : "")};
   ${(props) => (props.position ? `position: ${props.position};` : "")};
+  ${(props) => (props.position === 'fixed' ? "top: 0; left: 0" : "")};
   ${(props) => (props.border ? `border: ${props.border};` : "")};
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
-  ${(props) => (props.is_wrap ? `flex-wrap: wrap` : "")};
-  ${(props) => (props.column ? "flex-dicrection: column" : "")};
-  border: 2px solid #000;
+  ${(props) => (props.is_wrap ? "flex-wrap: wrap" : "")};
+  ${(props) => (props.column ? "flex-direction: column;" : "")};
+  /* border: 1px solid #000; */
 `;
 export default Grid;

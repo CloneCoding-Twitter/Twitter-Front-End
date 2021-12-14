@@ -1,13 +1,13 @@
 import React from 'react';
 
-const Article = (props) => {
+const News = (props) => {
 
 
-  return (
+  return(
     <React.Fragment>
-
+      
     </React.Fragment>
   )
 }
 
-export default Article;
+export default News;
