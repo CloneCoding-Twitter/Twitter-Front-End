@@ -17,8 +17,10 @@ const Feed = (props) => {
   const [content, setContent] = React.useState('');
   const [image, setImage] = React.useState();
   const ImageFile = React.useRef();
+  // const id = props.match.params
   // console.log(image);
   // console.log(preview);
+  console.log(articleList);
 
   const selectFile = () => {
     const reader = new FileReader();
@@ -43,10 +45,10 @@ const Feed = (props) => {
     dispatch(ArticleActions.addArticleDB(content, image))
   };
 
-  const editArticle = () => {
-    const id = 1
-    dispatch(ArticleActions.editArticleDB(id, content, image));
-  }
+  // const editArticle = () => {
+  //   const id = 1
+  //   dispatch(ArticleActions.editArticleDB(id, content, image));
+  // }
   
 
 
@@ -79,14 +81,14 @@ const Feed = (props) => {
               onChange={selectFile}
               ref={ImageFile}
             />
-            <Button width='30%' _onClick={editArticle}>Tweet</Button>
+            <Button width='30%' _onClick={addArticle}>Tweet</Button>
           </Grid>
         </Grid>
 
         <Grid>
           {articleList.map((l,idx) => {
             return(
-              <Article /> // {...l}
+              <Article {...l}/>
             )
           })}
         </Grid>

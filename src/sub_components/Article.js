@@ -11,10 +11,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
 const Article = (props) => {
+  const {id, loginId, nickname, content, image} = props;
   const dispatch = useDispatch();
 
   const articleDelete = () => {
-    const id = 1
     dispatch(ArticleActions.deleteArticleDB(id));
   }
 
@@ -27,25 +27,29 @@ const Article = (props) => {
 
         <Grid>
           <Grid is_flex>
-            <Text bold>Chung</Text>&nbsp;
-            <Text>@Chungun</Text>&nbsp;
-            <Text>23s</Text>
+            <Text bold>{loginId}</Text>&nbsp;
+            <Text>{`@${nickname}`}</Text>&nbsp;
+            {/* <Text>23s</Text> */}
             <Button _onClick={articleDelete}>삭제</Button>
           </Grid>
 
-          <Text>css힘들어</Text>
+          <Text>{content}</Text>
 
           <Grid>
-            <Image shape='rectangle' src={pysick}/>
+            <Image shape={image} src={pysick}/>
           </Grid>
 
           <Grid is_flex justify='space-between' width='80%'>
+            {/* 댓글 */}
             <ChatBubbleOutlineIcon style={{fontSize:"14px"}}/>
             <Text>61</Text>
+            {/* 리트윗 */}
             <AutorenewIcon style={{fontSize:"14px"}}/>
             <Text>12</Text>
-            <FavoriteBorderIcon style={{fontSize:"14px"}}/>
+            {/* 좋아요 */}
+            <FavoriteBorderIcon style={{fontSize:"14px"}}/> 
             <Text>6.2k</Text>
+            {/* 공유 */}
             <IosShareIcon style={{fontSize:"14px"}}/>
             <Text>61</Text>
           </Grid>
@@ -53,6 +57,14 @@ const Article = (props) => {
       </Grid>
     </React.Fragment>
   )
+}
+
+Article.defaultProps = {
+  id: '1',
+  loginId: '',
+  nickname: 'chungun',
+  content: 'css때문에 그만둘지도...',
+  image: 'https://previews.123rf.com/images/file404/file4041507/file404150705922/42343915-%EC%A0%88%EB%A7%9D%EC%9D%98-%EC%82%AC%EB%9E%8C.jpg'
 }
 
 export default Article;
