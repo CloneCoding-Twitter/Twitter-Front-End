@@ -1,57 +1,79 @@
+import styled from 'styled-components';
 import React from "react";
 
-import styled from "styled-components";
-
 const Image = (props) => {
-  const { state, src, size, _onClick } = props;
+    const {preview, shape, src, size,} = props;
 
-  const styles = {
-    src: src,
-    size: size,
-  };
-  //---- 게시글 이미지 hover ----
-  if (state === "hover") {
+    const styles = {
+        src: src,
+        size: size,
+    }
+    
+    if(shape === "circle"){
+        return (
+            <ImageCircle {...styles}></ImageCircle>
+        )
+    }
+
+    if(shape === "rectangle"){
+        return (
+            <AspectOutter>
+                <AspectInner {...styles}></AspectInner>
+            </AspectOutter>
+        )
+    }
+
     return (
-      <AspectOutter>
-        <AspectInnerHover {...styles} onClick={_onClick}></AspectInnerHover>
-      </AspectOutter>
-    );
-  }
-  return (
-    <AspectOutter>
-      <AspectInner {...styles} onClick={_onClick}></AspectInner>
-    </AspectOutter>
-  );
-};
+        <React.Fragment>
+            <ImageDefault {...styles}></ImageDefault>
+        </React.Fragment>
+    )
+}
 
 Image.defaultProps = {
+//   preview: true,  
   shape: "",
-  src: "https://dimg.donga.com/wps/NEWS/IMAGE/2021/09/13/109219735.1.jpg",
-  _onClick: () => {},
+  src: "../icons/pysick.jpg",
+  size: 40,
 };
 
-const AspectOutter = styled.div`
-  width: 100%;
-  min-width: 250px;
-`;
-const AspectInner = styled.div`
-  position: relative;
-  padding-top: 75%;
-  overflow: hidden;
+const ImageDefault = styled.div`
+  --size: ${(props) => props.size}px;
+  width: var(--size);
+  height: var(--size);
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  display: ${(props) => props.preview? 'block': 'none'};
 `;
 
-const AspectInnerHover = styled.div`
-  position: relative;
-  padding-top: 75%;
-  overflow: hidden;
-  background-image: url("${(props) => props.src}");
-  background-size: cover;
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
+const AspectOutter = styled.div`
+    width: 100%;
+    min-width: 250px;
 `;
+
+const AspectInner = styled.div`
+    position: relative;
+    padding-top: 75%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+`;
+
+const ImageCircle = styled.div`
+    --size: ${(props) => props.size}px;
+    width: var(--size);
+    height: var(--size);
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: var(--size);
+
+    background-image: url("${(props) => props.src}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 4px;
+`;
+
 
 export default Image;

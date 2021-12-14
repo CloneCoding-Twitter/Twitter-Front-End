@@ -1,23 +1,41 @@
 import React from 'react';
-import {Grid, Button} from '../elements/index';
+
+import { Grid, Text } from '../elements';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import styled from 'styled-components';
 
 const Header = (props) => {
-  const menu = ['Home', 'Explore', 'Notifications', 'Messages', 'Bookmarks', 'Lists', 'Profile', 'More'];
 
-  return (
+
+  return(
     <React.Fragment>
-      <Grid is_flex is_wrap column bold width='275px'>
-        <div style={{padding: '4px 0 0'}}>
-          {menu.map((m, i) => {
-            return(
-              <Button key={i} bold is_menuHover bg='#fff' margin='' padding='15px 0 '>{m}</Button>
-            );
-          })};
-        </div>
-        <Button bold bg='#1DA1F2' is_tweeterHover font_color='#fff'>tweet</Button>
-      </Grid>
+      <Header_ 
+        is_flex 
+        justify='space-between'
+        align='center'
+        padding='10px'
+        position='fixed'
+        bg='#fff'
+      >
+        <Text bold>Home</Text>
+        <AutoAwesomeIcon/>
+      </Header_>
     </React.Fragment>
   )
-}
+};
+
+const Header_ = styled.div`
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  border: 1px solid red;
+`
 
 export default Header;
