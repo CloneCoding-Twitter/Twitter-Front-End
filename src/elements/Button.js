@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Button = (props) => {
   const {
+    height,
     width,
     font_color,
     font_size,
@@ -17,9 +18,12 @@ const Button = (props) => {
     bold,
     _onClick,
     is_tweeterHover,
+    is_border,
+    is_blackHover,
   } = props;
 
   const styles = {
+    height,
     width,
     font_color,
     font_size,
@@ -33,6 +37,8 @@ const Button = (props) => {
     bold,
     _onClick,
     is_tweeterHover,
+    is_border,
+    is_blackHover,
   };
 
   // if (text_color) {
@@ -45,6 +51,16 @@ const Button = (props) => {
   //   );
   // }
 
+  if (is_border) {
+    return (
+      <React.Fragment>
+        <BorderBtn {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </BorderBtn>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <RoundButton onClick={_onClick} {...styles}>{text ? text : children}</RoundButton>
@@ -53,7 +69,9 @@ const Button = (props) => {
 };
 
 Button.defaultProps = {
-  width: '100%',
+  is_border: false,
+  height: false,
+  width: false,
   font_color: '#0F1419',
   font_size: false,
   text: false,
@@ -70,6 +88,7 @@ Button.defaultProps = {
 
 //---- 기본 return Button ----
 const ElButton = styled.button`
+  height: ${(props) => props.height};
   width: ${(props) => props.width};
   font-weight: 800;
   background: none;
@@ -86,6 +105,12 @@ const ElButton = styled.button`
 `;
 
 const RoundButton = styled.button`
+  height: ${(props) => props.height};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
   width: ${(props) => props.width};
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin? '' : '4px 0 0'};
@@ -99,14 +124,32 @@ const RoundButton = styled.button`
   background: ${props => props.bg? `${props.bg}`: '#1DA1F2'};
   position: ${(props) => (props.position ? `${props.position}` : "")};
   &:hover {
+    transition: 0.45s;
     ${props => props.is_menuHover?
       "background: #d5d7db;"
       : ''
-    };
+    }
     ${props => props.is_tweeterHover?
       "background: #1b89cc;"
       : ''
     }
+    ${props => props.is_blackHover?
+      "background: #333333;"
+      : ''
+    }
+  }
+  &:not(:hover) {
+    transition: 0.45s;
+  }
+`;
+
+const BorderBtn = styled(RoundButton)`
+  border: 1px solid #EBEEF0;
+  background-color: transparent;
+
+  &:hover {
+    background-color: #efefef;
+    transition: 0.45s;
   }
 `;
 

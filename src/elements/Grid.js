@@ -83,7 +83,6 @@ const GridBox = styled.div`
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
   ${(props) => (props.is_wrap ? `flex-wrap: wrap` : "")};
-  ${(props) => (props.column ? "flex-dicrection: column" : "")};
-  border: 2px solid #000;
+  ${(props) => (props.column ? "flex-direction: column" : "")};
 `;
 export default Grid;

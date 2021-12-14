@@ -13,6 +13,8 @@ const Text = (props) => {
     is_sns,
     justify,
     padding,
+    is_footTxT,
+    is_span,
   } = props;
 
   const styles = {
@@ -25,7 +27,25 @@ const Text = (props) => {
     __onClick: __onClick,
     justify: justify,
     padding: padding,
+    is_footTxT: is_footTxT,
+    is_span: is_span,
   };
+
+  if (is_footTxT) {
+    return (
+      <React.Fragment>
+        <FootTxt {...styles}>{children}</FootTxt>
+      </React.Fragment>
+    )
+  }
+
+  if (is_span) {
+    return (
+      <React.Fragment>
+        <SpanTxt {...styles}>{children}</SpanTxt>
+      </React.Fragment>
+    )
+  }
 
   if (is_text) {
     return <Div onClick={__onClick}>Chabak</Div>;
@@ -52,6 +72,7 @@ Text.defalutProps = {
   __onClick: () => {},
   justify: false,
   padding: false,
+  is_footTxT: false,
 };
 const P = styled.p`
   font-family: "GmarketSansMedium";
@@ -96,6 +117,18 @@ const Sns = styled.div`
     content: "";
     background: #eee;
   }
+`;
+
+const FootTxt = styled.p`
+  cursor: pointer;
+  font-size: 12px;
+  margin: 0 10px;
+`;
+
+const SpanTxt = styled.span`
+  cursor: pointer;
+  color: #1da1f2;
+  ${(props) => (props.padding ? `padding:${props.padding};` : "")}
 `;
 
 export default Text;
