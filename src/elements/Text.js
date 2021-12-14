@@ -11,7 +11,6 @@ const Text = (props) => {
     center,
     is_text,
     __onClick,
-    is_sns,
     justify,
     padding,
     is_footTxT,
@@ -49,9 +48,7 @@ const Text = (props) => {
   }
 
   return (
-      <P {...styles}>
-          {children}
-      </P>
+      <P {...styles}>{children}</P>
   )
 };
 
