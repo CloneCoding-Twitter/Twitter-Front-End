@@ -11,7 +11,6 @@ const Text = (props) => {
     center,
     is_text,
     __onClick,
-    is_sns,
     justify,
     padding,
     is_footTxT,
@@ -48,20 +47,8 @@ const Text = (props) => {
     )
   }
 
-  if (is_text) {
-    return <Div onClick={__onClick}>Chabak</Div>;
-  }
-  //---- 소셜 로그인 ----
-  if (is_sns) {
-    return <Sns onClick={__onClick}>소셜 계정으로 로그인 </Sns>;
-  }
-
-
-  const styles = {bold: bold, color: color, size: size, margin};
   return (
-      <P {...styles}>
-          {children}
-      </P>
+      <P {...styles}>{children}</P>
   )
 };
 

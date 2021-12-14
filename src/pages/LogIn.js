@@ -29,15 +29,15 @@ const LogIn = (props) => {
               color="#000"
               bold="900"
               size="4rem"
-              margin="4.5rem 0 4rem 0"
+              margin="4rem 0 4rem 0"
             >
               지금 일어나고 있는 일
             </Text>
-            <Text color="#000" bold="900" size="2rem" margin="0 0 1.5rem 0">
+            <Text color="#000" bold="900" size="2rem" margin="0 0 2rem 0">
               오늘 트위터에 가입하세요.
             </Text>
           </Grid>
-          <Grid margin="0 0 3px 0">
+          <Grid margin="0 0 8px 0">
             <Button
               is_border
               width="300px"
@@ -63,9 +63,9 @@ const LogIn = (props) => {
               Apple로 로그인하기
             </Button>
           </Grid>
-          <Grid is_flex="flex-start" width="300px" margin="3px 0">
+          <Grid is_flex="flex-start" width="300px" margin="10px 0">
             <hr width="128px" align="left" color="#efefef" size="1" />
-            <Text margin="0" size="15px" bold="900">또는</Text>
+            <Text margin="0" size="15px" >또는</Text>
             <hr width="128px" align="right" color="#efefef" size="1" />
           </Grid>
           <Grid>
@@ -76,6 +76,9 @@ const LogIn = (props) => {
               font_color="#ffffff"
               font_size="15px"
               bold="900"
+              _onClick={() => {
+                history.push("/signupcard");
+              }}
             >
               휴대폰 번호나 이메일 주소로 가입하기
             </Button>
@@ -93,7 +96,7 @@ const LogIn = (props) => {
             <Text is_span bold="900"> Cookie Use.</Text>
             </Text>
           </Grid>
-          <Grid margin="4rem 0 2px 0">
+          <Grid margin="4rem 0 5px 0">
             <Text size="1.1rem" bold="900">이미 트위터에 가입하셨나요?</Text>
           </Grid>
           <Grid margin="15px 0 0 0">
@@ -162,8 +165,8 @@ const LoginRight = styled.div`
 `;
 
 const TwitterLogoSmall = styled.div`
-  width: 3.2rem;
-  height: 3.2rem;
+  width: 3rem;
+  height: 3rem;
   background-image: url(${twitter_logo_small});
   background-size: cover;
   background-repeat: no-repeat;

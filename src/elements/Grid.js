@@ -56,7 +56,7 @@ Grid.defaultProps = {
   is_flex: false,
   is_wrap: false,
   column: false,
-  width: "auto",
+  width: false,
   height: false,
   padding: false,
   margin: false,
@@ -73,7 +73,7 @@ Grid.defaultProps = {
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
-  height: 100%;
+  height: ${(props) => props.height};
   box-sizing: border-box;
   ${(props) => (props.height ? `height: ${props.height};` : "")};
   ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
