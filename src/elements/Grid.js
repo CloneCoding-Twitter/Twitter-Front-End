@@ -90,5 +90,6 @@ const GridBox = styled.div`
   ${(props) => (props.is_wrap ? "flex-wrap: wrap" : "")};
   ${(props) => (props.column ? "flex-direction: column;" : "")};
   /* border: 1px solid #000; */
+
 `;
 export default Grid;
