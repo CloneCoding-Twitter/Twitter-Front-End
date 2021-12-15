@@ -38,8 +38,8 @@ const getArticleDB = () => {
 
     await api.get("/api/article")
     .then(res => {
-      console.log(res);
-      dispatch(getArticle(res));
+      console.log({...res.data.result});
+      dispatch(getArticle(res.data.result));
     }).catch(err => {
       console.log('게시물 조회 오류', err)
     })
@@ -55,13 +55,15 @@ const addArticleDB = (content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
+    const token = localStorage.getItem('token');
     await api.post("/api/article", form, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       }
     }).then((res) => {
       console.log(res.data);
-      dispatch(addArticle(res.data));
+      dispatch(addArticle(res.data.article));
       // history.replace('/home');
     }).catch(err => {
       console.log("게시물 등록 오류", err)
@@ -78,13 +80,15 @@ const editArticleDB = (id, content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
+    const token = localStorage.getItem('token');
     await api.put(`/api/article/${id}`,form, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       }
     }).then(res => {
-      console.log(res.data);
-      dispatch(editArticle(res.data));
+      console.log(res.data.article);
+      dispatch(editArticle(res.data.article));
       // history.replace('/home');
     }).catch(err => {
       console.log("게시물 수정 오류", err)
@@ -97,12 +101,17 @@ const deleteArticleDB = (id) => {
   return async function(dispatch, getState, {history}) {
     // console.log(id) 확인완료
     // axios 요청
-    await api.delete(`/api/article/${id}`)
+    const token = localStorage.getItem('token');
+    await api.delete(`/api/article/${id}`, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
+      }
+    })
     .then(() => {
       dispatch(deleteArticle(id));
     })
 
-    // history.replace('/home');
   }
 }
 
@@ -110,10 +119,8 @@ export default handleActions(
   {
     [GET_ARTICLE]: (state, action) =>
       produce(state, (draft) => {
-        // console.log(action.payload.list);
-        draft.list.push({...action.payload.list});
-        draft.is_loading = false
-        // console.log(state.list);
+        draft.list.push(...action.payload.list);
+        draft.is_loading = false;
       }),
 
     [ADD_ARTICLE]: (state, action) => 
@@ -134,7 +141,7 @@ export default handleActions(
     [DELETE_ARTICLE]: (state, action) => 
       produce(state, (draft) => {
         let deleted_list = draft.list.filter(
-          (p) => p.id !== Number(action.payload.id)
+          (a) => a.id !== action.payload.id
         );
 
         draft.list = deleted_list;

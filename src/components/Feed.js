@@ -20,7 +20,7 @@ const Feed = (props) => {
   // const id = props.match.params
   // console.log(image);
   // console.log(preview);
-  console.log(articleList);
+  console.log(preview);
 
   const selectFile = () => {
     const reader = new FileReader();
@@ -43,6 +43,7 @@ const Feed = (props) => {
 
   const addArticle = () => {
     dispatch(ArticleActions.addArticleDB(content, image))
+    setContent('')
   };
 
   // const editArticle = () => {
@@ -68,7 +69,9 @@ const Feed = (props) => {
             >
             </input>
             {/* 삼항연산자로 preview 있으면 띄우고 없으면 none */}
-            <Image src={preview} /> 
+            <div style={{border:'1px solid red'}}>
+              <Image src={preview? preview: ''} /> 
+            </div>
           </Grid>
           <Grid is_flex>
             <label for="input-file">
@@ -86,7 +89,7 @@ const Feed = (props) => {
         </Grid>
 
         <Grid>
-          {articleList.map((l,idx) => {
+          {articleList.map((l) => {
             return(
               <Article {...l}/>
             )

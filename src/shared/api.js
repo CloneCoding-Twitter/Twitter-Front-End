@@ -11,7 +11,7 @@ const api = axios.create({
 // api.interceptors.request.use(function (config) {
 //   const accessToken = document.cookie.split("=")[1];
 //   config.headers.common["X-AUTH-TOKEN"] = `${accessToken}`; // 요청할때마다 헤더에 쿠키에서 가져온 토큰을 실어서 보낸다.
-//   return config;
+//   return config;y
 // });
 
 export default api
