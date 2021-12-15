@@ -39,7 +39,7 @@ const Grid = (props) => {
     overflow: overflow,
     border: border,
     radius: radius,
-    bold: bold
+    bold: bold,
   };
 
   return (
@@ -67,7 +67,6 @@ Grid.defaultProps = {
   align: false,
   overflow: "",
   border: false,
-  // radius: false,
   _onClick: () => {},
 };
 
@@ -83,13 +82,11 @@ const GridBox = styled.div`
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")};
   ${(props) => (props.is_flex ? "display: flex;" : "")};
   ${(props) => (props.position ? `position: ${props.position};` : "")};
-  ${(props) => (props.position === 'fixed' ? "top: 0; left: 0" : "")};
+  ${(props) => (props.position === "fixed" ? "top: 0; left: 0" : "")};
   ${(props) => (props.border ? `border: ${props.border};` : "")};
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")};
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
   ${(props) => (props.is_wrap ? "flex-wrap: wrap" : "")};
   ${(props) => (props.column ? "flex-direction: column;" : "")};
-  /* border: 1px solid #000; */
-
 `;
 export default Grid;

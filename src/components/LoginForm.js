@@ -31,10 +31,6 @@ const validationSchema = yup.object({
 const LoginForm = (props) => {
   const dispatch = useDispatch();
 
-  const login = () => {
-    console.log(login);
-  };
-
   const formik = useFormik({
     initialValues: {
       loginId: "",
@@ -84,7 +80,6 @@ const LoginForm = (props) => {
               font_color="#ffffff"
               font_size="15px"
               bold="900"
-              _onClick={login}
             >
               로그인
             </Button>

@@ -46,6 +46,4 @@ export const apis = {
     }),
 };
 
-
-
 export default instance;
