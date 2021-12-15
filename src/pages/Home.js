@@ -12,7 +12,6 @@ import { actionCreators as articleActions } from '../redux/modules/article';
 const Main = (props) => {
   const dispatch = useDispatch();
   const articleList = useSelector(state => state.article.list);
-  // console.log(list); 확인완료
 
   React.useEffect(() => {
     dispatch(articleActions.getArticleDB());

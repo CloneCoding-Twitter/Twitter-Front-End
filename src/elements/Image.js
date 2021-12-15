@@ -2,11 +2,12 @@ import styled from 'styled-components';
 import React from "react";
 
 const Image = (props) => {
-    const {preview, shape, src, size,} = props;
+    const { shape, src, size,} = props;
 
     const styles = {
         src: src,
         size: size,
+
     }
     
     if(shape === "circle"){
@@ -30,8 +31,7 @@ const Image = (props) => {
     )
 }
 
-Image.defaultProps = {
-//   preview: true,  
+Image.defaultProps = { 
   shape: "",
   src: "../icons/pysick.jpg",
   size: 40,

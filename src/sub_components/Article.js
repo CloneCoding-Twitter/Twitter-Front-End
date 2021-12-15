@@ -30,7 +30,7 @@ const Article = (props) => {
             <Text bold>{loginId}</Text>&nbsp;
             <Text>{`@${nickname}`}</Text>&nbsp;
             {/* <Text>23s</Text> */}
-            <Button _onClick={articleDelete}>삭제</Button>
+            <Button _onClick={articleDelete}>Delete</Button>
           </Grid>
 
           <Text>{content}</Text>
@@ -61,7 +61,7 @@ const Article = (props) => {
 
 Article.defaultProps = {
   id: '1',
-  loginId: '',
+  loginId: 'chungun',
   nickname: 'chungun',
   content: 'css때문에 그만둘지도...',
   image: 'https://previews.123rf.com/images/file404/file4041507/file404150705922/42343915-%EC%A0%88%EB%A7%9D%EC%9D%98-%EC%82%AC%EB%9E%8C.jpg'
