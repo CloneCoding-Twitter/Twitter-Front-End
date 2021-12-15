@@ -91,7 +91,7 @@ const Feed = (props) => {
         <Grid>
           {articleList.map((l) => {
             return(
-              <Article {...l}/>
+              <Article key={l.id} {...l}/>
             )
           })}
         </Grid>
