@@ -4,9 +4,9 @@ import * as yup from "yup";
 import { Button, Grid } from "../elements";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
-import { createMuiTheme, ThemeProvider, TextField } from "@material-ui/core";
+import { createTheme, ThemeProvider, TextField } from "@material-ui/core";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#1DA1F2",
@@ -71,10 +71,10 @@ const SignUpForm = (props) => {
     <Grid is_flex justify="center">
       <ThemeProvider theme={theme}>
         <form onSubmit={formik.handleSubmit}>
-          <Grid is_flex justify="center" margin="0 0 20px 0">
+          <Grid is_flex justify="flex-start" margin="0 0 15px 0">
             <TextField
               color="primary"
-              fullWidth
+              style={{ width: "63%" }}
               id="loginId"
               name="loginId"
               label="아이디"
@@ -83,11 +83,23 @@ const SignUpForm = (props) => {
               error={formik.touched.loginId && Boolean(formik.errors.loginId)}
               helperText={formik.touched.loginId && formik.errors.loginId}
             />
+            <Button
+              is_blackHover
+              width="33%"
+              height="34px"
+              margin="14px 0 0 4%"
+              font_color="#fff"
+              bg="#000"
+              font_size="12px"
+              bold="900"
+            >
+              중복확인
+            </Button>
           </Grid>
-          <Grid is_flex justify="center" margin="20px 0">
+          <Grid is_flex justify="flex-start" margin="15px 0">
             <TextField
               color="primary"
-              fullWidth
+              style={{ width: "63%" }}
               id="nickname"
               name="nickname"
               label="닉네임"
@@ -96,27 +108,39 @@ const SignUpForm = (props) => {
               error={formik.touched.nickname && Boolean(formik.errors.nickname)}
               helperText={formik.touched.nickname && formik.errors.nickname}
             />
+            <Button
+              is_blackHover
+              width="33%"
+              height="34px"
+              margin="14px 0 0 4%"
+              font_color="#fff"
+              bg="#000"
+              font_size="12px"
+              bold="900"
+            >
+              중복확인
+            </Button>
           </Grid>
-          <Grid is_flex justify="center" margin="20px 0">
+          <Grid is_flex justify="center" margin="15px 0">
             <TextField
               fullWidth
               id="password"
               name="password"
               label="비밀번호"
-              type="password"
+              type="new-password"
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
               helperText={formik.touched.password && formik.errors.password}
             />
           </Grid>
-          <Grid is_flex justify="center" margin="20px 0 30px 0">
+          <Grid is_flex justify="center" margin="15px 0 30px 0">
             <TextField
               fullWidth
               id="passwordCheck"
               name="passwordCheck"
               label="비밀번호 확인"
-              type="password"
+              type="new-password"
               value={formik.values.passwordCheck}
               onChange={formik.handleChange}
               error={
@@ -130,8 +154,7 @@ const SignUpForm = (props) => {
           </Grid>
           <Grid is_flex justify="center">
             <Button
-              is_blackHover
-              bg="#000"
+              is_tweeterHover
               width="300px"
               height="42px"
               font_color="#fff"

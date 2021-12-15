@@ -145,8 +145,8 @@ const LoginLeft = styled.div`
 `;
 
 const TwitterLogo = styled.div`
-  width: 36%;
-  height: 36%;
+  width: 23.8rem;
+  height: 23.8rem;
   background-image: url(${twitter_logo});
   background-size: cover;
   background-repeat: no-repeat;
@@ -195,7 +195,6 @@ const FooterBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #efefef;
 `;
 
 export default LogIn;

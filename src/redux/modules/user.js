@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { setToken } from "../../shared/token";
-import {apis} from "../../shared/apis";
+import { apis } from "../../shared/apis";
 
 // actions
 const SET_USER = "SET_USER";
@@ -64,7 +64,6 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.username);
         draft.username = action.payload.username;
         draft.is_login = true;
       }),
