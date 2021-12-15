@@ -72,8 +72,8 @@ const Button = (props) => {
 
 Button.defaultProps = {
   is_border: false,
-  height: false,
-  width: false,
+  height: "",
+  width: "",
   font_color: '#0F1419',
   font_size: false,
   center: false,

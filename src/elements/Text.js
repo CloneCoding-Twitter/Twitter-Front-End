@@ -36,7 +36,7 @@ const Text = (props) => {
       <React.Fragment>
         <FootTxt {...styles}>{children}</FootTxt>
       </React.Fragment>
-    )
+    );
   }
 
   if (is_span) {
@@ -44,12 +44,10 @@ const Text = (props) => {
       <React.Fragment>
         <SpanTxt {...styles}>{children}</SpanTxt>
       </React.Fragment>
-    )
+    );
   }
 
-  return (
-      <P {...styles}>{children}</P>
-  )
+  return <P {...styles}>{children}</P>;
 };
 
 Text.defaultProps = {
@@ -64,14 +62,13 @@ Text.defaultProps = {
   justify: false,
   padding: false,
   is_footTxT: false,
-
 };
 
 const P = styled.p`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
-  font-weight: ${(props) => (props.bold? "800" : "400")};
-  ${(props) => (props.margin? `margin: ${props.margin};` : '')}
+  font-weight: ${(props) => (props.bold ? "800" : "400")};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 
 const FootTxt = styled.p`

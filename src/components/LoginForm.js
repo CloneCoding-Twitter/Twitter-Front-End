@@ -4,9 +4,9 @@ import * as yup from "yup";
 import { Button, Grid } from "../elements";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
-import { createMuiTheme, ThemeProvider, TextField } from "@material-ui/core";
+import { createTheme, ThemeProvider, TextField } from "@material-ui/core";
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: "#1DA1F2",
