@@ -4,8 +4,16 @@ import styled from "styled-components";
 import { Text, Grid } from ".";
 
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, multiLine, value, bginput } =
-    props;
+  const {
+    label,
+    placeholder,
+    _onChange,
+    type,
+    multiLine,
+    value,
+    bginput,
+    is_search,
+  } = props;
 
   // ---- 게시물 작성 내용 영역  ----
   if (multiLine) {
@@ -33,6 +41,18 @@ const Input = (props) => {
     );
   }
 
+  if (is_search) {
+    return (
+      <Grid>
+        <SearchInput
+          type={type}
+          placeholder={placeholder}
+          onChange={_onChange}
+        />
+      </Grid>
+    );
+  }
+
   return (
     <React.Fragment>
       <Grid>
@@ -53,6 +73,7 @@ Input.defaultProps = {
   value: "",
   _onChange: () => {},
   checked: "",
+  is_search: false,
 };
 //---- 게시물 작성 내용 영역 ----
 const ElTextarea = styled.textarea`
@@ -81,6 +102,21 @@ const Underline = styled.input`
   :focus {
     outline: none;
     border: 1px solid #777;
+  }
+`;
+
+const SearchInput = styled.input`
+  width: 348px;
+  height: 42px;
+  border: none;
+  padding-left: 50px;
+  background-color: #f7f9fa;
+  border-radius: 50px;
+
+  &:focus {
+    background-color: #fff;
+    border: 1.7px solid #1da1f2;
+    outline: none;
   }
 `;
 export default Input;

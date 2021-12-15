@@ -50,10 +50,6 @@ const validationSchema = yup.object({
 const SignUpForm = (props) => {
   const dispatch = useDispatch();
 
-  const signup = () => {
-    console.log(signup);
-  };
-
   const formik = useFormik({
     initialValues: {
       loginId: "",
@@ -127,7 +123,7 @@ const SignUpForm = (props) => {
               id="password"
               name="password"
               label="비밀번호"
-              type="new-password"
+              type="password"
               value={formik.values.password}
               onChange={formik.handleChange}
               error={formik.touched.password && Boolean(formik.errors.password)}
@@ -140,7 +136,7 @@ const SignUpForm = (props) => {
               id="passwordCheck"
               name="passwordCheck"
               label="비밀번호 확인"
-              type="new-password"
+              type="password"
               value={formik.values.passwordCheck}
               onChange={formik.handleChange}
               error={
@@ -160,7 +156,6 @@ const SignUpForm = (props) => {
               font_color="#fff"
               font_size="15px"
               bold="900"
-              _onClick={signup}
             >
               가입하기
             </Button>

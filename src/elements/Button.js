@@ -21,6 +21,7 @@ const Button = (props) => {
     is_tweeterHover,
     is_border,
     is_blackHover,
+    is_listMenu,
   } = props;
 
   const styles = {
@@ -41,17 +42,8 @@ const Button = (props) => {
     is_tweeterHover,
     is_border,
     is_blackHover,
+    is_listMenu,
   };
-
-  // if (text_color) {
-  //   return (
-  //     <React.Fragment>
-  //       <ElButton {...styles} onClick={_onClick}>
-  //         {text ? text : children}
-  //       </ElButton>
-  //     </React.Fragment>
-  //   );
-  // }
 
   if (is_border) {
     return (
@@ -59,6 +51,16 @@ const Button = (props) => {
         <BorderBtn {...styles} onClick={_onClick}>
           {text ? text : children}
         </BorderBtn>
+      </React.Fragment>
+    );
+  }
+
+  if (is_listMenu) {
+    return (
+      <React.Fragment>
+        <MenuBtn {...styles} onClick={_onClick}>
+          {text ? text : children}
+        </MenuBtn>
       </React.Fragment>
     );
   }
@@ -87,6 +89,7 @@ Button.defaultProps = {
   is_tweeterHover: false,
   disabled: false,
   bold: false,
+  onSubmit: false,
 };
 
 //---- 기본 return Button ----
@@ -154,6 +157,23 @@ const BorderBtn = styled(RoundButton)`
   &:hover {
     background-color: #efefef;
     transition: 0.45s;
+  }
+`;
+
+const MenuBtn = styled(RoundButton)`
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
+  padding-right: 28px;
+
+  &:hover {
+    color: #000;
+    background-color: #efefef;
+    transition: 0.2s;
+  }
+  &:not(hover) {
+    transition: 0.2s;
   }
 `;
 
