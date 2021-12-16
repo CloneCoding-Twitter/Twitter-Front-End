@@ -24,6 +24,20 @@ const GlobalStyles = createGlobalStyle`
         letter-spacing : 0.02rem;
         overflow: hidden;
     }
+    textarea {
+        border: none;
+        overflow: auto;
+        outline: none;
+
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
+        resize: none;
+    }
+    ::-webkit-scrollbar { 
+      display: none;
+    }
 `;
 
 export default GlobalStyles;
