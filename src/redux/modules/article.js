@@ -15,17 +15,15 @@ const getArticle = createAction(GET_ARTICLE, (list) => ({list}));
 const addArticle = createAction(ADD_ARTICLE, (article) => ({article}));
 const editArticle = createAction(EDIT_ARTICLE, (id, article) => ({id, article}));
 const deleteArticle = createAction(DELETE_ARTICLE, (id) => ({id}));
-const loading = createAction(LOADING, (state) => ({state}));
 
 // initailState
 const initialState = {
   list: [],
-  is_loading: false,
 };
 
 // const initialArticle = {
-//   // id: 1,
-//   // loginId: '',
+// id: 1,
+// loginId: '',
 //   nickname: '',
 //   content: '',
 //   image: ''
@@ -34,8 +32,7 @@ const initialState = {
 // middlewares
 const getArticleDB = () => {
   return async function(dispatch, getState, {history}) {
-    dispatch(loading(true))
-
+    console.log('세번재')
     await apis
       .articles()
       .then(res => {
@@ -51,6 +48,8 @@ const getArticleDB = () => {
 
 const addArticleDB = (content, image) => {
   return async function(dispatch, getState, {history}) {
+    console.log(content)
+    console.log(image)
     const form = new FormData();
     form.append('img', image);
     form.append('content', content);
@@ -60,8 +59,8 @@ const addArticleDB = (content, image) => {
     await apis
       .addArticle(form)
       .then((res) => {
-        console.log(res.data);
-        dispatch(addArticle(res.data.article));
+        // console.log(res.data);
+        // dispatch(addArticle(res.data.article));
         // history.replace('/home');
       }).catch(err => {
         console.log("게시물 등록 오류", err)
@@ -110,8 +109,7 @@ export default handleActions(
   {
     [GET_ARTICLE]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(...action.payload.list);
-        draft.is_loading = false;
+        draft.list = action.payload.list;
       }),
 
     [ADD_ARTICLE]: (state, action) => 
@@ -137,11 +135,6 @@ export default handleActions(
 
         draft.list = deleted_list;
       }),
-
-    [LOADING]: (state, action) => 
-      produce(state, (draft) => {
-        draft.is_loading = action.payload.state;
-      })
   },
   initialState
 );

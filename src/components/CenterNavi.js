@@ -9,7 +9,7 @@ const CenterNavi = (props) => {
       <NaviBox>
         <TextBox>
           <Text size="20px" bold="bold">
-            Home
+            {props.text}
           </Text>
         </TextBox>
         <IconBox>
@@ -19,6 +19,10 @@ const CenterNavi = (props) => {
     </React.Fragment>
   );
 };
+
+CenterNavi.defaultProps= {
+  text: 'Home'
+}
 
 const NaviBox = styled.div`
   width: 100%;

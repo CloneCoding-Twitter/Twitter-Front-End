@@ -9,7 +9,7 @@ export const setPreview = createAction(SET_PREVIEW, (url) => ({url}));
 
 // initialState
 const initialState = {
-  preview_url: ''
+  preview_url: null
 }
 
 export default handleActions(
