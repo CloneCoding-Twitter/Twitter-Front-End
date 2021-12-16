@@ -45,13 +45,7 @@ const Feed = (props) => {
     dispatch(ArticleActions.addArticleDB(content, image))
     setContent('')
   };
-
-  // const editArticle = () => {
-  //   const id = 1
-  //   dispatch(ArticleActions.editArticleDB(id, content, image));
-  // }
   
-
 
   return (
     <React.Fragment>

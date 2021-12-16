@@ -52,7 +52,7 @@ const SignUpForm = (props) => {
   const idCheck = useSelector(state => state.user.idCheck);
   const nicknameCheck = useSelector(state => state.user.nicknameCheck);
 
-  const formik = useFormik({
+  const FormikSignUp = useFormik({
     initialValues: {
       loginId: "",
       nickname: "",

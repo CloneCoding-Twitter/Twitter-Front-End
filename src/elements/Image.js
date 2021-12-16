@@ -31,7 +31,7 @@ const Image = (props) => {
 Image.defaultProps = {
   shape: "",
   src: "../icons/pysick.jpg",
-  size: 40,
+  size: '40',
 };
 
 const ImageDefault = styled.div`
@@ -40,7 +40,9 @@ const ImageDefault = styled.div`
   height: var(--size);
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  display: ${(props) => (props.preview ? "block" : "none")};
+  /* display: ${(props) => (props.preview ? "block" : "none")}; */
+
+  border: 1px solid green;
 `;
 
 const AspectOutter = styled.div`

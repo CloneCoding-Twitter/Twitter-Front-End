@@ -2,6 +2,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../redux/configureStore";
+import { Route } from "react-router-dom";
+
 // home components
 import LeftMenu from "../components/LeftMenu";
 import LeftUser from "../components/LeftUser";
@@ -11,11 +15,15 @@ import RightForYou from "../components/RightForYou";
 import RightWho from "../components/RightWho";
 import RightText from "../components/RightText";
 
-import { useDispatch } from "react-redux";
+import Detail from "./Detail";
+
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
 
 const Main = (props) => {
   const dispatch = useDispatch();
+  const article_list = useSelector(state => state.article.list);
+  console.log(article_list)
 
   React.useEffect(() => {
     dispatch(articleActions.getArticleDB());
@@ -34,12 +42,24 @@ const Main = (props) => {
           </UserBox>
         </LeftBox>
 
+          
         <CenterBox>
-          <HeadBox>
+          {/* <HeadBox>
             <CenterNavi />
-          </HeadBox>
-          <WhatsBox />
+          </HeadBox> */}
+
+          <ConnectedRouter history={history}>
+            {/* <WhatsBox onClick={() => {history.push('/detail')}}/> */}
+            <Route exact path='/detail/:id' component={Detail}></Route>
+          </ConnectedRouter>
+          
+          {/* {article_list.map(a => {
+            return(
+              
+            )
+          })} */}
         </CenterBox>
+
 
         <RightBox>
           <HeadBoxTwo>
@@ -103,6 +123,9 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
+
+  padding: 16px;
+  border:1px solid red;
 `;
 
 const HeadBox = styled.div`
