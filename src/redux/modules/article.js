@@ -48,6 +48,8 @@ const getArticleDB = () => {
   }
 }
 
+
+
 const addArticleDB = (content, image) => {
   return async function(dispatch, getState, {history}) {
     const form = new FormData();

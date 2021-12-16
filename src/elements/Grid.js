@@ -21,6 +21,7 @@ const Grid = (props) => {
     border,
     radius,
     bold,
+    borderB,
   } = props;
 
   const styles = {
@@ -40,6 +41,7 @@ const Grid = (props) => {
     border: border,
     radius: radius,
     bold: bold,
+    borderB: borderB,
   };
 
   return (
@@ -56,7 +58,7 @@ Grid.defaultProps = {
   is_flex: false,
   is_wrap: false,
   column: false,
-  width: "",
+  width: "100%", // ---------- 
   height: "",
   padding: false,
   margin: false,
@@ -66,8 +68,12 @@ Grid.defaultProps = {
   justify: false,
   align: false,
   overflow: "",
-  border: false,
+  radius: false,
+  borderB: false,
   _onClick: () => {},
+  
+  border: false,
+  
 };
 
 const GridBox = styled.div`
@@ -88,5 +94,8 @@ const GridBox = styled.div`
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
   ${(props) => (props.is_wrap ? "flex-wrap: wrap" : "")};
   ${(props) => (props.column ? "flex-direction: column;" : "")};
+  ${(props) => (props.borderB ? "border-bottom: 1px solid #999;" : "")};
+
+  border: ${(props) => (props.border ? "1px solid #000;" : "")};
 `;
 export default Grid;

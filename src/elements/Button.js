@@ -22,6 +22,7 @@ const Button = (props) => {
     is_border,
     is_blackHover,
     is_listMenu,
+    position
   } = props;
 
   const styles = {
@@ -43,6 +44,7 @@ const Button = (props) => {
     is_border,
     is_blackHover,
     is_listMenu,
+    position
   };
 
   if (is_border) {
@@ -90,6 +92,7 @@ Button.defaultProps = {
   disabled: false,
   bold: false,
   onSubmit: false,
+  position: false,
 };
 
 //---- 기본 return Button ----
@@ -112,6 +115,7 @@ const ElButton = styled.button`
 
 const RoundButton = styled.button`
   height: ${(props) => props.height};
+  font-weight: 800;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +132,7 @@ const RoundButton = styled.button`
   border: none;
   border-radius: 9999px;
   background: ${props => props.bg? `${props.bg}`: '#1DA1F2'};
-  position: ${(props) => (props.position ? `${props.position}` : "")};
+  ${(props) => (props.position ? `position: ${props.position};` : "")};
   ${(props) => (props.center ? "display: flex; align-items: center;" : "")};
   &:hover {
     transition: 0.45s;

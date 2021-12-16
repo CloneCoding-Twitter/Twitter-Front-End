@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 
 const instance = axios.create({
-  baseURL: "http://54.180.108.194/api",
+  baseURL: "http://13.125.252.26/api",
 
   /*요청을 www.aa.com/user로 보낸다면, www.aa.com까지 기록*/
   //withCredentials: true,//자격요건: 쿠키
@@ -45,7 +45,6 @@ export const apis = {
       passwordCheck: data.passwordCheck,
     }),
 
-
   // id 중복확인
   idCheck: (loginId) => 
     instance.post("/user/idcheck", {
@@ -58,6 +57,8 @@ export const apis = {
       nickname
     }),
 
+// --------------------------------------------------
+
   // article 불러오기
   articles: () => 
     instance.get("/article"),
@@ -68,7 +69,11 @@ export const apis = {
 
   // article 등록하기
   addArticle: (form) =>
-    instance.post("/article", {form}, 
+    instance.post("/article", form, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    } 
     ),
 
   // article 수정하기
@@ -79,5 +84,20 @@ export const apis = {
 
   // article 삭제하기
   deleteArticle: (articleId) =>
-    instance.delete(`/article/${articleId}`)
+    instance.delete(`/article/${articleId}`),
+
+// --------------------------------------------------
+
+  // comment 불러오기
+  comments: (articleId) =>
+    instance.get(`/api/article/${articleId}/comment`),
+
+  // comment 등록
+  addCom: (articleId, comment) =>
+    instance.post(`/api/article/${articleId}/comment`, {
+      comment
+    }),
+
+  deleteCom: (articleId, commentId) =>
+    instance.delete(`/api/article/${articleId}/comment/${commentId}`)
 };
