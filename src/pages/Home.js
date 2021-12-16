@@ -1,37 +1,143 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React from "react";
+import styled from "styled-components";
 
-import { Grid, Text, Image } from '../elements';
-import Feed from '../components/Feed';
-import Header from '../components/Header';
-import SideMenu from '../components/SideMenu';
+// home components
+import LeftMenu from "../components/LeftMenu";
+import LeftUser from "../components/LeftUser";
+import CenterNavi from "../components/CenterNavi";
+import RightSearch from "../components/RightSearch";
+import RightForYou from "../components/RightForYou";
+import RightWho from "../components/RightWho";
+import RightText from "../components/RightText";
 
-import {useDispatch, useSelector} from 'react-redux'
-import { actionCreators as articleActions } from '../redux/modules/article';
+import { useDispatch } from "react-redux";
+import { actionCreators as articleActions } from "../redux/modules/article";
 
 const Main = (props) => {
   const dispatch = useDispatch();
-  const articleList = useSelector(state => state.article.list);
 
   React.useEffect(() => {
     dispatch(articleActions.getArticleDB());
-  }, [])
+  }, []);
 
   return (
     <React.Fragment>
-      <Grid is_flex>
-        <Grid width='275px'>
-          <Header/>
-        </Grid>
-        <Grid>
-          <SideMenu/>
-        </Grid>
-        <Grid is_flex>
-          <Feed></Feed>
-        </Grid>
-      </Grid>
+      <HomeBox>
+        <LeftBox>
+          <MenuBox>
+            <LeftMenu />
+          </MenuBox>
+
+          <UserBox>
+            <LeftUser />
+          </UserBox>
+        </LeftBox>
+
+        <CenterBox>
+          <HeadBox>
+            <CenterNavi />
+          </HeadBox>
+          <WhatsBox />
+        </CenterBox>
+
+        <RightBox>
+          <HeadBoxTwo>
+            <RightSearch />
+          </HeadBoxTwo>
+          <RightForYou />
+          <RightWho />
+          <RightText />
+        </RightBox>
+      </HomeBox>
     </React.Fragment>
-  )
-}
+  );
+};
+
+const HomeBox = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #fff;
+`;
+
+const LeftBox = styled.div`
+  width: 275px;
+  height: 100vh;
+`;
+
+const MenuBox = styled.div`
+  width: 100%;
+  height: 90%;
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 3px 8px;
+`;
+
+const UserBox = styled.div`
+  width: 100%;
+  height: 10%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const CenterBox = styled.div`
+  width: 600px;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #efefef;
+  border-top: none;
+  border-bottom: none;
+  overflow-y: scroll;
+`;
+
+const HeadBox = styled.div`
+  width: 100%;
+  height: 53px;
+  display: inline-block;
+  position: sticky;
+  top: 0;
+  left: 0;
+`;
+
+const WhatsBox = styled.div`
+  width: 100%;
+  height: 125px;
+  background-color: #222;
+`;
+
+const RightBox = styled.div`
+  width: 350px;
+  height: 100%;
+  margin-left: 30px;
+  position: relative;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+`;
+
+const HeadBoxTwo = styled.div`
+  width: 100%;
+  height: 46px;
+  display: inline-block;
+  position: sticky;
+  top: 5px;
+  right: 0;
+  background-color: #fff;
+`;
 
 export default Main;

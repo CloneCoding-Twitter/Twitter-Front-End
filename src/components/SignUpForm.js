@@ -52,7 +52,7 @@ const SignUpForm = (props) => {
   const idCheck = useSelector(state => state.user.idCheck);
   const nicknameCheck = useSelector(state => state.user.nicknameCheck);
 
-  const FormikSignUp = useFormik({
+  const formik = useFormik({
     initialValues: {
       loginId: "",
       nickname: "",
@@ -165,7 +165,7 @@ const SignUpForm = (props) => {
               label="비밀번호 확인"
               type="password"
               value={FormikSignUp.values.passwordCheck}
-              onChange={FormikSignUp.handleChange}
+              on
               error={
                 FormikSignUp.touched.passwordCheck &&
                 Boolean(FormikSignUp.errors.passwordCheck)

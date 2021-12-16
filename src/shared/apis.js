@@ -45,6 +45,7 @@ export const apis = {
       passwordCheck: data.passwordCheck,
     }),
 
+
   // id 중복확인
   idCheck: (loginId) => 
     instance.post("/user/idcheck", {
@@ -80,5 +81,3 @@ export const apis = {
   deleteArticle: (articleId) =>
     instance.delete(`/article/${articleId}`)
 };
-
-
