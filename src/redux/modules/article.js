@@ -1,7 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-import api from '../../shared/api' 
+import { apis } from "../../shared/apis";
 
 // action
 const GET_ARTICLE = 'GET_ARTICLE';
@@ -23,26 +23,27 @@ const initialState = {
   is_loading: false,
 };
 
-const initialArticle = {
-  // id: 1,
-  // loginId: '',
-  nickname: '',
-  content: '',
-  image: ''
-}
+// const initialArticle = {
+//   // id: 1,
+//   // loginId: '',
+//   nickname: '',
+//   content: '',
+//   image: ''
+// }
 
 // middlewares
 const getArticleDB = () => {
   return async function(dispatch, getState, {history}) {
     dispatch(loading(true))
 
-    await api.get("/api/article")
-    .then(res => {
-      console.log({...res.data.result});
-      dispatch(getArticle(res.data.result));
-    }).catch(err => {
-      console.log('게시물 조회 오류', err)
-    })
+    await apis
+      .articles()
+      .then(res => {
+        console.log({...res.data.result});
+        dispatch(getArticle(res.data.result));
+      }).catch(err => {
+        console.log('게시물 조회 오류', err)
+      })
 
   }
 }
@@ -55,19 +56,16 @@ const addArticleDB = (content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
-    const token = localStorage.getItem('token');
-    await api.post("/api/article", form, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      }
-    }).then((res) => {
-      console.log(res.data);
-      dispatch(addArticle(res.data.article));
-      // history.replace('/home');
-    }).catch(err => {
-      console.log("게시물 등록 오류", err)
-    })
+    
+    await apis
+      .addArticle(form)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(addArticle(res.data.article));
+        // history.replace('/home');
+      }).catch(err => {
+        console.log("게시물 등록 오류", err)
+      })
 
   }
 }
@@ -80,19 +78,16 @@ const editArticleDB = (id, content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
-    const token = localStorage.getItem('token');
-    await api.put(`/api/article/${id}`,form, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      }
-    }).then(res => {
-      console.log(res.data.article);
-      dispatch(editArticle(res.data.article));
-      // history.replace('/home');
-    }).catch(err => {
-      console.log("게시물 수정 오류", err)
-    })
+    
+    await apis
+      .editArticle(id,form)
+      .then(res => {
+        console.log(res.data.article);
+        dispatch(editArticle(res.data.article));
+        // history.replace('/home');
+      }).catch(err => {
+        console.log("게시물 수정 오류", err)
+      })
 
   }
 }
@@ -101,16 +96,12 @@ const deleteArticleDB = (id) => {
   return async function(dispatch, getState, {history}) {
     // console.log(id) 확인완료
     // axios 요청
-    const token = localStorage.getItem('token');
-    await api.delete(`/api/article/${id}`, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token}`,
-      }
-    })
-    .then(() => {
-      dispatch(deleteArticle(id));
-    })
+    
+    await apis
+      .deleteArticle(`/api/article/${id}`)
+      .then(() => {
+        dispatch(deleteArticle(id));
+      })
 
   }
 }

@@ -34,7 +34,7 @@ const SignUpCard = () => {
             <FortmTitle>
               <Text size="1.5rem" bold="900" margin="2rem 0">
                 트위터에 가입하기
-              </Text>
+              </Text> 
             </FortmTitle>
             <SignUpForm />
             <Grid is_flex justify="center" margin="20px 0">

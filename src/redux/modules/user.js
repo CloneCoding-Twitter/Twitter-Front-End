@@ -5,15 +5,21 @@ import { apis } from "../../shared/apis";
 
 // actions
 const SET_USER = "SET_USER";
+const ID_CHECK = "ID_CHECK";
+const NICK_CHECK = "NICK_CHECK";
 
 // action creators
 const setUser = createAction(SET_USER, (username) => ({ username }));
+const idCheck = createAction(ID_CHECK, (result) => ({result}));
+const nicknameCheck = createAction(NICK_CHECK, (result) => ({result}));
 
 // initialState
 const initialState = {
   user: null,
-  username: "",
-  is_login: false,
+  loginId: "",
+  nickname: "",
+  idCheck: false,
+  nicknameCheck: false,
 };
 
 // middleware actions
@@ -59,6 +65,38 @@ const signupDB = (userinfo) => {
   };
 };
 
+const idCheckDB = (id) => {
+  return function (dispatch) {
+    console.log(id)
+    apis
+      .idCheck(id)
+      .then((response) => {
+        window.alert("사용 가능한 아이디 입니다.");
+        dispatch(idCheck(response.data.result));
+      })
+      .catch((err) => {
+        window.alert("이미 사용중인 아이디 입니다.");
+        console.log(err);
+      });
+  }
+}
+
+const nicknameCheckDB = (nickname) => {
+  return function (dispatch) {
+    console.log(nickname)
+    apis
+      .nicknameCheck(nickname)
+      .then((response) => {
+        window.alert("사용 가능한 닉네임 입니다.");
+        dispatch(nicknameCheck(response.data.result));
+      })
+      .catch((err) => {
+        window.alert("이미 사용중인 닉네임 입니다.");
+        console.log(err);
+      });
+  }
+}
+
 // reducer
 export default handleActions(
   {
@@ -67,6 +105,16 @@ export default handleActions(
         draft.username = action.payload.username;
         draft.is_login = true;
       }),
+
+    [ID_CHECK]: (state, action) => 
+      produce(state, (draft) => {
+        draft.idCheck = action.payload.result
+      }),
+
+    [NICK_CHECK]: (state, action) => 
+      produce(state, (draft) => {
+      draft.nicknameCheck = action.payload.result
+    }),
   },
   initialState
 );
@@ -76,6 +124,8 @@ const actionCreators = {
   setUser,
   loginDB,
   signupDB,
+  idCheckDB,
+  nicknameCheckDB,
 };
 
 export { actionCreators };
