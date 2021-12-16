@@ -2,7 +2,7 @@ const getToken = () => {
   const token = localStorage.getItem("token");
 
   if (token) {
-    console.log(token);
+    // console.log(token);
 
     // JSON.parse()란 : parse 메소드는 string 객체를 json 객체로 변환시켜줍니다.
     // JSON.stringify란 : stringify 메소드는 json 객체를 String 객체로 변환시켜 줍니다.
