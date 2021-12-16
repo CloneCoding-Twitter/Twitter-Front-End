@@ -22,7 +22,7 @@ const Button = (props) => {
     is_border,
     is_blackHover,
     is_listMenu,
-    position
+    position,
   } = props;
 
   const styles = {
@@ -44,7 +44,7 @@ const Button = (props) => {
     is_border,
     is_blackHover,
     is_listMenu,
-    position
+    position,
   };
 
   if (is_border) {
@@ -69,7 +69,9 @@ const Button = (props) => {
 
   return (
     <React.Fragment>
-      <RoundButton onClick={_onClick} {...styles}>{text ? text : children}</RoundButton>
+      <RoundButton onClick={_onClick} {...styles}>
+        {text ? text : children}
+      </RoundButton>
     </React.Fragment>
   );
 };
@@ -78,12 +80,12 @@ Button.defaultProps = {
   is_border: false,
   height: "",
   width: "",
-  font_color: '#0F1419',
+  font_color: "#0F1419",
   font_size: false,
   center: false,
   text: false,
   children: null,
-  padding: '12px',
+  padding: "12px",
   margin: false,
   bg: false,
   _onClick: () => {},
@@ -110,7 +112,7 @@ const ElButton = styled.button`
   &:hover {
     opacity: 0.8;
     cursor: pointer;
-  };
+  }
 `;
 
 const RoundButton = styled.button`
@@ -124,30 +126,21 @@ const RoundButton = styled.button`
   width: ${(props) => props.width};
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
-  color: ${props => props.font_color? `${props.font_color}`: "#0F1419"};
-  font-size: ${props => props.font_size? `${props.font_size}`: "19px"};
+  color: ${(props) => (props.font_color ? `${props.font_color}` : "#0F1419")};
+  font-size: ${(props) => (props.font_size ? `${props.font_size}` : "19px")};
   font-weight: ${(props) => (props.bold ? "600" : "")};
   cursor: pointer;
   box-sizing: border-box;
   border: none;
   border-radius: 9999px;
-  background: ${props => props.bg? `${props.bg}`: '#1DA1F2'};
+  background: ${(props) => (props.bg ? `${props.bg}` : "#1DA1F2")};
   ${(props) => (props.position ? `position: ${props.position};` : "")};
   ${(props) => (props.center ? "display: flex; align-items: center;" : "")};
   &:hover {
     transition: 0.45s;
-    ${props => props.is_menuHover?
-      "background: #d5d7db;"
-      : ''
-    }
-    ${props => props.is_tweeterHover?
-      "background: #1b89cc;"
-      : ''
-    }
-    ${props => props.is_blackHover?
-      "background: #333333;"
-      : ''
-    }
+    ${(props) => (props.is_menuHover ? "background: #d5d7db;" : "")}
+    ${(props) => (props.is_tweeterHover ? "background: #1b89cc;" : "")}
+    ${(props) => (props.is_blackHover ? "background: #333333;" : "")}
   }
   &:not(:hover) {
     transition: 0.45s;
@@ -155,7 +148,7 @@ const RoundButton = styled.button`
 `;
 
 const BorderBtn = styled(RoundButton)`
-  border: 1px solid #EBEEF0;
+  border: 1px solid #ebeef0;
   background-color: transparent;
 
   &:hover {
