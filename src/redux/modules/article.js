@@ -39,7 +39,7 @@ const getArticleDB = () => {
     await apis
       .articles()
       .then(res => {
-        console.log({...res.data.result});
+        console.log(res);
         dispatch(getArticle(res.data.result));
       }).catch(err => {
         console.log('게시물 조회 오류', err)
@@ -47,7 +47,6 @@ const getArticleDB = () => {
 
   }
 }
-
 
 
 const addArticleDB = (content, image) => {
@@ -58,7 +57,6 @@ const addArticleDB = (content, image) => {
 
     // console.log(content, image) 확인완료
     // axios 요청
-    
     await apis
       .addArticle(form)
       .then((res) => {

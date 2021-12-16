@@ -4,6 +4,9 @@ import { getToken } from "./token";
 const instance = axios.create({
   baseURL: "http://54.180.108.194/api",
 
+  // "http://3.37.86.222/api"
+  // "http://54.180.108.194/api"
+
   /*요청을 www.aa.com/user로 보낸다면, www.aa.com까지 기록*/
   //withCredentials: true,//자격요건: 쿠키
 });
