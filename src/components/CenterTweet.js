@@ -13,22 +13,43 @@ import schedule from "../icons/schedule.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
+import { ActionCreators as imageActions } from "../redux/modules/image";
 
 
 const CenterTweet = (props) => {
   const dispatch = useDispatch();
   const [content, setContent] = React.useState('');
   const [image, setImage] = React.useState('');
+  const fileInput = React.useRef();
+
+  const preview = useSelector(state => state.image.preview_url);
+  // console.log(image)
   
-  // React.useEffect(() => {
-  //   dispatch(articleActions.addArticleDB())
-  // })
+  React.useEffect(() => {
+    
+  })
+
+  const selectFile = () => {
+    const reader = new FileReader();
+    const file = fileInput.current.files[0];
+    
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      if(file) {
+        dispatch(imageActions.setPreview(reader.result));
+        setImage(file);
+      }
+    }
+  }
 
   const onChange = (e) => {
     setContent(e.target.value);
-    console.log(e.target.value);
   }
 
+  const addComment = () => {
+    dispatch(articleActions.addArticleDB(content, image))
+  }
 
   return (
     <React.Fragment>
@@ -51,7 +72,8 @@ const CenterTweet = (props) => {
           </CommentField>
           <CommentMore>
             <MoreIcons>
-              <Icons1 />
+              <label htmlfor="input-file"><Icons1/></label>
+              <input type="file" id="input-file" onChange={selectFile} ref={fileInput} style={{display:"none"}}/>
               <Icons2 />
               <Icons3 />
               <Icons4 />
@@ -65,6 +87,7 @@ const CenterTweet = (props) => {
                 font_size="15px"
                 font_color="#fff"
                 bold="900"
+                _onClick={addComment}
               >
                 Tweet
               </Button>
