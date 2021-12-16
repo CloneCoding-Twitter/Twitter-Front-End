@@ -1,28 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import toptweet from "../icons/toptweet.svg";
+import left_arrow from "../icons/left_arrow.svg";
 import { Text } from "../elements";
 
-const CenterNavi = (props) => {
+
+const CenterEditNavi = (props) => {
+  const EditButton = props.change
+  console.log(EditButton);
   return (
     <React.Fragment>
       <NaviBox>
+        <IconBox>
+          <BackButton onClick={EditButton} />
+        </IconBox>
         <TextBox>
           <Text size="20px" bold="bold">
-            {props.text}
+            Edit your tweet
           </Text>
         </TextBox>
-        <IconBox>
-          <TopTweet />
-        </IconBox>
       </NaviBox>
     </React.Fragment>
   );
 };
-
-CenterNavi.defaultProps= {
-  text: 'Home'
-}
 
 const NaviBox = styled.div`
   width: 100%;
@@ -30,33 +29,32 @@ const NaviBox = styled.div`
   display: flex;
   background-color: #fff;
   opacity: 0.9;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
 `;
 
 const TextBox = styled.div`
-  width: 80%;
+  width: 90%;
   height: 53px;
   line-height: 53px;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   padding-left: 10px;
 `;
 
 const IconBox = styled(TextBox)`
-  width: 20%;
+  width: 10%;
   justify-content: flex-end;
   padding: 0 10px 0 0;
 `;
 
-const TopTweet = styled.div`
+const BackButton = styled.div`
   width: 37px;
   height: 37px;
   border-radius: 100%;
-  background-image: url(${toptweet});
-  background-size: 50%;
+  background-image: url(${left_arrow});
+  background-size: 25%;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
@@ -71,4 +69,4 @@ const TopTweet = styled.div`
   }
 `;
 
-export default CenterNavi;
+export default CenterEditNavi;

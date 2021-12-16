@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ellipses from "../icons/ellipses.svg";
 import { Grid, Text, Image, Button } from "../elements";
 import testpic from "../img/test_pic.png";
 

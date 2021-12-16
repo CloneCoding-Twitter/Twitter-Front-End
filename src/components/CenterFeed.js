@@ -8,12 +8,14 @@ import share from "../icons/share.svg";
 import retweet from "../icons/retweet.svg";
 import like_black from "../icons/like_black.svg";
 import like_red from "../icons/like_red.svg";
+import ellipses from "../icons/ellipses.svg";
 
 import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
 const CenterFeed = (props) => {
 
+  const EditButton = props.change
   
   return (
     <React.Fragment>
@@ -23,16 +25,21 @@ const CenterFeed = (props) => {
         </LeftUser>
         <RightBox>
           <TopUserInfo>
-            <Text font_size="17px" bold="bold">
-              UserId
-            </Text>
-            <Text font_size="17px" margin="0 5px">
-              @nickname
-            </Text>
-            <Text font_size="17px" margin="0 5px 0 0">
-              ·
-            </Text>
-            <Text font_size="17px">✨</Text>
+            <UserInfo>
+              <Text font_size="17px" bold="bold">
+                UserId
+              </Text>
+              <Text font_size="17px" margin="0 5px">
+                @nickname
+              </Text>
+              <Text font_size="17px" margin="0 5px 0 0">
+                ·
+              </Text>
+              <Text font_size="17px">✨</Text>
+            </UserInfo>
+            <EditStory>
+              <EditIcon onClick={EditButton} />
+            </EditStory>
           </TopUserInfo>
           <MainText>
             <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
@@ -45,11 +52,11 @@ const CenterFeed = (props) => {
             </MainIcons>
             <MainIcons>
               <Icons2 />
-              <Text>🥸🔥</Text>
+              <Text size="0.7rem">Re Tweet</Text>
             </MainIcons>
             <MainIcons>
               <Icons3 />
-              <Text>Like Count</Text>
+              <Text size="0.7rem">Like Count</Text>
             </MainIcons>
             <MainIcons>
               <Icons4 />
@@ -110,10 +117,48 @@ const RightBox = styled.div`
 
 const TopUserInfo = styled.div`
   width: 100%;
-  height: 5%;
+  min-height: 25px;
   padding: 5px 10px;
   display: flex;
   flex-direction: row;
+`;
+
+const UserInfo = styled.div`
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+`;
+
+const EditStory = styled.div`
+  width: 20%;
+  height: auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const EditIcon = styled.div`
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  border-radius: 100%;
+  background-image: url(${ellipses});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+
+  &:hover {
+    color: #000;
+    background-color: #ccc;
+    transition: 0.2s;
+  }
+  &:not(hover) {
+    transition: 0.2s;
+  }
 `;
 
 const MainText = styled.div`
