@@ -26,7 +26,7 @@ const Home = (props) => {
 
   return (
     <React.Fragment>
-          
+    
         <CenterBox>
           <HeadBox>
             <CenterNavi />
@@ -37,7 +37,7 @@ const Home = (props) => {
           <CenterButtons />
           <CenterFeed />
         </CenterBox>
-      
+    
     </React.Fragment>
   );
 };
@@ -58,7 +58,6 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
-  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`
