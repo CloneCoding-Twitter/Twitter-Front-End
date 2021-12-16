@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, Grid } from "../elements";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createTheme, ThemeProvider, TextField } from "@material-ui/core";
 
 const theme = createTheme({
@@ -49,12 +49,10 @@ const validationSchema = yup.object({
 
 const SignUpForm = (props) => {
   const dispatch = useDispatch();
+  const idCheck = useSelector(state => state.user.idCheck);
+  const nicknameCheck = useSelector(state => state.user.nicknameCheck);
 
-  const signup = () => {
-    console.log(signup);
-  };
-
-  const formik = useFormik({
+  const FormikSignUp = useFormik({
     initialValues: {
       loginId: "",
       nickname: "",
@@ -63,75 +61,100 @@ const SignUpForm = (props) => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(userActions.signupDB(values));
+      if(idCheck && nicknameCheck) {
+        dispatch(userActions.signupDB(values));
+      } else {
+        window.alert('가입정보를 다시 확인해주세요!')
+        return;
+      }
     },
   });
+
+  const _idCheck = () => {
+    dispatch(userActions.idCheckDB(FormikSignUp.values.loginId))
+  }
+
+  const _nicknameCheck = () => {
+    dispatch(userActions.nicknameCheckDB(FormikSignUp.values.nickname))
+  }
 
   return (
     <Grid is_flex justify="center">
       <ThemeProvider theme={theme}>
-        <form onSubmit={formik.handleSubmit}>
-          <Grid is_flex justify="flex-start" margin="0 0 15px 0">
+        <form onSubmit={FormikSignUp.handleSubmit}>
+          <Grid>
             <TextField
+              disabled={idCheck? true: false}
               color="primary"
               style={{ width: "63%" }}
               id="loginId"
               name="loginId"
               label="아이디"
-              value={formik.values.loginId}
-              onChange={formik.handleChange}
-              error={formik.touched.loginId && Boolean(formik.errors.loginId)}
-              helperText={formik.touched.loginId && formik.errors.loginId}
+              value={FormikSignUp.values.loginId}
+              onChange={FormikSignUp.handleChange}
+              error={FormikSignUp.touched.loginId && Boolean(FormikSignUp.errors.loginId)}
+              helperText={FormikSignUp.touched.loginId && FormikSignUp.errors.loginId}
             />
-            <Button
-              is_blackHover
-              width="33%"
-              height="34px"
-              margin="14px 0 0 4%"
-              font_color="#fff"
-              bg="#000"
-              font_size="12px"
-              bold="900"
-            >
-              중복확인
-            </Button>
           </Grid>
+        </form>
+        <Button
+          type="button"
+          is_blackHover
+          width="33%"
+          height="34px"
+          margin="14px 0 0 4%"
+          font_color="#fff"
+          bg="#000"
+          font_size="12px"
+          bold="900"
+          _onClick={_idCheck}
+        >
+          중복확인
+        </Button>
+
+        <form onSubmit={FormikSignUp.handleSubmit}>
           <Grid is_flex justify="flex-start" margin="15px 0">
             <TextField
+              disabled={nicknameCheck? true: false}
               color="primary"
               style={{ width: "63%" }}
               id="nickname"
               name="nickname"
               label="닉네임"
-              value={formik.values.nickname}
-              onChange={formik.handleChange}
-              error={formik.touched.nickname && Boolean(formik.errors.nickname)}
-              helperText={formik.touched.nickname && formik.errors.nickname}
+              value={FormikSignUp.values.nickname}
+              onChange={FormikSignUp.handleChange}
+              error={FormikSignUp.touched.nickname && Boolean(FormikSignUp.errors.nickname)}
+              helperText={FormikSignUp.touched.nickname && FormikSignUp.errors.nickname}
             />
-            <Button
-              is_blackHover
-              width="33%"
-              height="34px"
-              margin="14px 0 0 4%"
-              font_color="#fff"
-              bg="#000"
-              font_size="12px"
-              bold="900"
-            >
-              중복확인
-            </Button>
           </Grid>
+        </form>
+        <Button
+          type="button"
+          is_blackHover
+          width="33%"
+          height="34px"
+          margin="14px 0 0 4%"
+          font_color="#fff"
+          bg="#000"
+          font_size="12px"
+          bold="900"
+          _onClick={_nicknameCheck}
+        >
+          중복확인
+        </Button>
+
+        <form onSubmit={FormikSignUp.handleSubmit}>
           <Grid is_flex justify="center" margin="15px 0">
             <TextField
               fullWidth
               id="password"
               name="password"
               label="비밀번호"
-              type="new-password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
+              type="password"
+              value={FormikSignUp.values.password}
+              onChange={FormikSignUp.handleChange}
+              error={FormikSignUp.touched.password && Boolean(FormikSignUp.errors.password)}
+              helperText={FormikSignUp.touched.password && FormikSignUp.errors.password}
             />
           </Grid>
           <Grid is_flex justify="center" margin="15px 0 30px 0">
@@ -140,27 +163,27 @@ const SignUpForm = (props) => {
               id="passwordCheck"
               name="passwordCheck"
               label="비밀번호 확인"
-              type="new-password"
-              value={formik.values.passwordCheck}
-              onChange={formik.handleChange}
+              type="password"
+              value={FormikSignUp.values.passwordCheck}
+              onChange={FormikSignUp.handleChange}
               error={
-                formik.touched.passwordCheck &&
-                Boolean(formik.errors.passwordCheck)
+                FormikSignUp.touched.passwordCheck &&
+                Boolean(FormikSignUp.errors.passwordCheck)
               }
               helperText={
-                formik.touched.passwordCheck && formik.errors.passwordCheck
+                FormikSignUp.touched.passwordCheck && FormikSignUp.errors.passwordCheck
               }
             />
           </Grid>
           <Grid is_flex justify="center">
             <Button
+              type="button"
               is_tweeterHover
               width="300px"
               height="42px"
               font_color="#fff"
               font_size="15px"
               bold="900"
-              _onClick={signup}
             >
               가입하기
             </Button>

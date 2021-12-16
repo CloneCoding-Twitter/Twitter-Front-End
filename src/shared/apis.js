@@ -23,7 +23,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   config.headers["Content-Type"] = "application/json; charset=utf-8";
   config.headers["X-Requested-With"] = "XMLHttpRequest";
-  config.headers["authorization"] = getToken() ? `${getToken()}` : "";
+  config.headers["Authorization"] = getToken() ? `${getToken()}` : "";
   config.headers.Accept = "application/json";
   return config;
 });
@@ -44,8 +44,41 @@ export const apis = {
       password: data.password,
       passwordCheck: data.passwordCheck,
     }),
+
+  // id 중복확인
+  idCheck: (loginId) => 
+    instance.post("/user/idcheck", {
+      loginId
+    }),
+
+  // nickname 중복확인
+  nicknameCheck: (nickname) =>
+    instance.post("/user/nickcheck", {
+      nickname
+    }),
+
+  // article 불러오기
+  articles: () => 
+    instance.get("/article"),
+
+  // article 상세페이지 불러오기
+  article: (articleId) =>
+    instance.get(`/article/${articleId}`),
+
+  // article 등록하기
+  addArticle: (form) =>
+    instance.post("/article", {form}, 
+    ),
+
+  // article 수정하기
+  editArticle: (articleId, form) =>
+    instance.post(`/article/${articleId}`, {
+      form
+    }),
+
+  // article 삭제하기
+  deleteArticle: (articleId) =>
+    instance.delete(`/article/${articleId}`)
 };
 
 
-
-export default instance;
