@@ -176,7 +176,7 @@ const MenuBtn = styled(RoundButton)`
     background-color: #efefef;
     transition: 0.2s;
   }
-  &:not(hover) {
+  &:not(:hover) {
     transition: 0.2s;
   }
 `;

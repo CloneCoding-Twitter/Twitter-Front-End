@@ -49,7 +49,6 @@ const TopTweet = styled.div`
   width: 37px;
   height: 37px;
   border-radius: 100%;
-  background-color: transparent;
   background-image: url(${toptweet});
   background-size: 50%;
   background-repeat: no-repeat;

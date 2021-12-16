@@ -10,6 +10,9 @@ import { Route } from "react-router-dom";
 import LeftMenu from "../components/LeftMenu";
 import LeftUser from "../components/LeftUser";
 import CenterNavi from "../components/CenterNavi";
+import CenterTweet from "../components/CenterTweet";
+import CenterButtons from "../components/CenterButtons";
+import CenterFeed from "../components/CenterFeed";
 import RightSearch from "../components/RightSearch";
 import RightForYou from "../components/RightForYou";
 import RightWho from "../components/RightWho";
@@ -36,7 +39,6 @@ const Main = (props) => {
           <MenuBox>
             <LeftMenu />
           </MenuBox>
-
           <UserBox>
             <LeftUser />
           </UserBox>
@@ -44,20 +46,15 @@ const Main = (props) => {
 
           
         <CenterBox>
-          {/* <HeadBox>
+          <HeadBox>
             <CenterNavi />
-          </HeadBox> */}
-
-          <ConnectedRouter history={history}>
-            {/* <WhatsBox onClick={() => {history.push('/detail')}}/> */}
-            <Route exact path='/detail/:id' component={Detail}></Route>
-          </ConnectedRouter>
-          
-          {/* {article_list.map(a => {
-            return(
-              
-            )
-          })} */}
+          </HeadBox>
+          </HeadBox>
+          <WhatsBox>
+            <CenterTweet />
+          </WhatsBox>
+          <CenterButtons />
+          <CenterFeed />
         </CenterBox>
 
 
@@ -140,7 +137,7 @@ const HeadBox = styled.div`
 const WhatsBox = styled.div`
   width: 100%;
   height: 125px;
-  background-color: #222;
+  border-bottom: 1px solid #efefef;
 `;
 
 const RightBox = styled.div`

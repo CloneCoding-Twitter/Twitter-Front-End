@@ -13,6 +13,7 @@ const Input = (props) => {
     value,
     bginput,
     is_search,
+    is_tweet,
   } = props;
 
   // ---- 게시물 작성 내용 영역  ----
@@ -53,6 +54,18 @@ const Input = (props) => {
     );
   }
 
+  if (is_tweet) {
+    return (
+      <Grid>
+        <TweetTextarea
+          type={type}
+          placeholder={placeholder}
+          onChange={_onChange}
+        />
+      </Grid>
+    );
+  }
+
   return (
     <React.Fragment>
       <Grid>
@@ -74,7 +87,9 @@ Input.defaultProps = {
   _onChange: () => {},
   checked: "",
   is_search: false,
+  is_tweet: false,
 };
+
 //---- 게시물 작성 내용 영역 ----
 const ElTextarea = styled.textarea`
   border: 1px solid #212121;
@@ -119,4 +134,25 @@ const SearchInput = styled.input`
     outline: none;
   }
 `;
+
+const TweetTextarea = styled.textarea`
+  border: none;
+  resize: none;
+  overflow: scroll;
+  font-size: 22px;
+  font-weight: 500;
+  word-break:break-all;
+  width: 100%;
+  height: auto;
+  padding: 0 3px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 export default Input;
