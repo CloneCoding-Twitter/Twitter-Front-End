@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
+// icons
+import setting from "../icons/setting.svg";
 import ellipses from "../icons/ellipses.svg";
 import { Grid, Text, Image } from "../elements";
 
@@ -8,13 +11,13 @@ const RightForYou = (props) => {
     <React.Fragment>
       <TopBox>
         <Content>
-          <Grid width="85%">
+          <Grid width="85%" padding="3px 0 0 0">
             <Text size="21px" bold="bold">
               Trends for you
             </Text>
           </Grid>
-          <Grid width="15%">
-            <Image shape="circle" src={ellipses} />
+          <Grid is_flex justify="flex-end" width="15%" padding="0 13px 0 0">
+            <Image shape="circle" size="18" src={setting} />
           </Grid>
         </Content>
         <ContentOne>
@@ -109,13 +112,13 @@ const RightForYou = (props) => {
 
 const TopBox = styled.div`
   width: 100%;
-  height: 500px;
+  height: auto;
   background-color: #f7f9fa;
-  margin-top: 10px;
+  margin-top: 21px;
   overflow: hidden;
   border-radius: 17px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
@@ -126,7 +129,7 @@ const Content = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 10px 18px;
+  padding: 13px 18px;
 `;
 
 const ContentOne = styled(Content)`

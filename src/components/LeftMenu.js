@@ -96,7 +96,7 @@ const TwitterLogoSmall = styled.div`
     transition: 0.2s;
   }
 
-  &:not(hover) {
+  &:not(:hover) {
     transition: 0.2s;
   }
 `;
