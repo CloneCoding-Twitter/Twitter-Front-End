@@ -97,23 +97,23 @@ Button.defaultProps = {
   position: false,
 };
 
-//---- 기본 return Button ----
-const ElButton = styled.button`
-  height: ${(props) => props.height};
-  width: ${(props) => props.width};
-  font-weight: 800;
-  background: none;
-  color: #fff;
-  padding: ${(props) => props.padding};
-  box-sizing: border-box;
-  border: none;
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
-  position: ${(props) => (props.position ? `${props.position}` : "")};
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
-`;
+// //---- 기본 return Button ----
+// const ElButton = styled.button`
+//   height: ${(props) => props.height};
+//   width: ${(props) => props.width};
+//   font-weight: 800;
+//   background: none;
+//   color: #fff;
+//   padding: ${(props) => props.padding};
+//   box-sizing: border-box;
+//   border: none;
+//   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
+//   position: ${(props) => (props.position ? `${props.position}` : "")};
+//   &:hover {
+//     opacity: 0.8;
+//     cursor: pointer;
+//   }
+// `;
 
 const RoundButton = styled.button`
   height: ${(props) => props.height};

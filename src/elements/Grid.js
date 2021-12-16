@@ -68,7 +68,7 @@ Grid.defaultProps = {
   justify: false,
   align: false,
   overflow: "",
-  radius: false,
+  radius: "",
   borderB: false,
   _onClick: () => {},
   

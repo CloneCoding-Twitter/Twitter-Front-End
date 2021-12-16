@@ -13,6 +13,7 @@ import CenterNavi from "../components/CenterNavi";
 import CenterTweet from "../components/CenterTweet";
 import CenterButtons from "../components/CenterButtons";
 import CenterFeed from "../components/CenterFeed";
+import CenterEdit from "../components/CenterEdit";
 import RightSearch from "../components/RightSearch";
 import RightForYou from "../components/RightForYou";
 import RightWho from "../components/RightWho";
@@ -32,6 +33,12 @@ const Main = (props) => {
     dispatch(articleActions.getArticleDB());
   }, [])
 
+  const [ modal, setModal ] = React.useState(true);
+
+  const modalButton = () => {
+    setModal(!modal)
+  }
+
   return (
     <React.Fragment>
       <HomeBox>
@@ -45,16 +52,21 @@ const Main = (props) => {
         </LeftBox>
 
         <CenterBox>
-          <HeadBox>
-            <CenterNavi />
-          </HeadBox>
-          <WhatsBox>
-            <CenterTweet />
-          </WhatsBox>
-          <CenterButtons />
-          <CenterFeed />
+        {modal === true ? (
+          <React.Fragment>
+              <HeadBox>
+                <CenterNavi />
+              </HeadBox>
+              <WhatsBox>
+                <CenterTweet />
+              </WhatsBox>
+              <CenterButtons />
+              <CenterFeed change = {modalButton} />
+          </React.Fragment>
+          ) : (
+          <CenterEdit change = {modalButton} />
+          )}
         </CenterBox>
-
         <RightBox>
           <HeadBoxTwo>
             <RightSearch />
@@ -126,6 +138,7 @@ const HeadBox = styled.div`
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 999;
 `;
 
 const WhatsBox = styled.div`
