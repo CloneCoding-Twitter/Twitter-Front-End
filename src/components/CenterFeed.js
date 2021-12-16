@@ -13,6 +13,8 @@ import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
 const CenterFeed = (props) => {
+
+  
   return (
     <React.Fragment>
       <FeedBox>
@@ -59,6 +61,7 @@ const CenterFeed = (props) => {
     </React.Fragment>
   );
 };
+
 
 const FeedBox = styled.div`
   width: 100%;

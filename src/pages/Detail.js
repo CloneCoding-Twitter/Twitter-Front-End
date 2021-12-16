@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import LeftUser from "../components/LeftUser";
 import DetailArticle from '../components/DetailArticle'
 import Comment from '../components/Comment'
-
+import CenterNavi from "../components/CenterNavi";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,25 +23,29 @@ const Detail = (props) => {
 
   return(
     <React.Fragment>
-      <DetailArticle {...article}/> {/* props로 전해주기 */}
+      <CenterBox>
+        <HeadBox>
+          <CenterNavi text='Tweet'/>
+        </HeadBox>
+        <DetailArticle {...article}/> {/* props로 전해주기 */}
 
-      {/* <Grid is_flex align padding='12px 0' borderB>
-        <Grid is_flex>
-          <LeftUser writeComment/>
-          <TextArea contentEditable={true} data-text="Tweet your reply"></TextArea>
+        <Grid is_flex align padding='12px 0' borderB>
+          <Grid is_flex>
+            <LeftUser writeComment/>
+            <TextArea contentEditable={true} data-text="Tweet your reply"></TextArea>
+          </Grid>
+          <Button
+            height='40px'
+            font_color='#fff'
+            font_size='15px' 
+            padding='0 16px' 
+            margin='0 0 0 12px'
+            position='relative'
+            >Reply</Button>
         </Grid>
-        <Button
-          height='40px'
-          font_color='#fff'
-          font_size='15px' 
-          padding='0 16px' 
-          margin='0 0 0 12px'
-          position='relative'
-          >Reply</Button>
-      </Grid> */}
 
-      <Comment/>
-
+        <Comment/>
+      </CenterBox>
 
     </React.Fragment>
   )
@@ -59,10 +63,30 @@ const TextArea = styled.div`
   }
 `
 
-// const Test = styled.textarea`
-//   min-height: 5rem;
-//   overflow-y: hidden;
-//   resize: none;
-// `
+const CenterBox = styled.div`
+  width: 600px;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #efefef;
+  border-top: none;
+  border-bottom: none;
+  overflow-y: scroll;
+  padding: 0 13px;
+`;
+
+const HeadBox = styled.div`
+  width: 100%;
+  height: 53px;
+  display: inline-block;
+  position: sticky;
+  top: 0;
+  left: 0;
+`;
 
 export default Detail;

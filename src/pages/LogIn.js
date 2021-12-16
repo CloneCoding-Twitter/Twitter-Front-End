@@ -14,6 +14,7 @@ import { history } from "../redux/configureStore";
 // import { useDispatch } from "react-redux";
 
 const LogIn = (props) => {
+  console.log('첫번째')
   return (
     <React.Fragment>
       <LoginBox>
