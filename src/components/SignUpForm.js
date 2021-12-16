@@ -165,7 +165,7 @@ const SignUpForm = (props) => {
               label="비밀번호 확인"
               type="password"
               value={FormikSignUp.values.passwordCheck}
-              on
+              onChange={FormikSignUp.handleChange}
               error={
                 FormikSignUp.touched.passwordCheck &&
                 Boolean(FormikSignUp.errors.passwordCheck)

@@ -24,13 +24,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
 
 const Main = (props) => {
-  const dispatch = useDispatch();
-  const article_list = useSelector(state => state.article.list);
+  const dispatch = useDispatch();const article_list = useSelector(state => state.article.list);
   console.log(article_list)
 
   React.useEffect(() => {
     dispatch(articleActions.getArticleDB());
-  }, []);
+  }, [])
 
   return (
     <React.Fragment>
@@ -48,7 +47,6 @@ const Main = (props) => {
         <CenterBox>
           <HeadBox>
             <CenterNavi />
-          </HeadBox>
           </HeadBox>
           <WhatsBox>
             <CenterTweet />
@@ -120,9 +118,7 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
-
-  padding: 16px;
-  border:1px solid red;
+  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`

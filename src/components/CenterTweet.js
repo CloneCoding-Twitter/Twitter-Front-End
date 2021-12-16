@@ -11,8 +11,25 @@ import media from "../icons/media.svg";
 import poll from "../icons/poll.svg";
 import schedule from "../icons/schedule.svg";
 
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as articleActions } from "../redux/modules/article";
+
 
 const CenterTweet = (props) => {
+  const dispatch = useDispatch();
+  const [content, setContent] = React.useState('');
+  const [image, setImage] = React.useState('');
+  
+  // React.useEffect(() => {
+  //   dispatch(articleActions.addArticleDB())
+  // })
+
+  const onChange = (e) => {
+    setContent(e.target.value);
+    console.log(e.target.value);
+  }
+
+
   return (
     <React.Fragment>
       <TweetBox>
@@ -28,6 +45,8 @@ const CenterTweet = (props) => {
               type="text"
               placeholder="What's Happening?"
               height="100%"
+              _onChange={onChange}
+              value={content}
             />
           </CommentField>
           <CommentMore>
