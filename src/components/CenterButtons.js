@@ -7,6 +7,8 @@ const CenterButtons = (props) => {
     <React.Fragment>
       <ButtonBox>
         <Button
+          _onClick={() => window.open('https://github.com/23hh', '_blank')}
+          padding="0 0 0 7px"
           is_border
           width="120px"
           height="38px"
@@ -14,10 +16,12 @@ const CenterButtons = (props) => {
           bold="bold"
           margin="0 10px 0 0"
         >
-          항해99 ⛵️
+          6조 이상협 😎
         </Button>
 
         <Button
+          _onClick={() => window.open('https://github.com/JooYoung2274', '_blank')}
+          padding="0 0 0 7px"
           is_border
           width="120px"
           height="38px"
@@ -25,10 +29,12 @@ const CenterButtons = (props) => {
           bold="bold"
           margin="0 10px 0 0"
         >
-          클론코딩 👨‍💻
+         6조 김주영 🤓
         </Button>
 
         <Button
+          _onClick={() => window.open('https://github.com/Chungune', '_blank')}
+          padding="0 0 0 7px"
           is_border
           width="120px"
           height="38px"
@@ -36,10 +42,12 @@ const CenterButtons = (props) => {
           bold="bold"
           margin="0 10px 0 0"
         >
-          화이팅 🥳
+          6조 정민수 🥳
         </Button>
 
         <Button
+          _onClick={() => window.open('https://github.com/yong313', '_blank')}
+          padding="0 0 0 7px"
           is_border
           width="120px"
           height="38px"
@@ -47,8 +55,9 @@ const CenterButtons = (props) => {
           bold="bold"
           margin="0 10px 0 0"
         >
-          6조 최고 👍
+          6조 전용태 🥸
         </Button>
+        
       </ButtonBox>
     </React.Fragment>
   );

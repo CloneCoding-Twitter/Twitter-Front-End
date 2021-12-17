@@ -7,20 +7,23 @@ import testpic from "../img/test_pic.png";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 
+//icons
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
+import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
+import AudiotrackOutlinedIcon from '@mui/icons-material/AudiotrackOutlined';
+
 const ModalOne = (props) => {
   const dispatch = useDispatch();
-  const loginId = localStorage.getItem('loginId');
-  const nickname = localStorage.getItem('nickname');
+  const loginId = localStorage.getItem("loginId");
+  const nickname = localStorage.getItem("nickname");
 
   const logOut = () => {
-    dispatch(userActions.logoutDB())
-  }
-  
-  const {
-    is_userModal,
-    is_deleteModal,
-    is_nomalModal,
-  } = props;
+    dispatch(userActions.logoutDB());
+  };
+
+  const { is_userModal, is_deleteModal, is_deleteModal2 } = props;
 
   if (is_userModal) {
     return (
@@ -54,40 +57,123 @@ const ModalOne = (props) => {
       </React.Fragment>
     );
   }
-
   if (is_deleteModal) {
     return (
       <React.Fragment>
-        <ModalBoxTwo>
+        <ModalBoxTwo3>
           <TextBox>
-            <Icons />
-            <Text>Delete</Text>
+            {/* 댓글 */}
+            <DeleteOutlineIcon style={{
+              color:"red",
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            {/* 삭제 1번 */}
+            <Text color="red">Delete</Text>
           </TextBox>
           <TextBox>
-            <Icons />
-            <Text>Unfollow Music</Text>
+          <ModeEditOutlineOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>Edit tweet</Text>
           </TextBox>
           <TextBox>
-            <Icons />
-            <Text>Unfollow Music</Text>
+          <CodeOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>Embed Tweet</Text>
           </TextBox>
           <TextBox>
-            <Icons />
-            <Text>Unfollow Music</Text>
+          <InsertChartOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>View Tweet activity</Text>
           </TextBox>
-          <TextBox>
-            <Icons />
-            <Text>Unfollow Music</Text>
-          </TextBox>
-        </ModalBoxTwo>
+        </ModalBoxTwo3>
       </React.Fragment>
     );
   }
+  if (is_deleteModal2) {
+    return (
+      <React.Fragment>
+        <ModalBoxTwo4>
+          <TextBox>
+          <DeleteOutlineIcon style={{
+              color:"red",
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            {/* 삭제 2번 */}
+            <Text color="red">Delete</Text>
+          </TextBox>
+          <TextBox>
+            <CodeOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>Embed Tweet</Text>
+          </TextBox>
+          <TextBox>
+          <InsertChartOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>View Tweet activity</Text>
+          </TextBox>
+          <TextBox>
+          <AudiotrackOutlinedIcon style={{
+              width: "20px",
+              height: "20px",
+              margin: "0 10px 0 4px",
+            }}/>
+            <Text>Follow Music</Text>
+          </TextBox>
+        </ModalBoxTwo4>
+      </React.Fragment>
+    );
+  }
+  return (
+    <React.Fragment>
+      <ModalBoxTwo>
+        <TextBox>
+          {/* <Icons /> */}
+          <Text>basic</Text>
+        </TextBox>
+        <TextBox>
+          {/* <Icons /> */}
+          <Text>Unfollow Music</Text>
+        </TextBox>
+        <TextBox>
+          {/* <Icons /> */}
+          <Text>Unfollow Music</Text>
+        </TextBox>
+        <TextBox>
+          {/* <Icons /> */}
+          <Text>Unfollow Music</Text>
+        </TextBox>
+        <TextBox>
+          {/* <Icons /> */}
+          <Text>Unfollow Music</Text>
+        </TextBox>
+      </ModalBoxTwo>
+    </React.Fragment>
+  );
 };
 
 ModalOne.defaultProps = {
   is_userModal: false,
   is_deleteModal: false,
+  is_deleteModal2: false,
 };
 
 // userModla styled
@@ -112,7 +198,8 @@ const ModaBox = styled.div`
   }
 
   @media all and (min-width: 1920px) {
-    left: 17.5%;
+    bottom: 11%;
+    left: 17.2%;
   }
 `;
 
@@ -201,10 +288,10 @@ const TboxTop = styled.div`
 
 const TboxBottom = styled(TboxTop)``;
 
-// deleteModal styled
+// 삭제 모달
 const ModalBoxTwo = styled.div`
   width: 327px;
-  height: 290px;
+  height: 230px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.18);
   overflow: hidden;
@@ -215,10 +302,34 @@ const ModalBoxTwo = styled.div`
   flex-direction: column;
   position: absolute;
   right: 0%;
-  top: -50%;
+  bottom: 20%;
   z-index: 9;
   cursor: pointer;
 
+  @media all and (min-width: 1240px) {
+    right: 45%;
+  }
+
+  @media all and (min-width: 1920px) {
+    right: 40%;
+  }
+
+`;
+
+const ModalBoxTwo3 = styled(ModalBoxTwo) `
+  top: 14.5%;
+  @media all and (min-width: 1240px) {
+    right: 0%;
+  }
+
+  @media all and (min-width: 1920px) {
+    top: 12%;
+    right: 0%;
+  }
+`;
+
+const ModalBoxTwo4 = styled(ModalBoxTwo) `
+  bottom: 20%;
   @media all and (min-width: 1240px) {
     right: 45%;
   }
@@ -230,7 +341,7 @@ const ModalBoxTwo = styled.div`
 
 const TextBox = styled.div`
   width: 100%;
-  height: 20%;
+  height: 25%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -243,16 +354,6 @@ const TextBox = styled.div`
   &:not(hover) {
     transition: 0.2s;
   }
-`;
-
-const Icons = styled.div`
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  background-image: url(${check});
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
 `;
 
 export default ModalOne;

@@ -66,7 +66,7 @@ const CenterFeed = (props) => {
               </UserInfo>
               <EditStory>
                 <EditIcon onClick={toggleModalSetting} />
-                {settingModal === true ? <ModalOne is_deleteModal /> : <React.Fragment />}
+                {settingModal === true ? <ModalOne is_deleteModal2 /> : <React.Fragment />}
               </EditStory>
             </TopUserInfo>
             <MainText>
@@ -120,7 +120,8 @@ const CenterFeed = (props) => {
                 <Text font_size="17px">✨</Text>
               </UserInfo>
               <EditStory>
-                <EditIcon />
+                <EditIcon onClick={toggleModalSetting} />
+                {settingModal === true ? <ModalOne is_deleteModal2 /> : <React.Fragment />}
               </EditStory>
             </TopUserInfo>
             <MainText>
@@ -242,7 +243,6 @@ const EditIcon = styled.div`
   cursor: pointer;
 
   &:hover {
-    color: #000;
     background-color: #ccc;
     transition: 0.2s;
   }
