@@ -6,6 +6,9 @@ import { Text, Grid } from ".";
 const Input = (props) => {
   const {
     label,
+    padding,
+    size,
+    bold,
     placeholder,
     _onChange,
     type,
@@ -15,6 +18,12 @@ const Input = (props) => {
     is_search,
     is_tweet,
   } = props;
+
+  const styles = {
+    padding: padding,
+    size: size,
+    bold: bold,
+  };
 
   // ---- 게시물 작성 내용 영역  ----
   if (multiLine) {
@@ -72,18 +81,23 @@ const Input = (props) => {
         <Text margin="0px" size="14px">
           {label}
         </Text>
-        <ElInput type={type} placeholder={placeholder} onChange={_onChange} />
+        <ElInput {...styles} type={type} placeholder={placeholder} onChange={_onChange} />
       </Grid>
     </React.Fragment>
   );
 };
 
+
+
 Input.defaultProps = {
   multiLine: false,
-  label: "텍스트",
+  label: "",
   placeholder: "텍스트를 입력해주세요.",
   type: "text",
   value: "",
+  padding: false,
+  size: false,
+  bold: false,
   _onChange: () => {},
   checked: "",
   is_search: false,
@@ -100,11 +114,22 @@ const ElTextarea = styled.textarea`
 `;
 
 const ElInput = styled.input`
-  border: 1px solid #212121;
+  border: none;
   width: 100%;
-  padding: 12px 4px;
+  height: 100%;
   box-sizing: border-box;
+  font-size: 18px;
+  word-break: keep-all;
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  ${(props) => (props.size ? `font-size: ${props.size};` : "")};
+  ${(props) => (props.bold ? `font-weight: ${props.bold};` : "")};
+
+  &:focus
+    border: none;
+    outline: none;
+  }
 `;
+
 const Underline = styled.input`
   border: none;
   width: 100%;

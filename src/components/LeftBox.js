@@ -7,8 +7,6 @@ import LeftUser from "../components/LeftUser";
 
 const LeftBox = (props) => {
 
-  console.log(props.location.pathname)
-
   if(props.location.pathname === '/' ) {
     return null;
   }

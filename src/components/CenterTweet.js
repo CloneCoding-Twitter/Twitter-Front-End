@@ -63,14 +63,16 @@ const CenterTweet = (props) => {
           </ImgBox>
           <CommentBox>
             <CommentField>
-              <Input
-                is_tweet
-                type="text"
-                placeholder="What's Happening?"
-                height="100%"
-                _onChange={onChange}
-                value={content}
-              />
+            <Input
+              size="20px"
+              padding="26px 0 0 5px"
+              label=""
+              type="text"
+              placeholder="What's happening?"
+              height="100%"
+              _onChange={onChange}
+              value={content}
+            />
               <Image preview src={preview ? preview : ""} />
             </CommentField>
             <CommentMore>
@@ -112,66 +114,61 @@ const CenterTweet = (props) => {
   if (is_commentTweet) {
     return (
       <React.Fragment>
-        <TweetBox>
-          <ImgBox>
-            <HoverBox>
-              <TopTweet />
-            </HoverBox>
-          </ImgBox>
-          <CommentBox>
-            <CommentField>
-              <Input
-                is_tweet
-                type="text"
-                placeholder="What's Happening?"
-                height="100%"
-                _onChange={onChange}
-                value={content}
-              />
-              <Image preview src={preview ? preview : ""} />
-            </CommentField>
-            <CommentMore>
-              <MoreIcons>
-                <label htmlFor="input-file">
-                  <Icons1 />
-                </label>
-                <input
-                  type="file"
-                  id="input-file"
-                  onChange={selectFile}
-                  ref={fileInput}
-                  style={{ display: "none" }}
-                />
-                <Icons2 />
-                <Icons3 />
-                <Icons4 />
-                <Icons5 />
-              </MoreIcons>
-              <MoreButton>
-                <Button
-                  is_tweeterHover
-                  width="77px"
-                  height="35px"
-                  font_size="15px"
-                  font_color="#fff"
-                  bold="900"
-                  _onClick={addComment}
-                >
-                  Tweet
-                </Button>
-              </MoreButton>
-            </CommentMore>
-          </CommentBox>
-        </TweetBox>
+        <Grid is_flex width="100%" height="auto" padding="12px 0">
+          <Grid
+            width="13%"
+            height="60px;"
+            is_flex
+            justify="center"
+            align="center"
+          >
+            <UserImg />
+          </Grid>
+          <Grid
+            width="68%"
+            height="60px;"
+            is_flex
+            justify="flex-start"
+            align="center"
+          >
+            <Input
+              label=""
+              type="text"
+              placeholder="Tweet your reply"
+              height="100%"
+              _onChange={onChange}
+              value={content}
+            />
+          </Grid>
+          <Grid
+            width="19%"
+            height="60px;"
+            is_flex
+            justify="center"
+            align="center"
+          >
+            <Button
+              is_tweeterHover
+              width="77px"
+              height="35px"
+              font_size="15px"
+              font_color="#fff"
+              bold="900"
+              _onClick={addComment}
+            >
+              Tweet
+            </Button>
+          </Grid>
+        </Grid>
       </React.Fragment>
     );
   }
 };
 
-CenterTweet.defaultProps ={
+CenterTweet.defaultProps = {
   is_mainTweet: false,
   is_commentTweet: false,
-}
+};
 
 const TweetBox = styled.div`
   width: 100%;
@@ -304,6 +301,17 @@ const MoreButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const UserImg = styled.div`
+  width: 48.5px;
+  height: 48.5px;
+  border-radius: 100%;
+  background-image: url(${testpic});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 `;
 
 export default CenterTweet;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text } from "../elements";
+import { Text, Grid } from "../elements";
 import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
@@ -8,10 +8,10 @@ import ModalOne from "./ModalOne";
 import { useSelector } from "react-redux";
 
 const LeftUser = (props) => {
-  const user = useSelector(state => state.user)
-  const loginId = localStorage.getItem('loginId')
-  const nickname = localStorage.getItem('nickname')
-  console.log(user.nickname)
+  const user = useSelector((state) => state.user);
+  const loginId = localStorage.getItem("loginId");
+  const nickname = localStorage.getItem("nickname");
+  console.log(user.nickname);
 
   const [settingModal, setSettingModal] = React.useState(false);
 
@@ -23,6 +23,43 @@ const LeftUser = (props) => {
       setSettingModal(false);
     }
   };
+
+  const { is_commentUser } = props;
+
+  if (is_commentUser) {
+    return (
+      <React.Fragment>
+        <Grid is_flex width="100%" padding="0 15px" margin="10px 0">
+          <Grid is_flex width="10%" align="center" justify="center">
+            <UserImg />
+          </Grid>
+          <Grid
+            is_flex
+            width="70%"
+            align="flex-start"
+            column="column"
+            justify="center"
+            padding="0 0 0 10px"
+          >
+            <Text bold="bold" size="16px" margin="2px 0 5px 0">
+              {loginId}
+            </Text>
+            <Text bold="100" color="#5B7083">
+              @{nickname}
+            </Text>
+          </Grid>
+          <Grid is_flex width="20%" align="center" justify="flex-end">
+            <Toggle onClick={toggleModalSetting} />
+            {settingModal === true ? (
+              <ModalOne is_deleteModal />
+            ) : (
+              <React.Fragment />
+            )}
+          </Grid>
+        </Grid>
+      </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -40,7 +77,11 @@ const LeftUser = (props) => {
         </InfoBox>
         <ToggleBox>
           <Toggle onClick={toggleModalSetting} />
-          {settingModal === true ? <ModalOne is_deleteModal /> : <React.Fragment />}
+          {settingModal === true ? (
+            <ModalOne is_userModal />
+          ) : (
+            <React.Fragment />
+          )}
         </ToggleBox>
       </UserProfileBox>
     </React.Fragment>
@@ -48,7 +89,7 @@ const LeftUser = (props) => {
 };
 
 LeftUser.deafultProps = {
-  // profile: false,
+  is_commentUser: false,
 };
 
 const UserProfileBox = styled.div`
@@ -108,13 +149,23 @@ const ToggleBox = styled.div`
 `;
 
 const Toggle = styled.div`
-  width: 27px;
-  height: 19px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
   background-image: url(${ellipses});
-  background-size: cover;
+  background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+
+
+  &:hover {
+    background-color: #ccc;
+    transition: 0.2s;
+  }
+  &:not(hover) {
+    transition: 0.2s;
+  }
 `;
 
 export default LeftUser;
