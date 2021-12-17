@@ -86,9 +86,9 @@ const ImageCircle = styled.div`
 `;
 
 const MainImage = styled.div`
-  width: 95%;
+  width: 100%;
   min-height: 283.5px;
-  height: auto;
+  height: 100%;
   border: 1px solid #efefef;
   border-radius: 20px;
   background-image: url("${(props) => props.src}");

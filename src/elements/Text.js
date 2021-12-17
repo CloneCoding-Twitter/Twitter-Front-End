@@ -15,6 +15,7 @@ const Text = (props) => {
     padding,
     is_footTxT,
     is_span,
+    line,
   } = props;
 
   const styles = {
@@ -29,6 +30,7 @@ const Text = (props) => {
     padding: padding,
     is_footTxT: is_footTxT,
     is_span: is_span,
+    line: line,
   };
 
   if (is_footTxT) {
@@ -62,12 +64,14 @@ Text.defaultProps = {
   justify: false,
   padding: false,
   is_footTxT: false,
+  line: false,
 };
 
 const P = styled.p`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "800" : "400")};
+  line-height: ${(props) => props.line};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
 `;
 

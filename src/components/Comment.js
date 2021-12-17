@@ -1,23 +1,22 @@
 import React from "react";
 
-import { Grid, Text } from "../elements"; 
-import LeftUser from "../components/LeftUser";
+import { Grid } from "../elements";
+import CenterTweet from "./CenterTweet";
+import CenterFeed from "./CenterFeed";
 
 const Comment = (props) => {
-
-
-  return(
+  return (
     <React.Fragment>
-        <Grid padding='12px 0 0'>
-          <LeftUser ></LeftUser>
-
-          <Grid>
-            <Text>content</Text>
-          </Grid>
-          
+      <Grid>
+        <Grid is_flex="flex" borderB padding="15px 0 5px 0">
+          <CenterTweet is_commentTweet />
         </Grid>
+        <Grid is_flex="flex" padding="5px 0">
+          <CenterFeed is_commentFeed />
+        </Grid>
+      </Grid>
     </React.Fragment>
-  )
+  );
 };
 
-export default Comment
+export default Comment;

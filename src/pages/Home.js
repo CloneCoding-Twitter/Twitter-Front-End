@@ -42,28 +42,25 @@ const Home = (props) => {
     <React.Fragment>
         <CenterBox>
           <HeadBox>
-            <CenterNavi />
+            <CenterNavi is_mainNavi />
           </HeadBox>
           <WhatsBox>
-            <CenterTweet/>
+            <CenterTweet is_mainTweet/>
           </WhatsBox>
           <CenterButtons />
           {article_list.map(a => {
             return(
               <CenterFeed is_centerFeed
-                key={a.id} 
-                {...a} 
+                key={a.id}
+                {...a}
                 _onClick={() => {history.push(`/detail/${a.id}`)}}
-              /> 
+              />
             )
           })}
         </CenterBox>
-
     </React.Fragment>
   );
 };
-
-
 
 const CenterBox = styled.div`
   width: 600px;

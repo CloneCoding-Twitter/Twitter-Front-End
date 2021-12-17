@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Input, Button, Image } from "../elements";
+import { Input, Button, Image, Grid } from "../elements";
 
 import testpic from "../img/test_pic.png";
 
@@ -15,93 +15,163 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
 import { ActionCreators as imageActions } from "../redux/modules/image";
 
-
 const CenterTweet = (props) => {
   const dispatch = useDispatch();
-  const [content, setContent] = React.useState('');
-  const [image, setImage] = React.useState('');
+  const [content, setContent] = React.useState("");
+  const [image, setImage] = React.useState("");
   const fileInput = React.useRef();
 
-  const preview = useSelector(state => state.image.preview_url);
-  
-  React.useEffect(() => {
-    
-  })
+  const preview = useSelector((state) => state.image.preview_url);
+
+  React.useEffect(() => {});
 
   const selectFile = () => {
     const reader = new FileReader();
     const file = fileInput.current.files[0];
-    
+
     reader.readAsDataURL(file);
 
     reader.onloadend = () => {
-      if(file) {
+      if (file) {
         dispatch(imageActions.setPreview(reader.result));
         setImage(file);
       }
-    }
-  }
+    };
+  };
 
   const onChange = (e) => {
     setContent(e.target.value);
-  }
+  };
 
   const addComment = () => {
-    dispatch(articleActions.addArticleDB(content, image))
-    setContent('');
-    setImage('');
+    dispatch(articleActions.addArticleDB(content, image));
+    setContent("");
+    setImage("");
     // console.log(content, image) //등록 후 초기화 시키기
+  };
+
+  const { is_mainTweet, is_commentTweet } = props;
+
+  if (is_mainTweet) {
+    return (
+      <React.Fragment>
+        <TweetBox>
+          <ImgBox>
+            <HoverBox>
+              <TopTweet />
+            </HoverBox>
+          </ImgBox>
+          <CommentBox>
+            <CommentField>
+              <Input
+                is_tweet
+                type="text"
+                placeholder="What's Happening?"
+                height="100%"
+                _onChange={onChange}
+                value={content}
+              />
+              <Image preview src={preview ? preview : ""} />
+            </CommentField>
+            <CommentMore>
+              <MoreIcons>
+                <label htmlFor="input-file">
+                  <Icons1 />
+                </label>
+                <input
+                  type="file"
+                  id="input-file"
+                  onChange={selectFile}
+                  ref={fileInput}
+                  style={{ display: "none" }}
+                />
+                <Icons2 />
+                <Icons3 />
+                <Icons4 />
+                <Icons5 />
+              </MoreIcons>
+              <MoreButton>
+                <Button
+                  is_tweeterHover
+                  width="77px"
+                  height="35px"
+                  font_size="15px"
+                  font_color="#fff"
+                  bold="900"
+                  _onClick={addComment}
+                >
+                  Tweet
+                </Button>
+              </MoreButton>
+            </CommentMore>
+          </CommentBox>
+        </TweetBox>
+      </React.Fragment>
+    );
   }
-
-
-  return (
-    <React.Fragment>
-      <TweetBox>
-        <ImgBox>
-          <HoverBox>
-            <TopTweet />
-          </HoverBox>
-        </ImgBox>
-        <CommentBox>
-          <CommentField>
-            <Input
-              is_tweet
-              type="text"
-              placeholder="What's Happening?"
-              height="100%"
-              _onChange={onChange}
-              value={content}
-            />
-            <Image preview src={preview? preview: ''}/>
-          </CommentField>
-          <CommentMore>
-            <MoreIcons>
-              <label htmlFor="input-file"><Icons1/></label>
-              <input type="file" id="input-file" onChange={selectFile} ref={fileInput} style={{display:"none"}}/>
-              <Icons2 />
-              <Icons3 />
-              <Icons4 />
-              <Icons5 />
-            </MoreIcons>
-            <MoreButton>
-              <Button
-                is_tweeterHover
-                width="77px"
-                height="35px"
-                font_size="15px"
-                font_color="#fff"
-                bold="900"
-                _onClick={addComment}
-              >
-                Tweet
-              </Button>
-            </MoreButton>
-          </CommentMore>
-        </CommentBox>
-      </TweetBox>
-    </React.Fragment>
-  );
+  if (is_commentTweet) {
+    return (
+      <React.Fragment>
+        <TweetBox>
+          <ImgBox>
+            <HoverBox>
+              <TopTweet />
+            </HoverBox>
+          </ImgBox>
+          <CommentBox>
+            <CommentField>
+              <Input
+                is_tweet
+                type="text"
+                placeholder="What's Happening?"
+                height="100%"
+                _onChange={onChange}
+                value={content}
+              />
+              <Image preview src={preview ? preview : ""} />
+            </CommentField>
+            <CommentMore>
+              <MoreIcons>
+                <label htmlFor="input-file">
+                  <Icons1 />
+                </label>
+                <input
+                  type="file"
+                  id="input-file"
+                  onChange={selectFile}
+                  ref={fileInput}
+                  style={{ display: "none" }}
+                />
+                <Icons2 />
+                <Icons3 />
+                <Icons4 />
+                <Icons5 />
+              </MoreIcons>
+              <MoreButton>
+                <Button
+                  is_tweeterHover
+                  width="77px"
+                  height="35px"
+                  font_size="15px"
+                  font_color="#fff"
+                  bold="900"
+                  _onClick={addComment}
+                >
+                  Tweet
+                </Button>
+              </MoreButton>
+            </CommentMore>
+          </CommentBox>
+        </TweetBox>
+      </React.Fragment>
+    );
+  }
 };
+
+CenterTweet.defaultProps ={
+  is_mainTweet: false,
+  is_commentTweet: false,
+}
 
 const TweetBox = styled.div`
   width: 100%;
@@ -187,7 +257,7 @@ const MoreIcons = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  z-index:9;
+  z-index: 9;
 `;
 
 const Icons1 = styled.div`

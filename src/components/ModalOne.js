@@ -21,6 +21,8 @@ const ModalOne = (props) => {
     is_deleteModal,
     is_nomalModal,
   } = props;
+  
+  const { is_userModal, is_deleteModal } = props;
 
   if (is_userModal) {
     return (
@@ -83,21 +85,12 @@ const ModalOne = (props) => {
       </React.Fragment>
     );
   }
-
-  if (is_nomalModal) {
-    return (
-      <React.Fragment>
-      </React.Fragment>
-    );
-  }
-
 };
 
 ModalOne.defaultProps = {
   is_userModal: false,
   is_deleteModal: false,
-  is_nomalModal: false,
-}
+};
 
 // userModla styled
 const ModaBox = styled.div`
@@ -263,6 +256,5 @@ const Icons = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 `;
-
 
 export default ModalOne;

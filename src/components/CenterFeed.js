@@ -12,13 +12,13 @@ import ellipses from "../icons/ellipses.svg";
 
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
-//제발 살려주세요
+
 const CenterFeed = (props) => {
-  
+
   const {id, loginId, nickname, content, img, _onClick} = props;
 
-  const EditButton = props.change
-  
+  // const EditButton = props.change
+
   // 수정 페이지 모달  (사용 보류)
   // const EditButton = props.change;
   // <EditIcon onClick={EditButton} />
@@ -34,7 +34,6 @@ const CenterFeed = (props) => {
       setSettingModal(false);
     }
   };
-
 
   const {
     is_centerFeed,
@@ -199,6 +198,7 @@ const RightBox = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  padding-right: 20px;
 `;
 
 const TopUserInfo = styled.div`
@@ -228,14 +228,14 @@ const EditStory = styled.div`
 `;
 
 const EditIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
   background-image: url(${ellipses});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 9999px;
   cursor: pointer;
 
   &:hover {

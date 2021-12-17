@@ -31,14 +31,13 @@ const Detail = (props) => {
     <React.Fragment>
       <CenterBox>
         <HeadBox>
-          <CenterNavi text='Tweet'/>
+          <CenterNavi is_tweetNavi />
         </HeadBox>
         <DetailArticle 
           {...article}
           is_me = {user_id === 'chung'? true : false} 
         /> 
-
-        
+        <Comment/>
       </CenterBox>
 
     </React.Fragment>
@@ -71,7 +70,6 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
-  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`
