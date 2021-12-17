@@ -16,12 +16,10 @@ import { actionCreators as articleActions } from "../redux/modules/article";
 const Home = (props) => {
   const {history} = props;
   const dispatch = useDispatch();
-  const is_login = useSelector(state => state.user.is_login);
+  const is_login = localStorage.getItem('is_login');
   const article_list = useSelector(state => state.article.list);
-  console.log(article_list)
 
   const user = useSelector(state => state.user)
-  console.log(user)
 
   React.useEffect(() => {
     if(!is_login) {
@@ -32,12 +30,7 @@ const Home = (props) => {
     dispatch(articleActions.getArticleDB());
   }, [])
 
-  // const [ modal, setModal ] = React.useState(true);
-
-  // const modalButton = () => {
-  //   setModal(!modal)
-  // }
-
+  
   return (
     <React.Fragment>
         <CenterBox>
@@ -52,7 +45,7 @@ const Home = (props) => {
             return(
               <CenterFeed is_centerFeed
                 key={a.id}
-                {...a}
+                feed={a}
                 _onClick={() => {history.push(`/detail/${a.id}`)}}
               />
             )

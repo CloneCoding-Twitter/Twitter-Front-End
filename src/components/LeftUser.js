@@ -8,10 +8,9 @@ import ModalOne from "./ModalOne";
 import { useSelector } from "react-redux";
 
 const LeftUser = (props) => {
-  const user = useSelector((state) => state.user);
-  const loginId = localStorage.getItem("loginId");
-  const nickname = localStorage.getItem("nickname");
-  console.log(user.nickname);
+  const user = useSelector(state => state.user)
+  const loginId = localStorage.getItem('loginId')
+  const nickname = localStorage.getItem('nickname')
 
   const [settingModal, setSettingModal] = React.useState(false);
 

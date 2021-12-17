@@ -34,7 +34,7 @@ const CenterNavi = (props) => {
           <IconBox2>
             <BackButton 
             onClick={() => {
-              history.goBack("/home");
+              history.push("/home");
             }}/>
           </IconBox2>
           <TextBox2>

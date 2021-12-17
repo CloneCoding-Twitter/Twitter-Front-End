@@ -15,7 +15,6 @@ import { actionCreators as articleActions } from "../redux/modules/article";
 const DetailArticle = (props) => {
   const {content, id, img, is_me} = props;
   const dispatch = useDispatch();
-  console.log(props);
 
   const deleteArticle = () => {
     dispatch(articleActions.deleteArticleDB(id))

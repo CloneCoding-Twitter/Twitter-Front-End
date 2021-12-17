@@ -13,12 +13,14 @@ import schedule from "../icons/schedule.svg";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
-import { ActionCreators as imageActions } from "../redux/modules/image";
+import { actionCreators as imageActions } from "../redux/modules/image";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const CenterTweet = (props) => {
   const dispatch = useDispatch();
   const [content, setContent] = React.useState("");
   const [image, setImage] = React.useState("");
+  const [comment, setComment] = React.useState("");
   const fileInput = React.useRef();
 
   const preview = useSelector((state) => state.image.preview_url);
@@ -39,18 +41,28 @@ const CenterTweet = (props) => {
     };
   };
 
-  const onChange = (e) => {
+  const { is_mainTweet, is_commentTweet, article_id } = props;
+
+  const onTweet = (e) => {
     setContent(e.target.value);
   };
 
-  const addComment = () => {
+  const onComment = (e) => {
+    setComment(e.target.value);
+  };
+
+  const addArticle = () => {
     dispatch(articleActions.addArticleDB(content, image));
     setContent("");
     setImage("");
     // console.log(content, image) //등록 후 초기화 시키기
   };
 
-  const { is_mainTweet, is_commentTweet } = props;
+  const addComment = () => {
+    dispatch(commentActions.addCommentDB(article_id, comment));
+    setComment("");
+    // console.log(comment) //등록 후 초기화 시키기
+  };
 
   if (is_mainTweet) {
     return (
@@ -63,16 +75,14 @@ const CenterTweet = (props) => {
           </ImgBox>
           <CommentBox>
             <CommentField>
-            <Input
-              size="20px"
-              padding="26px 0 0 5px"
-              label=""
-              type="text"
-              placeholder="What's happening?"
-              height="100%"
-              _onChange={onChange}
-              value={content}
-            />
+              <Input
+                is_tweet
+                type="text"
+                placeholder="What's Happening?"
+                height="100%"
+                _onChange={onTweet}
+                value={content}
+              />
               <Image preview src={preview ? preview : ""} />
             </CommentField>
             <CommentMore>
@@ -100,7 +110,7 @@ const CenterTweet = (props) => {
                   font_size="15px"
                   font_color="#fff"
                   bold="900"
-                  _onClick={addComment}
+                  _onClick={addArticle}
                 >
                   Tweet
                 </Button>
@@ -168,7 +178,8 @@ const CenterTweet = (props) => {
 CenterTweet.defaultProps = {
   is_mainTweet: false,
   is_commentTweet: false,
-};
+  article_id: '',
+}
 
 const TweetBox = styled.div`
   width: 100%;

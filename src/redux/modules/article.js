@@ -35,7 +35,6 @@ const getArticleDB = () => {
     await apis
       .articles()
       .then(res => {
-        console.log(res.data.result);
         dispatch(getArticle(res.data.result));
       }).catch(err => {
         console.log('게시물 조회 오류', err)
@@ -51,7 +50,6 @@ const getDetailDB = (article_id) => {
     await apis
       .article(article_id)
       .then(res => {
-        console.log(res.data.result);
         dispatch(getArticle([res.data.result]));
       })
       .catch(err => {
@@ -72,7 +70,6 @@ const addArticleDB = (content, image) => {
     await apis
       .addArticle(form)
       .then((res) => {
-        console.log(res.data);
         dispatch(addArticle(res.data.article));
       }).catch(err => {
         console.log("게시물 등록 오류", err)

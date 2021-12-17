@@ -25,8 +25,8 @@ export default handleActions(
   initialState
 );
 
-const ActionCreators = {
+const actionCreators = {
   setPreview,
 };
 
-export { ActionCreators };
+export { actionCreators };

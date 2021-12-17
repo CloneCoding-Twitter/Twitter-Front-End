@@ -93,14 +93,14 @@ export const apis = {
 
   // comment 불러오기
   comments: (articleId) =>
-    instance.get(`/api/article/${articleId}/comment`),
+    instance.get(`/article/${articleId}/comment`),
 
   // comment 등록
   addCom: (articleId, comment) =>
-    instance.post(`/api/article/${articleId}/comment`, {
+    instance.post(`/article/${articleId}/comment`, {
       comment
     }),
 
   deleteCom: (articleId, commentId) =>
-    instance.delete(`/api/article/${articleId}/comment/${commentId}`)
+    instance.delete(`/article/${articleId}/comment/${commentId}`)
 };
