@@ -11,7 +11,7 @@ const CenterEditNavi = (props) => {
     <React.Fragment>
       <NaviBox>
         <IconBox>
-          <BackButton onClick={EditButton} />
+          <BackButton />
         </IconBox>
         <TextBox>
           <Text size="20px" bold="bold">

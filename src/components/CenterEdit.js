@@ -13,11 +13,11 @@ import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
 const CenterEdit = (props) => {
-  const change = props.change
-    console.log(props.change);
+  // const change = props.change
+  //   console.log(props.change);
   return (
     <React.Fragment>
-      <CenterEditNavi change={change} />
+      <CenterEditNavi />
       <FeedBox>
         <LeftUser>
           <UserImg />
