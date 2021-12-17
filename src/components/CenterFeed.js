@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text } from "../elements";
+import { Text, Image } from "../elements";
 
 // icons
 import comment from "../icons/comment.svg";
@@ -151,6 +151,7 @@ CenterFeed.defaultProps = {
   is_commentFeed: false,
 }
 
+
 const FeedBox = styled.div`
   width: 100%;
   height: auto;
@@ -250,17 +251,6 @@ const MainText = styled.div`
   padding: 5px 10px;
 `;
 
-const MainImage = styled.div`
-  width: 95%;
-  min-height: 283.5px;
-  height: auto;
-  border: 1px solid #efefef;
-  border-radius: 20px;
-  background-image: url(${pysick});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
 
 const BottomCheck = styled.div`
   width: 100%;

@@ -12,8 +12,17 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
-const DetailArticle = (props) => {
+import { useDispatch } from "react-redux";
+import { actionCreators as articleActions } from "../redux/modules/article";
 
+const DetailArticle = (props) => {
+  const {content, id, img, is_me} = props;
+  const dispatch = useDispatch();
+  console.log(props);
+
+  const deleteArticle = () => {
+    dispatch(articleActions.deleteArticleDB(id))
+  }
 
   return(
     <React.Fragment>
@@ -23,11 +32,16 @@ const DetailArticle = (props) => {
         </Grid>
 
         <Grid margin='15px 0 0'>
-          <Text>content</Text>
+          <Text>{content}</Text>
+          {is_me && (
+            <Button
+              _onClick={deleteArticle}
+            >삭제</Button>
+          )}
         </Grid>
 
         <Grid border margin='15px 0 0' radius='10px'>
-          <Image shape="rectangle" src={testpic}/>
+          <Image main src={img}/>
         </Grid>
 
         <Grid padding='16px 4px' borderB>

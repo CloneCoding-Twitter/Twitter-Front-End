@@ -14,26 +14,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
 
 const Home = (props) => {
+  const {history} = props;
   const dispatch = useDispatch();
-  // const article_list = useSelector(state => state.article.list);
-  // console.log(article_list)
-  console.log('첫번째')
-  // console.log(props)
+  const article_list = useSelector(state => state.article.list);
+  console.log(article_list)
 
-  // React.useEffect(() => {
-  //   console.log('두번째')
-  //   dispatch(articleActions.getArticleDB());
-  // }, [])
+  const user = useSelector(state => state.user)
+  console.log(user)
 
-  const [ modal, setModal ] = React.useState(true);
+  React.useEffect(() => {
+    dispatch(articleActions.getArticleDB());
+  }, [])
 
-  const modalButton = () => {
-    setModal(!modal)
-  }
+  // const [ modal, setModal ] = React.useState(true);
+
+  // const modalButton = () => {
+  //   setModal(!modal)
+  // }
 
   return (
     <React.Fragment>
         <CenterBox>
+
          {/* 모달 기능
          {modal === true ? (
           <React.Fragment>
@@ -55,11 +57,21 @@ const Home = (props) => {
             <CenterNavi />
           </HeadBox>
           <WhatsBox>
-            <CenterTweet />
+
+            <CenterTweet/>
           </WhatsBox>
           <CenterButtons />
-          <CenterFeed is_centerFeed/>
+          {article_list.map(a => {
+            return(
+              <CenterFeed 
+                key={a.id} 
+                {...a} 
+                _onClick={() => {history.push(`/detail/${a.id}`)}}
+              /> 
+            )
+          })}
         </CenterBox>
+
     </React.Fragment>
   );
 };

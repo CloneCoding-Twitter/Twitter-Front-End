@@ -9,7 +9,7 @@ const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
 
 // action creators
-const setUser = createAction(SET_USER, (username) => ({ username }));
+const setUser = createAction(SET_USER, (loginId, nickname) => ({ loginId, nickname }));
 const idCheck = createAction(ID_CHECK, (result) => ({result}));
 const nicknameCheck = createAction(NICK_CHECK, (result) => ({result}));
 
@@ -33,9 +33,13 @@ const loginDB = (userinfo) => {
     apis
       .login(data)
       .then((response) => {
+        console.log(response.data)
         const token = response.data.token;
         setToken(token);
-        dispatch(setUser(data.loginId));
+        localStorage.setItem("loginId", response.data.loginId);
+        localStorage.setItem("nickname", response.data.nickname);
+
+        dispatch(setUser(response.data.loginId, response.data.nickname));
         history.push(`/home`);
       })
       .catch((err) => {
@@ -102,7 +106,8 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.username = action.payload.username;
+        draft.nickname = action.payload.nickname;
+        draft.loginId = action.payload.loginId;
         draft.is_login = true;
       }),
 

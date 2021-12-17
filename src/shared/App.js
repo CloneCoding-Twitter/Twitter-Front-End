@@ -3,7 +3,7 @@ import GlobalStyles from "../components/GlobalStyles";
 
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "../redux/configureStore";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 import LeftBox from '../components/LeftBox';
 import RightBox from '../components/RightBox';
@@ -18,20 +18,20 @@ import styled from "styled-components";
 
 function App() {
   return (
-    <React.Fragment>
+    <ConnectedRouter history={history}>
       <GlobalStyles />
       <HomeBox>
-        <LeftBox/>
-        <ConnectedRouter history={history}>
-          <Route exact path="/" component={LogIn}></Route>
-          <Route exact path="/logincard" component={LoginCard}></Route>
-          <Route exact path="/signupcard" component={SignUp}></Route>
-          <Route exact path="/home" component={Home}></Route>
-          <Route exact path="/detail/:id" component={Detail}></Route>
-        </ConnectedRouter>
-        <RightBox/>
+      <LeftBox/>
+      <Switch>
+        <Route exact path="/" component={LogIn}></Route>
+        <Route exact path="/logincard" component={LoginCard}></Route>
+        <Route exact path="/signupcard" component={SignUp}></Route>
+        <Route exact path="/home" component={Home}></Route>
+        <Route exact path="/detail/:id" component={Detail}></Route>
+      </Switch>
+      <RightBox/>
       </HomeBox>
-    </React.Fragment>
+    </ConnectedRouter>
   );
 }
 
