@@ -67,7 +67,6 @@ const CenterFeed = (props) => {
             <MainText>
               <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
             </MainText>
-            <MainImage />
             <BottomCheck>
               <MainIcons>
                 <Icons1 />
