@@ -25,7 +25,6 @@ const Text = (props) => {
     margin: margin,
     center: center,
     is_text: is_text,
-    __onClick: __onClick,
     justify: justify,
     padding: padding,
     is_footTxT: is_footTxT,
@@ -49,7 +48,7 @@ const Text = (props) => {
     );
   }
 
-  return <P {...styles}>{children}</P>;
+  return <P {...styles} onClick={__onClick}>{children}</P>;
 };
 
 Text.defaultProps = {

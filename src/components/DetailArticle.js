@@ -29,15 +29,10 @@ const DetailArticle = (props) => {
 
         <Grid margin='10px 0 0' padding="0 20px">
           <Text size="17px" line="22px" >{content}</Text>
-          {is_me && (
-            <Button
-              _onClick={deleteArticle}
-            >삭제</Button>
-          )}
         </Grid>
 
         <Grid margin='15px 0 0' padding="0 20px">
-          <Image main src={img}/>
+          <Image shape='rectangle' src={img}/>
         </Grid>
 
         <Grid padding='16px 20px'>

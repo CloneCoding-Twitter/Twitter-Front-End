@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 
@@ -21,13 +22,6 @@ const Detail = (props) => {
   const idx = article_list.findIndex(a => a.id === article_id);
   const article = article_list[idx];
 
-  // const _comment = [comment_list[article_id]]
-  // console.log(_comment);
-  // const __comment = [...comment_list]
-  // console.log(__comment)
-  // console.log(comment_list)
-  console.log(comment_list[article_id])
-
   React.useEffect(() => {
     if(!article_id) {
       return ;
@@ -45,7 +39,7 @@ const Detail = (props) => {
         </HeadBox>
         <DetailArticle 
           {...article}
-          is_me = {user_id === 'chung'? true : false} 
+          // is_me = {user_id === article.loginId} 
         /> 
         <Grid is_flex="flex" borderB padding="15px 0 5px 0">
           <CenterTweet is_commentTweet article_id={article_id}/>
@@ -53,7 +47,14 @@ const Detail = (props) => {
         <Grid padding="5px 0">
           {comment_list.map(c => {
             return(
-              <CenterFeed key={c.id} is_commentFeed comment={c}/>
+              <CenterFeed
+                key={c.id}
+                is_commentFeed
+                comment={c}
+                article_id={article_id}
+                com_id={c.id}
+                is_me = {user_id === c.loginId}
+              />
             )
           })}
         </Grid>
