@@ -1,3 +1,4 @@
+/* eslint-disable no-sequences */
 import React from "react";
 import styled from "styled-components";
 import { Text, Image } from "../elements";
@@ -13,11 +14,7 @@ import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
 
-import { useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
-
 const CenterFeed = (props) => {
-  console.log(props.comment)
 
   // 모달
   const [settingModal, setSettingModal] = React.useState(false);
@@ -115,7 +112,10 @@ const CenterFeed = (props) => {
               </UserInfo>
               <EditStory>
                 <EditIcon onClick={toggleModalSetting} />
-                {settingModal === true ? <ModalOne is_deleteModal2 /> : <React.Fragment />}
+                {settingModal === true
+                  ? <ModalOne is_deleteModal2 is_me={props.is_me} article_id={props.article_id} com_id={props.com_id}/> 
+                  : <React.Fragment 
+                />}
               </EditStory>
             </TopUserInfo>
             <MainText>

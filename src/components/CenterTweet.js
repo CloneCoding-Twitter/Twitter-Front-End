@@ -86,7 +86,10 @@ const CenterTweet = (props) => {
                 _onChange={onComment}
                 value={content}
               />
-              <Image preview src={preview ? preview : ""} />
+              {/* {preview
+                ? <Image size='50' src={preview} />
+                : null
+              } */}
             </CommentField>
             <CommentMore>
               <MoreIcons>

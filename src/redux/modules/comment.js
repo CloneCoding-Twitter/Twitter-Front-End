@@ -9,7 +9,7 @@ const ADD_COMMENT = 'ADD_COMMENT';
 const DELETE_COMMNET = 'DELETE_COMMNET';
 
 // action creators
-const getComment = createAction(GET_COMMNET, (id, list) => ({id, list}));
+const getComment = createAction(GET_COMMNET, (list) => ({list}));
 const addComment = createAction(ADD_COMMENT, (id, comment) => ({id, comment}));
 const deleteComment = createAction(DELETE_COMMNET, (id) => ({id}));
 
@@ -35,8 +35,7 @@ const getCommentDB = (articleId) => {
     await apis
       .comments(articleId)
       .then(res => {
-        console.log(res.data.result)
-        dispatch(getComment(articleId, res.data.result));
+        dispatch(getComment(res.data.result));
       })
       .catch(err => {
         console.log('댓글조회오류', err);
@@ -50,7 +49,6 @@ const addCommentDB = (articleId, comment) => {
     await apis
       .addCom(articleId, comment)
       .then(res => {
-        console.log('댓글 작성', res);
         dispatch(addComment(articleId, res.data.result));
       })
       .catch(err => {
@@ -59,13 +57,15 @@ const addCommentDB = (articleId, comment) => {
   }
 }
 
-const deleteCommentDB = (articleId) => {
+const deleteCommentDB = (articleId, commentId) => {
   return async function(dispatch) {
+
+    console.log(articleId)
+    console.log(commentId)
     await apis 
-      .deleteCom(articleId)
+      .deleteCom(articleId, commentId)
       .then(res => {
-        console.log(res)
-        dispatch(deleteComment(articleId));
+        dispatch(deleteComment(commentId));
       })
       .catch(err => {
         console.log('댓글삭세오류', err);
@@ -78,23 +78,21 @@ export default handleActions(
   {
     [GET_COMMNET]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.list)
-        // draft.list[action.payload.id] = action.payload.list;
         draft.list = action.payload.list;
       }),
 
     [ADD_COMMENT]: (state, action) => 
       produce(state, (draft) => {
-        console.log(action.payload.comment);
         // draft.list[action.payload.id] = action.payload.comment
         draft.list.push(action.payload.comment);
       }),
 
     [DELETE_COMMNET]: (state, action) =>
       produce(state, (draft) => {
+        console.log(action.payload.id)
         const new_list = draft.list.filter(l => l.id !== action.payload.id);
-        console.log(new_list);
-        draft.list[action.payload.id] = new_list;
+        draft.list = new_list;
+        console.log(state.list);
       }),
   },
   initialState
