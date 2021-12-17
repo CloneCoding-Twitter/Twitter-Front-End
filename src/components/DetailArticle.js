@@ -28,7 +28,7 @@ const DetailArticle = (props) => {
     <React.Fragment>
       <Grid>
         <Grid is_flex justify='space-between'>
-          <LeftUser></LeftUser>
+          {/* <LeftUser></LeftUser> */}
         </Grid>
 
         <Grid margin='10px 0 0' padding="0 20px">
