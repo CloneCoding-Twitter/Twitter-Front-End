@@ -34,7 +34,6 @@ const Home = (props) => {
 
   return (
     <React.Fragment>
-    
         <CenterBox>
           <HeadBox>
             <CenterNavi />
@@ -45,7 +44,7 @@ const Home = (props) => {
           <CenterButtons />
           {article_list.map(a => {
             return(
-              <CenterFeed 
+              <CenterFeed is_centerFeed
                 key={a.id} 
                 {...a} 
                 _onClick={() => {history.push(`/detail/${a.id}`)}}

@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Text, Image } from "../elements";
+import { Text } from "../elements";
 import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
+import ModalOne from "./ModalOne";
 
 import { useSelector } from "react-redux";
 
@@ -12,39 +13,99 @@ const LeftUser = (props) => {
   const nickname = localStorage.getItem('nickname')
   console.log(user.nickname)
 
+  const [settingModal, setSettingModal] = React.useState(false);
+
+  const toggleModalSetting = () => {
+    if (settingModal === false) {
+      setSettingModal(true);
+    }
+    if (settingModal === true) {
+      setSettingModal(false);
+    }
+  };
+
   return (
     <React.Fragment>
-      <Grid is_flex justify='space-between'> {/* ------- */}
-        <Grid is_flex >  {/* ------- */}
-          <Grid width='auto' is_flex justify="center" align="center" margin='0 12px 0 0'> {/* width="25%" */}
-            <Image shape="circle" />
-          </Grid>
-          <Grid
-            is_flex
-            column="row"
-            justify="flex-start"
-            align="flex-start"
-            width="54%"
-          >
-            <Text bold="bold" size="16px" margin="2px 0 5px 0">
-              {loginId}
-            </Text>
-            <Text bold="100" color="#5B7083">
-              @{nickname}
-            </Text>
-          </Grid>
-        </Grid>
-        <Grid width='auto' is_flex justify="center" align="center" > {/* width="21%" */}
-          <Toggle />
-        </Grid>
-      </Grid>
+      <UserProfileBox>
+        <ImgBox>
+          <UserImg />
+        </ImgBox>
+        <InfoBox>
+          <Text bold="bold" size="16px" margin="2px 0 5px 0">
+            {loginId}
+          </Text>
+          <Text bold="100" color="#5B7083">
+            @{nickname}
+          </Text>
+        </InfoBox>
+        <ToggleBox>
+          <Toggle onClick={toggleModalSetting} />
+          {settingModal === true ? <ModalOne is_userModal /> : <React.Fragment />}
+        </ToggleBox>
+      </UserProfileBox>
     </React.Fragment>
   );
 };
 
 LeftUser.deafultProps = {
   // profile: false,
-}
+};
+
+const UserProfileBox = styled.div`
+  width: 262px;
+  height: 74px;
+  padding: 10px;
+  border-radius: 9999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &:hover {
+    background-color: #efefef;
+    transition: 0.2s;
+  }
+  &:not(:hover) {
+    transition: 0.2s;
+  }
+`;
+
+const ImgBox = styled.div`
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const UserImg = styled.div`
+  width: 48.5px;
+  height: 48.5px;
+  border-radius: 100%;
+  background-image: url(${testpic});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+`;
+
+const InfoBox = styled.div`
+  width: 55%;
+  height: 100%;
+  display: flex;
+  padding-left: 5px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+`;
+
+const ToggleBox = styled.div`
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Toggle = styled.div`
   width: 27px;
