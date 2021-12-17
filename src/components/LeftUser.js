@@ -4,14 +4,20 @@ import { Grid, Text, Image } from "../elements";
 import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 
+import { useSelector } from "react-redux";
+
 const LeftUser = (props) => {
+  const user = useSelector(state => state.user)
+  const loginId = localStorage.getItem('loginId')
+  const nickname = localStorage.getItem('nickname')
+  console.log(user.nickname)
 
   return (
     <React.Fragment>
       <Grid is_flex justify='space-between'> {/* ------- */}
         <Grid is_flex >  {/* ------- */}
           <Grid width='auto' is_flex justify="center" align="center" margin='0 12px 0 0'> {/* width="25%" */}
-            <Image shape="circle" src={testpic} />
+            <Image shape="circle" />
           </Grid>
           <Grid
             is_flex
@@ -21,10 +27,10 @@ const LeftUser = (props) => {
             width="54%"
           >
             <Text bold="bold" size="16px" margin="2px 0 5px 0">
-              UserId
+              {loginId}
             </Text>
             <Text bold="100" color="#5B7083">
-              @nickname
+              @{nickname}
             </Text>
           </Grid>
         </Grid>

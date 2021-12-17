@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { shape, src, size } = props;
+  const { main, preview, shape, src, size } = props;
+  // console.log(src)
+  // console.log(preview)
 
   const styles = {
     src: src,
@@ -21,6 +23,14 @@ const Image = (props) => {
     );
   }
 
+  if (main) {
+    return <MainImage {...styles}/>
+  }
+  
+  if (preview) {
+    return <Preview {...styles}/>
+  }
+
   return (
     <React.Fragment>
       <ImageDefault {...styles}></ImageDefault>
@@ -29,6 +39,8 @@ const Image = (props) => {
 };
 
 Image.defaultProps = {
+  main: false,
+  preview: false,
   shape: "",
   src: "../icons/pysick.jpg",
   size: '40',
@@ -72,5 +84,25 @@ const ImageCircle = styled.div`
   background-position: center;
   background-repeat: no-repeat;
 `;
+
+const MainImage = styled.div`
+  width: 95%;
+  min-height: 283.5px;
+  height: auto;
+  border: 1px solid #efefef;
+  border-radius: 20px;
+  background-image: url("${(props) => props.src}");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+`;
+
+const Preview = styled.div`
+  width: 95%;
+  min-height: 283.5px;
+  display: ${(props) => props.preview? 'block': 'none'};
+  background-image: url("${(props) => props.src}");
+  border-radius: 15px;
+`
 
 export default Image;
