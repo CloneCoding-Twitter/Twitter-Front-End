@@ -17,12 +17,14 @@ const Input = (props) => {
     bginput,
     is_search,
     is_tweet,
+    line,
   } = props;
 
   const styles = {
     padding: padding,
     size: size,
     bold: bold,
+    line: line,
   };
 
   // ---- 게시물 작성 내용 영역  ----
@@ -98,6 +100,7 @@ Input.defaultProps = {
   padding: false,
   size: false,
   bold: false,
+  line: false,
   _onChange: () => {},
   checked: "",
   is_search: false,
@@ -118,12 +121,11 @@ const ElInput = styled.input`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  font-size: 18px;
   word-break: keep-all;
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
   ${(props) => (props.size ? `font-size: ${props.size};` : "")};
   ${(props) => (props.bold ? `font-weight: ${props.bold};` : "")};
-
+  ${(props) => (props.line ? `line-height: ${props.line};` : "")};
   &:focus
     border: none;
     outline: none;

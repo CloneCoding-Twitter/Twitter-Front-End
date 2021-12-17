@@ -19,12 +19,6 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const CenterFeed = (props) => {
   console.log(props.comment)
 
-  // const EditButton = props.change
-
-  // 수정 페이지 모달  (사용 보류)
-  // const EditButton = props.change;
-  // <EditIcon onClick={EditButton} />
-
   // 모달
   const [settingModal, setSettingModal] = React.useState(false);
 
@@ -70,7 +64,7 @@ const CenterFeed = (props) => {
               </EditStory>
             </TopUserInfo>
             <MainText>
-              <Text font_size="17px">{props.feed.content}</Text>
+              <Text font_size="17px" line="22px">{props.feed.content}</Text>
             </MainText>
             <Image main src={props.feed.img}/>
             <BottomCheck>

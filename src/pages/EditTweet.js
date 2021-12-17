@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { Text, Button, Input } from "../elements";
-import CenterEditNavi from "../components/CenterEditNavi";
+import CenterNavi from "../components/CenterNavi";
+import CenterFeed from "../components/CenterFeed";
 // icons
 import emoji from "../icons/emoji.svg";
 import gif from "../icons/gif.svg";
@@ -12,12 +13,11 @@ import schedule from "../icons/schedule.svg";
 import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
-const CenterEdit = (props) => {
-  // const change = props.change
-  //   console.log(props.change);
+const EditTweet = (props) => {
+
   return (
     <React.Fragment>
-      <CenterEditNavi />
+      <CenterNavi is_tweetNavi text="Edit your tweet" />
       <FeedBox>
         <LeftUser>
           <UserImg />
@@ -26,9 +26,11 @@ const CenterEdit = (props) => {
           <TopUserInfo>
             <Text font_size="17px" bold="bold">
               UserId
+              {/* {props.feed.loginId} */}
             </Text>
             <Text font_size="17px" margin="0 5px">
               @nickname
+              {/* @{props.feed.nickname} */}
             </Text>
             <Text font_size="17px" margin="0 5px 0 0">
               ·
@@ -37,17 +39,31 @@ const CenterEdit = (props) => {
           </TopUserInfo>
           <MainText>
             <Input
-              is_tweet
-              type="text"
-              placeholder="Edit your tweet 👨‍💻"
-              height="auto"
-            />
+                label=""
+                size="20px"
+                type="text"
+                padding="0 0 0 0"
+                placeholder="Edit your tweet 👨‍💻"
+                height="100%"
+                // _onChange={onComment}
+                // value={content}
+              />
           </MainText>
           <MainImage />
+          {/* <Image main src={props.feed.img}/> */}
           <BottomCheck>
             <CommentMore>
               <MoreIcons>
-                <Icons1 />
+                <label htmlFor="input-file">
+                  <Icons1 />
+                </label>
+                <input
+                  type="file"
+                  id="input-file"
+                  // onChange={selectFile}
+                  // ref={fileInput}
+                  style={{ display: "none" }}
+                />
                 <Icons2 />
                 <Icons3 />
                 <Icons4 />
@@ -73,6 +89,12 @@ const CenterEdit = (props) => {
     </React.Fragment>
   );
 };
+
+CenterFeed.defaultProps = {
+  is_centerFeed: false,
+  is_commentFeed: false,
+  _onClick: () => {},
+}
 
 const FeedBox = styled.div`
   width: 100%;
@@ -213,4 +235,4 @@ const MoreButton = styled.div`
   align-items: center;
 `;
 
-export default CenterEdit;
+export default EditTweet;

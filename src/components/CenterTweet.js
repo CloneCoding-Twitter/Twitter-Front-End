@@ -75,12 +75,15 @@ const CenterTweet = (props) => {
           </ImgBox>
           <CommentBox>
             <CommentField>
+              {/* 여기 수정했어요 */}
               <Input
-                is_tweet
+                label=""
+                size="20px"
                 type="text"
-                placeholder="What's Happening?"
+                padding="25px 0 0 0"
+                placeholder="What's happening?"
                 height="100%"
-                _onChange={onTweet}
+                _onChange={onComment}
                 value={content}
               />
               <Image preview src={preview ? preview : ""} />
@@ -146,7 +149,7 @@ const CenterTweet = (props) => {
               type="text"
               placeholder="Tweet your reply"
               height="100%"
-              _onChange={onChange}
+              _onChange={onComment}
               value={content}
             />
           </Grid>

@@ -13,6 +13,7 @@ import LogIn from "../pages/LogIn";
 import SignUp from "../pages/SignUpCard";
 import Home from "../pages/Home";
 import Detail from "../pages/Detail";
+import EditTweet from "../pages/EditTweet";
 
 import styled from "styled-components";
 
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/signupcard" component={SignUp}></Route>
         <Route exact path="/home" component={Home}></Route>
         <Route exact path="/detail/:id" component={Detail}></Route>
+        <Route exact path="/edittweet/:id" component={EditTweet}></Route>
       </Switch>
       <RightBox/>
       </HomeBox>
