@@ -35,7 +35,7 @@ const Detail = (props) => {
     <React.Fragment>
       <CenterBox>
         <HeadBox>
-          <CenterNavi is_tweetNavi />
+          <CenterNavi is_tweetNavi text="Tweet" />
         </HeadBox>
         <DetailArticle 
           {...article}
@@ -44,7 +44,7 @@ const Detail = (props) => {
         <Grid is_flex="flex" borderB padding="15px 0 5px 0">
           <CenterTweet is_commentTweet article_id={article_id}/>
         </Grid>
-        <Grid padding="5px 0">
+        <Grid>
           {comment_list.map(c => {
             return(
               <CenterFeed
@@ -78,7 +78,6 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
-  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`

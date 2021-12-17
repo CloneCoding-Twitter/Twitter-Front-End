@@ -42,7 +42,7 @@ const CenterNavi = (props) => {
           </IconBox2>
           <TextBox2>
             <Text size="20px" bold="bold">
-              Tweet
+              {props.text}
             </Text>
           </TextBox2>
         </NaviBox2>

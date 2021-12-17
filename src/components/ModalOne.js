@@ -82,7 +82,8 @@ const ModalOne = (props) => {
               width: "20px",
               height: "20px",
               margin: "0 10px 0 4px",
-            }}/>
+            }}
+            />
             <Text>Edit tweet</Text>
           </TextBox>
           <TextBox>
@@ -328,12 +329,12 @@ const ModalBoxTwo = styled.div`
 const ModalBoxTwo3 = styled(ModalBoxTwo) `
   top: 14.5%;
   @media all and (min-width: 1240px) {
-    right: 0%;
+    right: 2%;
   }
 
   @media all and (min-width: 1920px) {
     top: 12%;
-    right: 0%;
+    right: 2%;
   }
 `;
 

@@ -8,7 +8,6 @@ import CenterNavi from "../components/CenterNavi";
 import CenterTweet from "../components/CenterTweet";
 import CenterButtons from "../components/CenterButtons";
 import CenterFeed from "../components/CenterFeed";
-import CenterEdit from "../components/CenterEdit";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
