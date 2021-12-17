@@ -32,7 +32,7 @@ const Left = styled.div`
 
 const MenuBox = styled.div`
   width: 100%;
-  height: 90%;
+  height: 87%;
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
@@ -42,7 +42,7 @@ const MenuBox = styled.div`
 
 const UserBox = styled.div`
   width: 100%;
-  height: 10%;
+  height: 13%;
   padding: 10px;
   display: flex;
   justify-content: center;

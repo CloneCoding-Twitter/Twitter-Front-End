@@ -34,12 +34,30 @@ const Home = (props) => {
 
   return (
     <React.Fragment>
-    
         <CenterBox>
+
+         {/* 모달 기능
+         {modal === true ? (
+          <React.Fragment>
+              <HeadBox>
+                <CenterNavi />
+              </HeadBox>
+              <WhatsBox>
+                <CenterTweet />
+              </WhatsBox>
+              <CenterButtons />
+              <CenterFeed change = {modalButton} />
+          </React.Fragment>
+          ) : (
+          <CenterEdit change = {modalButton} />
+          )}
+        </CenterBox> */}
+
           <HeadBox>
             <CenterNavi />
           </HeadBox>
           <WhatsBox>
+
             <CenterTweet/>
           </WhatsBox>
           <CenterButtons />
