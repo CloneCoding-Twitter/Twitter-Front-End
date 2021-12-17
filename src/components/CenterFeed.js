@@ -10,7 +10,6 @@ import like_black from "../icons/like_black.svg";
 import like_red from "../icons/like_red.svg";
 import ellipses from "../icons/ellipses.svg";
 
-import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
 const CenterFeed = (props) => {

@@ -13,6 +13,14 @@ const RightBox = (props) => {
     return null;
   }
 
+  if(props.location.pathname === '/logincard' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/signupcard' ) {
+    return null;
+  }
+
   return (
     <Right>
       <HeadBoxTwo>

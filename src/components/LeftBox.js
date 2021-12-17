@@ -9,7 +9,15 @@ const LeftBox = (props) => {
 
   console.log(props.location.pathname)
 
-  if(props.location.pathname === '/') {
+  if(props.location.pathname === '/' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/logincard' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/signupcard' ) {
     return null;
   }
 
