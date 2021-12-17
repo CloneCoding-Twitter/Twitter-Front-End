@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Text } from "../elements";
+import { Text, Image } from "../elements";
 
 // icons
 import comment from "../icons/comment.svg";
@@ -14,12 +14,15 @@ import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 
 const CenterFeed = (props) => {
+  const {id, loginId, nickname, content, img, _onClick} = props;
 
   const EditButton = props.change
-  
+
+ 
+
   return (
     <React.Fragment>
-      <FeedBox>
+      <FeedBox onClick={_onClick}>
         <LeftUser>
           <UserImg />
         </LeftUser>
@@ -27,10 +30,10 @@ const CenterFeed = (props) => {
           <TopUserInfo>
             <UserInfo>
               <Text font_size="17px" bold="bold">
-                UserId
+                {loginId}
               </Text>
               <Text font_size="17px" margin="0 5px">
-                @nickname
+                @{nickname}
               </Text>
               <Text font_size="17px" margin="0 5px 0 0">
                 ·
@@ -42,9 +45,9 @@ const CenterFeed = (props) => {
             </EditStory>
           </TopUserInfo>
           <MainText>
-            <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
+            <Text font_size="17px">{content}</Text>
           </MainText>
-          <MainImage />
+          <Image main src={img}/>
           <BottomCheck>
             <MainIcons>
               <Icons1 />
@@ -68,6 +71,7 @@ const CenterFeed = (props) => {
     </React.Fragment>
   );
 };
+
 
 
 const FeedBox = styled.div`
@@ -168,17 +172,6 @@ const MainText = styled.div`
   padding: 5px 10px;
 `;
 
-const MainImage = styled.div`
-  width: 95%;
-  min-height: 283.5px;
-  height: auto;
-  border: 1px solid #efefef;
-  border-radius: 20px;
-  background-image: url(${pysick});
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-`;
 
 const BottomCheck = styled.div`
   width: 100%;

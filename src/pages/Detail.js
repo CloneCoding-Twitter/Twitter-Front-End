@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 
 import { Grid, Text, Image, Button } from "../elements"; 
@@ -8,18 +9,23 @@ import Comment from '../components/Comment'
 import CenterNavi from "../components/CenterNavi";
 
 import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as articleActions } from "../redux/modules/article";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
   const article_list = useSelector(state => state.article.list);
-  const id = props.match.params.id;
-  const idx = article_list.findIndex(a => a.id === id);
-  console.log(idx);
+  const user_id = localStorage.getItem('loginId');
+  const article_id = props.match.params.id;
+  const idx = article_list.findIndex(a => a.id === article_id);
   const article = article_list[idx];
 
   React.useEffect(() => {
+    if(!article_id) {
+      return ;
+    }
 
-  })
+    dispatch(articleActions.getDetailDB(article_id));
+  }, [])
 
   return(
     <React.Fragment>
@@ -27,7 +33,10 @@ const Detail = (props) => {
         <HeadBox>
           <CenterNavi text='Tweet'/>
         </HeadBox>
-        <DetailArticle {...article}/> {/* props로 전해주기 */}
+        <DetailArticle 
+          {...article}
+          is_me = {user_id === 'chung'? true : false} 
+        /> 
 
         <Grid is_flex align padding='12px 0' borderB>
           <Grid is_flex>

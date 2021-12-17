@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Input, Button } from "../elements";
+import { Input, Button, Image } from "../elements";
 
 import testpic from "../img/test_pic.png";
 
@@ -23,7 +23,6 @@ const CenterTweet = (props) => {
   const fileInput = React.useRef();
 
   const preview = useSelector(state => state.image.preview_url);
-  // console.log(image)
   
   React.useEffect(() => {
     
@@ -49,7 +48,11 @@ const CenterTweet = (props) => {
 
   const addComment = () => {
     dispatch(articleActions.addArticleDB(content, image))
+    setContent('');
+    setImage('');
+    // console.log(content, image) //등록 후 초기화 시키기
   }
+
 
   return (
     <React.Fragment>
@@ -69,10 +72,11 @@ const CenterTweet = (props) => {
               _onChange={onChange}
               value={content}
             />
+            <Image preview src={preview? preview: ''}/>
           </CommentField>
           <CommentMore>
             <MoreIcons>
-              <label htmlfor="input-file"><Icons1/></label>
+              <label htmlFor="input-file"><Icons1/></label>
               <input type="file" id="input-file" onChange={selectFile} ref={fileInput} style={{display:"none"}}/>
               <Icons2 />
               <Icons3 />
@@ -183,6 +187,7 @@ const MoreIcons = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  z-index:9;
 `;
 
 const Icons1 = styled.div`
