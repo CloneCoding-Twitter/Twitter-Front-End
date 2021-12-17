@@ -1,10 +1,7 @@
 import React from "react";
 
-import { Grid, Text, Image, Button } from "../elements"; 
-import styled from 'styled-components'
+import { Grid, Text, Image, Button } from "../elements";
 import LeftUser from "../components/LeftUser";
-import testpic from "../img/test_pic.png"
-import ModalOne from "./ModalOne";
 
 // icons
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -28,11 +25,11 @@ const DetailArticle = (props) => {
     <React.Fragment>
       <Grid>
         <Grid is_flex justify='space-between'>
-          <LeftUser></LeftUser>
+          <LeftUser is_commentUser />
         </Grid>
 
         <Grid margin='10px 0 0' padding="0 20px">
-          <Text line="24px">{content}</Text>
+          <Text size="17px" line="22px" >{content}</Text>
           {is_me && (
             <Button
               _onClick={deleteArticle}
@@ -50,13 +47,13 @@ const DetailArticle = (props) => {
 
         <Grid is_flex justify='space-around' padding='15px 20px' borderT borderB cursor="pointer" >
           {/* 댓글 */}
-          <ChatBubbleOutlineIcon style={{fontSize:"23px",}}/>
+          <ChatBubbleOutlineIcon style={{fontSize:"23px", color:"#cccccc"}}/>
           {/* 리트윗 */}
-          <AutorenewIcon style={{fontSize:"23px"}}/>
+          <AutorenewIcon style={{fontSize:"23px", color:"#cccccc"}}/>
           {/* 좋아요 */}
-          <FavoriteBorderIcon style={{fontSize:"23px"}}/>
+          <FavoriteBorderIcon style={{fontSize:"23px", color:"#cccccc"}}/>
           {/* 공유 */}
-          <IosShareIcon style={{fontSize:"23px"}}/>
+          <IosShareIcon style={{fontSize:"23px", color:"#cccccc"}}/>
         </Grid>
       </Grid>
     </React.Fragment>

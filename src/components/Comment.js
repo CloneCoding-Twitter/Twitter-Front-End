@@ -8,10 +8,10 @@ const Comment = (props) => {
   return (
     <React.Fragment>
       <Grid>
-        <Grid is_flex="flex" borderB padding="15px 0 5px 0">
+        <Grid is_flex="flex" borderB>
           <CenterTweet is_commentTweet />
         </Grid>
-        <Grid is_flex="flex" padding="5px 0">
+        <Grid is_flex="flex">
           <CenterFeed is_commentFeed />
         </Grid>
       </Grid>

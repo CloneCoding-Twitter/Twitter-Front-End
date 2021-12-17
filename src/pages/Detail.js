@@ -44,18 +44,6 @@ const Detail = (props) => {
   )
 };
 
-const TextArea = styled.div`
-  width: 68%;
-  color: #000;
-  padding: 12px 4px;
-  border: 1px solid #000;
-  /* outline: none; */
-
-  &[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
-  }
-`
-
 const CenterBox = styled.div`
   width: 600px;
   height: 100vh;
