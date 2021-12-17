@@ -13,7 +13,7 @@ import ellipses from "../icons/ellipses.svg";
 import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
-
+//제발 살려주세요
 const CenterFeed = (props) => {
   // 수정 페이지 모달  (사용 보류)
   // const EditButton = props.change;
