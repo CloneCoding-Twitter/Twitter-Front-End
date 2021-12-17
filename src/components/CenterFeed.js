@@ -12,63 +12,144 @@ import ellipses from "../icons/ellipses.svg";
 
 import pysick from "../img/pysick.jpg";
 import testpic from "../img/test_pic.png";
+import ModalOne from "./ModalOne";
 
 const CenterFeed = (props) => {
+  // 수정 페이지 모달  (사용 보류)
+  // const EditButton = props.change;
+  // <EditIcon onClick={EditButton} />
 
-  const EditButton = props.change
-  
-  return (
-    <React.Fragment>
-      <FeedBox>
-        <LeftUser>
-          <UserImg />
-        </LeftUser>
-        <RightBox>
-          <TopUserInfo>
-            <UserInfo>
-              <Text font_size="17px" bold="bold">
-                UserId
-              </Text>
-              <Text font_size="17px" margin="0 5px">
-                @nickname
-              </Text>
-              <Text font_size="17px" margin="0 5px 0 0">
-                ·
-              </Text>
-              <Text font_size="17px">✨</Text>
-            </UserInfo>
-            <EditStory>
-              <EditIcon onClick={EditButton} />
-            </EditStory>
-          </TopUserInfo>
-          <MainText>
-            <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
-          </MainText>
-          <MainImage />
-          <BottomCheck>
-            <MainIcons>
-              <Icons1 />
-              <Text />
-            </MainIcons>
-            <MainIcons>
-              <Icons2 />
-              <Text size="0.7rem">Re Tweet</Text>
-            </MainIcons>
-            <MainIcons>
-              <Icons3 />
-              <Text size="0.7rem">Like Count</Text>
-            </MainIcons>
-            <MainIcons>
-              <Icons4 />
-              <Text />
-            </MainIcons>
-          </BottomCheck>
-        </RightBox>
-      </FeedBox>
-    </React.Fragment>
-  );
+  // 모달
+  const [settingModal, setSettingModal] = React.useState(false);
+
+  const toggleModalSetting = () => {
+    if (settingModal === false) {
+      setSettingModal(true);
+    }
+    if (settingModal === true) {
+      setSettingModal(false);
+    }
+  };
+
+
+  const {
+    is_centerFeed,
+    is_commentFeed,
+  } = props;
+
+  // 메인 피드
+  if (is_centerFeed) {
+    return (
+      <React.Fragment>
+        <FeedBox>
+          <LeftUser>
+            <UserImg />
+          </LeftUser>
+          <RightBox>
+            <TopUserInfo>
+              <UserInfo>
+                <Text font_size="17px" bold="bold">
+                  UserId
+                </Text>
+                <Text font_size="17px" margin="0 5px">
+                  @nickname
+                </Text>
+                <Text font_size="17px" margin="0 5px 0 0">
+                  ·
+                </Text>
+                <Text font_size="17px">✨</Text>
+              </UserInfo>
+              <EditStory>
+                <EditIcon onClick={toggleModalSetting} />
+                {settingModal === true ? <ModalOne is_deleteModal /> : <React.Fragment />}
+              </EditStory>
+            </TopUserInfo>
+            <MainText>
+              <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
+            </MainText>
+            <MainImage />
+            <BottomCheck>
+              <MainIcons>
+                <Icons1 />
+                <Text />
+              </MainIcons>
+              <MainIcons>
+                <Icons2 />
+                <Text size="0.7rem">Re Tweet</Text>
+              </MainIcons>
+              <MainIcons>
+                <Icons3 />
+                <Text size="0.7rem">Like Count</Text>
+              </MainIcons>
+              <MainIcons>
+                <Icons4 />
+                <Text />
+              </MainIcons>
+            </BottomCheck>
+          </RightBox>
+        </FeedBox>
+      </React.Fragment>
+    );
+  }
+
+  // 코멘트 피드
+  if (is_commentFeed) {
+    return (
+      <React.Fragment>
+        <FeedBox>
+          <LeftUser>
+            <UserImg />
+          </LeftUser>
+          <RightBox>
+            <TopUserInfo>
+              <UserInfo>
+                <Text font_size="17px" bold="bold">
+                  UserId
+                </Text>
+                <Text font_size="17px" margin="0 5px">
+                  @nickname
+                </Text>
+                <Text font_size="17px" margin="0 5px 0 0">
+                  ·
+                </Text>
+                <Text font_size="17px">✨</Text>
+              </UserInfo>
+              <EditStory>
+                <EditIcon />
+              </EditStory>
+            </TopUserInfo>
+            <MainText>
+              <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
+            </MainText>
+            <BottomCheck>
+              <MainIcons>
+                <Icons1 />
+                <Text />
+              </MainIcons>
+              <MainIcons>
+                <Icons2 />
+                <Text size="0.7rem">Re Tweet</Text>
+              </MainIcons>
+              <MainIcons>
+                <Icons3 />
+                <Text size="0.7rem">Like Count</Text>
+              </MainIcons>
+              <MainIcons>
+                <Icons4 />
+                <Text />
+              </MainIcons>
+            </BottomCheck>
+          </RightBox>
+        </FeedBox>
+      </React.Fragment>
+    );
+  }
 };
 
+CenterFeed.defaultProps = {
+  is_centerFeed: false,
+  is_commentFeed: false,
+}
 
 const FeedBox = styled.div`
   width: 100%;
@@ -138,6 +219,7 @@ const EditStory = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
 `;
 
 const EditIcon = styled.div`

@@ -4,6 +4,7 @@ import { Grid, Text, Image, Button } from "../elements";
 import styled from 'styled-components'
 import LeftUser from "../components/LeftUser";
 import testpic from "../img/test_pic.png"
+import ModalOne from "./ModalOne";
 
 // icons
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
@@ -18,7 +19,7 @@ const DetailArticle = (props) => {
     <React.Fragment>
       <Grid>
         <Grid is_flex justify='space-between'>
-          <LeftUser></LeftUser>
+          <LeftUser is_deleteModal></LeftUser>
         </Grid>
 
         <Grid margin='15px 0 0'>
