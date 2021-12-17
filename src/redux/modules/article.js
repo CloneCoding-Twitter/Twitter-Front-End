@@ -74,7 +74,6 @@ const addArticleDB = (content, image) => {
       .then((res) => {
         console.log(res.data);
         dispatch(addArticle(res.data.article));
-        // history.replace('/home');
       }).catch(err => {
         console.log("게시물 등록 오류", err)
       })
@@ -96,7 +95,6 @@ const editArticleDB = (id, content, image) => {
       .then(res => {
         console.log(res.data.article);
         dispatch(editArticle(res.data.article));
-        // history.replace('/home');
       }).catch(err => {
         console.log("게시물 수정 오류", err)
       })
@@ -113,7 +111,7 @@ const deleteArticleDB = (id) => {
       .deleteArticle(id)
       .then(() => {
         dispatch(deleteArticle(id));
-        history.push('/home')
+        history.replace('/home')
       })
       .catch(err => {
         console.log('게시물 삭제 오류', err)
