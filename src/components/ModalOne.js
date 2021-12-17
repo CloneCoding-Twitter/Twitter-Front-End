@@ -6,6 +6,7 @@ import testpic from "../img/test_pic.png";
 
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 //icons
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -22,6 +23,10 @@ const ModalOne = (props) => {
   const logOut = () => {
     dispatch(userActions.logoutDB());
   };
+
+  const deleteComment = () => {
+    dispatch(commentActions.deleteCommentDB(props.article_id, props.com_id))
+  }
 
   const { is_userModal, is_deleteModal, is_deleteModal2 } = props;
 
@@ -104,7 +109,7 @@ const ModalOne = (props) => {
     return (
       <React.Fragment>
         <ModalBoxTwo4>
-          <TextBox>
+          <TextBox onClick={deleteComment}>
           <DeleteOutlineIcon style={{
               color:"red",
               width: "20px",
@@ -112,6 +117,10 @@ const ModalOne = (props) => {
               margin: "0 10px 0 4px",
             }}/>
             {/* 삭제 2번 */}
+            {/* {props.is_me
+              ?<Text color="red">Delete</Text>
+              :null
+            } */}
             <Text color="red">Delete</Text>
           </TextBox>
           <TextBox>

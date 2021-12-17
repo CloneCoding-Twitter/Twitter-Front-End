@@ -83,7 +83,10 @@ const CenterTweet = (props) => {
                 _onChange={onTweet}
                 value={content}
               />
-              <Image preview src={preview ? preview : ""} />
+              {/* {preview
+                ? <Image size='50' src={preview} />
+                : null
+              } */}
             </CommentField>
             <CommentMore>
               <MoreIcons>
@@ -146,7 +149,7 @@ const CenterTweet = (props) => {
               type="text"
               placeholder="Tweet your reply"
               height="100%"
-              _onChange={onChange}
+              _onChange={onComment}
               value={content}
             />
           </Grid>

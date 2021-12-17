@@ -6,13 +6,15 @@ import left_arrow from "../icons/left_arrow.svg";
 import { history } from "../redux/configureStore";
 
 const CenterNavi = (props) => {
+  console.log(props)
 
   const {
     is_mainNavi,
     is_tweetNavi,
   } = props;
+
   if (is_mainNavi) {
-  return (
+    return (
       <React.Fragment>
         <NaviBox>
           <TextBox>
@@ -27,6 +29,7 @@ const CenterNavi = (props) => {
       </React.Fragment>
     );
   }
+
   if (is_tweetNavi) {
     return (
       <React.Fragment>
@@ -54,7 +57,7 @@ CenterNavi.defaultProps= {
 
 const NaviBox = styled.div`
   width: 100%;
-  height: 53px;
+  height: 53px; 
   display: flex;
   background-color: #fff;
   opacity: 0.9;
