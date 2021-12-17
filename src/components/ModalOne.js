@@ -21,8 +21,6 @@ const ModalOne = (props) => {
     is_deleteModal,
     is_nomalModal,
   } = props;
-  
-  const { is_userModal, is_deleteModal } = props;
 
   if (is_userModal) {
     return (

@@ -41,6 +41,7 @@ const loginDB = (userInfo) => {
         setToken(token);
         localStorage.setItem("loginId", response.data.loginId);
         localStorage.setItem("nickname", response.data.nickname);
+        localStorage.setItem('is_login', true);
 
         dispatch(setUser(response.data.loginId, response.data.nickname));
         history.replace(`/home`);

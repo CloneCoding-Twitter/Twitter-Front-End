@@ -13,9 +13,11 @@ import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
 
-const CenterFeed = (props) => {
+import { useSelector } from "react-redux";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
-  const {id, loginId, nickname, content, img, _onClick} = props;
+const CenterFeed = (props) => {
+  console.log(props.comment)
 
   // const EditButton = props.change
 
@@ -44,7 +46,7 @@ const CenterFeed = (props) => {
   if (is_centerFeed) {
     return (
       <React.Fragment>
-        <FeedBox onClick={_onClick}>
+        <FeedBox onClick={props._onClick}>
           <LeftUser>
             <UserImg />
           </LeftUser>
@@ -52,10 +54,10 @@ const CenterFeed = (props) => {
             <TopUserInfo>
               <UserInfo>
                 <Text font_size="17px" bold="bold">
-                  {loginId}
+                  {props.feed.loginId}
                 </Text>
                 <Text font_size="17px" margin="0 5px">
-                  @{nickname}
+                  @{props.feed.nickname}
                 </Text>
                 <Text font_size="17px" margin="0 5px 0 0">
                   ·
@@ -68,9 +70,9 @@ const CenterFeed = (props) => {
               </EditStory>
             </TopUserInfo>
             <MainText>
-              <Text font_size="17px">{content}</Text>
+              <Text font_size="17px">{props.feed.content}</Text>
             </MainText>
-            <Image main src={img}/>
+            <Image main src={props.feed.img}/>
             <BottomCheck>
               <MainIcons>
                 <Icons1 />
@@ -107,10 +109,10 @@ const CenterFeed = (props) => {
             <TopUserInfo>
               <UserInfo>
                 <Text font_size="17px" bold="bold">
-                  UserId
+                  {props.comment.loginId}
                 </Text>
                 <Text font_size="17px" margin="0 5px">
-                  @nickname
+                  @{props.comment.nickname}
                 </Text>
                 <Text font_size="17px" margin="0 5px 0 0">
                   ·
@@ -122,7 +124,7 @@ const CenterFeed = (props) => {
               </EditStory>
             </TopUserInfo>
             <MainText>
-              <Text font_size="17px">청이야 안녕~~~~~ 물어~~~~ 애플짱</Text>
+              <Text font_size="17px">{props.comment.comment}</Text>
             </MainText>
             <BottomCheck>
               <MainIcons>
@@ -152,6 +154,7 @@ const CenterFeed = (props) => {
 CenterFeed.defaultProps = {
   is_centerFeed: false,
   is_commentFeed: false,
+  _onClick: () => {},
 }
 
 

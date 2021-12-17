@@ -11,7 +11,6 @@ const LeftUser = (props) => {
   const user = useSelector(state => state.user)
   const loginId = localStorage.getItem('loginId')
   const nickname = localStorage.getItem('nickname')
-  console.log(user.nickname)
 
   const [settingModal, setSettingModal] = React.useState(false);
 
@@ -40,7 +39,7 @@ const LeftUser = (props) => {
         </InfoBox>
         <ToggleBox>
           <Toggle onClick={toggleModalSetting} />
-          {settingModal === true ? <ModalOne is_deleteModal /> : <React.Fragment />}
+          {settingModal === true ? <ModalOne is_userModal /> : <React.Fragment />}
         </ToggleBox>
       </UserProfileBox>
     </React.Fragment>

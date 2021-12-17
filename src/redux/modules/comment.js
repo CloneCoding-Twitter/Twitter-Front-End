@@ -7,18 +7,15 @@ import { apis } from "../../shared/apis";
 const GET_COMMNET = 'GET_COMMNET';
 const ADD_COMMENT = 'ADD_COMMENT';
 const DELETE_COMMNET = 'DELETE_COMMNET';
-const LOADING = 'LOADING';
 
 // action creators
-const getComment = createAction(GET_COMMNET, (list) => ({list}));
+const getComment = createAction(GET_COMMNET, (id, list) => ({id, list}));
 const addComment = createAction(ADD_COMMENT, (id, comment) => ({id, comment}));
 const deleteComment = createAction(DELETE_COMMNET, (id) => ({id}));
-const loading = createAction(LOADING, (state) => ({state}));
 
 // initailState
 const initialState = {
-  list: {},
-  is_loading: false,
+  list: [],
 }
 
 // const initialComment = {
@@ -34,13 +31,11 @@ const getCommentDB = (articleId) => {
     if(!articleId){
       return;
     }
-    
-    dispatch(loading(true));
 
     await apis
       .comments(articleId)
       .then(res => {
-        console.log(res);
+        console.log(res.data.result)
         dispatch(getComment(articleId, res.data.result));
       })
       .catch(err => {
@@ -55,7 +50,7 @@ const addCommentDB = (articleId, comment) => {
     await apis
       .addCom(articleId, comment)
       .then(res => {
-        console.log(res);
+        console.log('댓글 작성', res);
         dispatch(addComment(articleId, res.data.result));
       })
       .catch(err => {
@@ -84,14 +79,15 @@ export default handleActions(
     [GET_COMMNET]: (state, action) =>
       produce(state, (draft) => {
         console.log(action.payload.list)
-        draft.list[action.payload.id] = action.payload.list;
-        draft.is_loading = false;
+        // draft.list[action.payload.id] = action.payload.list;
+        draft.list = action.payload.list;
       }),
 
     [ADD_COMMENT]: (state, action) => 
       produce(state, (draft) => {
         console.log(action.payload.comment);
-        draft.list[action.payload.id] = action.payload.comment
+        // draft.list[action.payload.id] = action.payload.comment
+        draft.list.push(action.payload.comment);
       }),
 
     [DELETE_COMMNET]: (state, action) =>
@@ -100,11 +96,6 @@ export default handleActions(
         console.log(new_list);
         draft.list[action.payload.id] = new_list;
       }),
-
-    [LOADING]: (state, action) =>
-      produce(state, (draft) => {
-        draft.is_loading = action.payload.state;
-      })
   },
   initialState
 )

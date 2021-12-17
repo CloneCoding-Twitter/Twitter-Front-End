@@ -3,27 +3,37 @@ import React from "react";
 
 import { Grid, Text, Image, Button } from "../elements"; 
 import styled from 'styled-components'
-import LeftUser from "../components/LeftUser";
 import DetailArticle from '../components/DetailArticle'
-import Comment from '../components/Comment'
 import CenterNavi from "../components/CenterNavi";
+import CenterTweet from "../components/CenterTweet";
+import CenterFeed from "../components/CenterFeed";
 
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as articleActions } from "../redux/modules/article";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 const Detail = (props) => {
   const dispatch = useDispatch();
+  const comment_list = useSelector(state => state.comment.list);
   const article_list = useSelector(state => state.article.list);
   const user_id = localStorage.getItem('loginId');
   const article_id = props.match.params.id;
   const idx = article_list.findIndex(a => a.id === article_id);
   const article = article_list[idx];
 
+  // const _comment = [comment_list[article_id]]
+  // console.log(_comment);
+  // const __comment = [...comment_list]
+  // console.log(__comment)
+  // console.log(comment_list)
+  console.log(comment_list[article_id])
+
   React.useEffect(() => {
     if(!article_id) {
       return ;
     }
 
+    dispatch(commentActions.getCommentDB(article_id));
     dispatch(articleActions.getDetailDB(article_id));
   }, [])
 
@@ -37,24 +47,21 @@ const Detail = (props) => {
           {...article}
           is_me = {user_id === 'chung'? true : false} 
         /> 
-        <Comment/>
+        <Grid is_flex="flex" borderB padding="15px 0 5px 0">
+          <CenterTweet is_commentTweet article_id={article_id}/>
+        </Grid>
+        <Grid padding="5px 0">
+          {comment_list.map(c => {
+            return(
+              <CenterFeed key={c.id} is_commentFeed comment={c}/>
+            )
+          })}
+        </Grid>
       </CenterBox>
 
     </React.Fragment>
   )
 };
-
-const TextArea = styled.div`
-  width: 68%;
-  color: #000;
-  padding: 12px 4px;
-  border: 1px solid #000;
-  /* outline: none; */
-
-  &[contentEditable=true]:empty:not(:focus):before{
-    content:attr(data-text)
-  }
-`
 
 const CenterBox = styled.div`
   width: 600px;
@@ -70,6 +77,7 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
+  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`
