@@ -28,11 +28,11 @@ const DetailArticle = (props) => {
     <React.Fragment>
       <Grid>
         <Grid is_flex justify='space-between'>
-          <LeftUser is_deleteModal></LeftUser>
+          <LeftUser></LeftUser>
         </Grid>
 
-        <Grid margin='15px 0 0'>
-          <Text>{content}</Text>
+        <Grid margin='10px 0 0' padding="0 20px">
+          <Text line="24px">{content}</Text>
           {is_me && (
             <Button
               _onClick={deleteArticle}
@@ -40,21 +40,21 @@ const DetailArticle = (props) => {
           )}
         </Grid>
 
-        <Grid border margin='15px 0 0' radius='10px'>
+        <Grid margin='15px 0 0' padding="0 20px">
           <Image main src={img}/>
         </Grid>
 
-        <Grid padding='16px 4px' borderB>
+        <Grid padding='16px 20px'>
           <Text >5:20&nbsp;·&nbsp;Dec 16, 2021</Text>
         </Grid>
 
-        <Grid is_flex justify='space-around' padding='15px 20px' borderB>
+        <Grid is_flex justify='space-around' padding='15px 20px' borderT borderB cursor="pointer" >
           {/* 댓글 */}
           <ChatBubbleOutlineIcon style={{fontSize:"23px",}}/>
           {/* 리트윗 */}
           <AutorenewIcon style={{fontSize:"23px"}}/>
           {/* 좋아요 */}
-          <FavoriteBorderIcon style={{fontSize:"23px"}}/> 
+          <FavoriteBorderIcon style={{fontSize:"23px"}}/>
           {/* 공유 */}
           <IosShareIcon style={{fontSize:"23px"}}/>
         </Grid>
@@ -63,4 +63,4 @@ const DetailArticle = (props) => {
   )
 }
 
-export default DetailArticle
+export default DetailArticle;

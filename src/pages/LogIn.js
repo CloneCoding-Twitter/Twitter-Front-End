@@ -14,116 +14,136 @@ import { history } from "../redux/configureStore";
 // import { useDispatch } from "react-redux";
 
 const LogIn = (props) => {
-  console.log('첫번째')
+  console.log("첫번째");
   return (
     <React.Fragment>
-      <LoginBox>
-        <LoginLeft>
-          <TwitterLogo />
-        </LoginLeft>
-        <LoginRight>
-          <Grid>
-            <TwitterLogoSmall />
-          </Grid>
-          <Grid>
-            <Text
-              color="#000"
-              bold="900"
-              size="4rem"
-              margin="4rem 0 4rem 0"
-            >
-              지금 일어나고 있는 일
-            </Text>
-            <Text color="#000" bold="900" size="2rem" margin="0 0 2rem 0">
-              오늘 트위터에 가입하세요.
-            </Text>
-          </Grid>
-          <Grid margin="0 0 8px 0">
-            <Button
-              is_border
-              width="300px"
-              height="42px"
-              font_color="#000"
-              font_size="15px"
-              bold="900"
-            >
-              <ImgSpan1 />
-              Google로 로그인하기
-            </Button>
-          </Grid>
-          <Grid>
-            <Button
-              is_border
-              width="300px"
-              height="42px"
-              font_color="#000"
-              font_size="15px"
-              bold="900"
-            >
-              <ImgSpan2 />
-              Apple로 로그인하기
-            </Button>
-          </Grid>
-          <Grid is_flex="flex-start" width="300px" margin="10px 0">
-            <hr width="128px" align="left" color="#efefef" size="1" />
-            <Text margin="0" size="15px" >또는</Text>
-            <hr width="128px" align="right" color="#efefef" size="1" />
-          </Grid>
-          <Grid>
-            <Button
-              is_tweeterHover  
-              width="300px"
-              height="42px"
-              font_color="#ffffff"
-              font_size="15px"
-              bold="900"
-              _onClick={() => {
-                history.push("/signupcard");
-              }}
-            >
-              휴대폰 번호나 이메일 주소로 가입하기
-            </Button>
-          </Grid>
-          <Grid margin="5px 0 0 0">
-            <Text size="11px">
-            By signing up, you agree to the 
-            <Text is_span bold="900"> Terms of Service</Text> and
-            <Text is_span bold="900"> Privacy</Text>
-            </Text>
-          </Grid>
-          <Grid>
-            <Text size="11px">
-            <Text is_span bold="900"> Policy</Text>, including 
-            <Text is_span bold="900"> Cookie Use.</Text>
-            </Text>
-          </Grid>
-          <Grid margin="4rem 0 5px 0">
-            <Text size="1.1rem" bold="900">이미 트위터에 가입하셨나요?</Text>
-          </Grid>
-          <Grid margin="15px 0 0 0">
-            <Button
-              is_border
-              width="300px"
-              height="42px"
-              font_color="#1DA1F2"
-              font_size="15px"
-              bold="900"
-              bg="#ffffff"
-              _onClick={() => {
-                history.push("/logincard");
-              }}
-            >
-              로그인
-            </Button>
-          </Grid>
-        </LoginRight>
-      </LoginBox>
-      <FooterBox>
-        <Footer />
-      </FooterBox>
+      <FullBox>
+        <LoginBox>
+          <LoginLeft>
+            <TwitterLogo />
+          </LoginLeft>
+          <LoginRight>
+            <Grid>
+              <TwitterLogoSmall />
+            </Grid>
+            <Grid>
+              <Text color="#000" bold="900" size="4rem" margin="4rem 0 4rem 0">
+                지금 일어나고 있는 일
+              </Text>
+              <Text color="#000" bold="900" size="2rem" margin="0 0 2rem 0">
+                오늘 트위터에 가입하세요.
+              </Text>
+            </Grid>
+            <Grid margin="0 0 8px 0">
+              <Button
+                is_border
+                width="300px"
+                height="42px"
+                font_color="#000"
+                font_size="15px"
+                bold="900"
+              >
+                <ImgSpan1 />
+                Google로 로그인하기
+              </Button>
+            </Grid>
+            <Grid>
+              <Button
+                is_border
+                width="300px"
+                height="42px"
+                font_color="#000"
+                font_size="15px"
+                bold="900"
+              >
+                <ImgSpan2 />
+                Apple로 로그인하기
+              </Button>
+            </Grid>
+            <Grid is_flex="flex-start" width="300px" margin="10px 0">
+              <hr width="128px" align="left" color="#efefef" size="1" />
+              <Text margin="0" size="15px">
+                또는
+              </Text>
+              <hr width="128px" align="right" color="#efefef" size="1" />
+            </Grid>
+            <Grid>
+              <Button
+                is_tweeterHover
+                width="300px"
+                height="42px"
+                font_color="#ffffff"
+                font_size="15px"
+                bold="900"
+                _onClick={() => {
+                  history.push("/signupcard");
+                }}
+              >
+                휴대폰 번호나 이메일 주소로 가입하기
+              </Button>
+            </Grid>
+            <Grid margin="5px 0 0 0">
+              <Text size="11px">
+                By signing up, you agree to the
+                <Text is_span bold="900">
+                  {" "}
+                  Terms of Service
+                </Text>{" "}
+                and
+                <Text is_span bold="900">
+                  {" "}
+                  Privacy
+                </Text>
+              </Text>
+            </Grid>
+            <Grid>
+              <Text size="11px">
+                <Text is_span bold="900">
+                  {" "}
+                  Policy
+                </Text>
+                , including
+                <Text is_span bold="900">
+                  {" "}
+                  Cookie Use.
+                </Text>
+              </Text>
+            </Grid>
+            <Grid margin="4rem 0 5px 0">
+              <Text size="1.1rem" bold="900">
+                이미 트위터에 가입하셨나요?
+              </Text>
+            </Grid>
+            <Grid margin="15px 0 0 0">
+              <Button
+                is_border
+                width="300px"
+                height="42px"
+                font_color="#1DA1F2"
+                font_size="15px"
+                bold="900"
+                bg="#ffffff"
+                _onClick={() => {
+                  history.push("/logincard");
+                }}
+              >
+                로그인
+              </Button>
+            </Grid>
+          </LoginRight>
+        </LoginBox>
+        <FooterBox>
+          <Footer />
+        </FooterBox>
+      </FullBox>
     </React.Fragment>
   );
 };
+
+const FullBox = styled.div`
+  width: 100%;
+  height: 100%;
+`;
 
 const LoginBox = styled.div`
   width: 100%;

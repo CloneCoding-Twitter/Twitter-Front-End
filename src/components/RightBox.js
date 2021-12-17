@@ -45,10 +45,11 @@ const Right = styled.div`
 
 const HeadBoxTwo = styled.div`
   width: 100%;
-  height: 46px;
+  height: 51px;
   display: inline-block;
+  padding-top: 7px;
   position: sticky;
-  top: 5px;
+  top: 0;
   right: 0;
   background-color: #fff;
 `
