@@ -5,7 +5,14 @@ import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
 
+import { useSelector } from "react-redux";
+
 const LeftUser = (props) => {
+  const user = useSelector(state => state.user)
+  const loginId = localStorage.getItem('loginId')
+  const nickname = localStorage.getItem('nickname')
+  console.log(user.nickname)
+
   const [settingModal, setSettingModal] = React.useState(false);
 
   const toggleModalSetting = () => {
@@ -25,10 +32,10 @@ const LeftUser = (props) => {
         </ImgBox>
         <InfoBox>
           <Text bold="bold" size="16px" margin="2px 0 5px 0">
-            UserId
+            {loginId}
           </Text>
           <Text bold="100" color="#5B7083">
-            @nickname
+            @{nickname}
           </Text>
         </InfoBox>
         <ToggleBox>

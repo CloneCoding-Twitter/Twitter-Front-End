@@ -9,9 +9,17 @@ import RightText from "../components/RightText";
 
 const RightBox = (props) => {
 
-  // if(props.location.pathname === '/') {
-  //   return ;
-  // }
+  if(props.location.pathname === '/') {
+    return null;
+  }
+
+  if(props.location.pathname === '/logincard' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/signupcard' ) {
+    return null;
+  }
 
   return (
     <Right>
@@ -44,5 +52,5 @@ const HeadBoxTwo = styled.div`
   right: 0;
   background-color: #fff;
 `
-export default RightBox;
-// export default withRouter(RightBox);
+// export default RightBox;
+export default withRouter(RightBox);

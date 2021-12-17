@@ -145,6 +145,8 @@ const RoundButton = styled.button`
   &:not(:hover) {
     transition: 0.45s;
   }
+
+  z-index:9;
 `;
 
 const BorderBtn = styled(RoundButton)`

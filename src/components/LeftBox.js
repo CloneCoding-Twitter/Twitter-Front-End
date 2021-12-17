@@ -7,9 +7,19 @@ import LeftUser from "../components/LeftUser";
 
 const LeftBox = (props) => {
 
-  // if(props.location.pathname === '/') {
-  //   return ;
-  // }
+  console.log(props.location.pathname)
+
+  if(props.location.pathname === '/' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/logincard' ) {
+    return null;
+  }
+
+  if(props.location.pathname === '/signupcard' ) {
+    return null;
+  }
 
   return (
     <Left>
@@ -48,5 +58,5 @@ const UserBox = styled.div`
   flex-direction: row;
 `;
 
-export default LeftBox;
-// export default withRouter(LeftBox);
+// export default LeftBox;
+export default withRouter(LeftBox);
