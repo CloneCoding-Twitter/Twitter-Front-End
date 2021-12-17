@@ -45,7 +45,7 @@ const CenterFeed = (props) => {
   if (is_centerFeed) {
     return (
       <React.Fragment>
-        <FeedBox>
+        <FeedBox onClick={_onClick}>
           <LeftUser>
             <UserImg />
           </LeftUser>
