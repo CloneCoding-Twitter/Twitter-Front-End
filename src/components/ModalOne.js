@@ -4,7 +4,24 @@ import { Text } from "../elements";
 import check from "../icons/check.svg";
 import testpic from "../img/test_pic.png";
 
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const ModalOne = (props) => {
+  const dispatch = useDispatch();
+  const loginId = localStorage.getItem('loginId');
+  const nickname = localStorage.getItem('nickname');
+
+  const logOut = () => {
+    dispatch(userActions.logoutDB())
+  }
+  
+  const {
+    is_userModal,
+    is_deleteModal,
+    is_nomalModal,
+  } = props;
+  
   const { is_userModal, is_deleteModal } = props;
 
   if (is_userModal) {
@@ -17,10 +34,10 @@ const ModalOne = (props) => {
             </ImgBox>
             <InfoBox>
               <Text bold="bold" size="16px" margin="2px 0 5px 0">
-                UserId
+                {loginId}
               </Text>
               <Text bold="100" color="#5B7083">
-                @nickname
+                @{nickname}
               </Text>
             </InfoBox>
             <ToggleBox>
@@ -31,8 +48,8 @@ const ModalOne = (props) => {
             <TboxTop>
               <Text>Add an existing account</Text>
             </TboxTop>
-            <TboxBottom>
-              <Text>Log out @nickname</Text>
+            <TboxBottom onClick={logOut}>
+              <Text>Log out @{nickname}</Text>
             </TboxBottom>
           </ContentBox>
         </ModaBox>
@@ -201,7 +218,7 @@ const ModalBoxTwo = styled.div`
   position: absolute;
   right: 0%;
   top: -50%;
-  z-index: 1;
+  z-index: 9;
   cursor: pointer;
 
   @media all and (min-width: 1240px) {

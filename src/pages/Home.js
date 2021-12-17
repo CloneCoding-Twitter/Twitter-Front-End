@@ -16,6 +16,7 @@ import { actionCreators as articleActions } from "../redux/modules/article";
 const Home = (props) => {
   const {history} = props;
   const dispatch = useDispatch();
+  const is_login = useSelector(state => state.user.is_login);
   const article_list = useSelector(state => state.article.list);
   console.log(article_list)
 
@@ -23,6 +24,11 @@ const Home = (props) => {
   console.log(user)
 
   React.useEffect(() => {
+    if(!is_login) {
+      window.alert('로그인 후 이용해 주세요')
+      return history.push('/')
+    }
+
     dispatch(articleActions.getArticleDB());
   }, [])
 

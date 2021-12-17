@@ -5,17 +5,19 @@ import { apis } from "../../shared/apis";
 
 // actions
 const SET_USER = "SET_USER";
+const LOGOUT = "LOGOUT"
 const ID_CHECK = "ID_CHECK";
 const NICK_CHECK = "NICK_CHECK";
 
 // action creators
 const setUser = createAction(SET_USER, (loginId, nickname) => ({ loginId, nickname }));
+const logout = createAction(LOGOUT, () => ({}));
 const idCheck = createAction(ID_CHECK, (result) => ({result}));
 const nicknameCheck = createAction(NICK_CHECK, (result) => ({result}));
 
 // initialState
 const initialState = {
-  user: null,
+  is_login: false,
   loginId: "",
   nickname: "",
   idCheck: false,
@@ -23,12 +25,13 @@ const initialState = {
 };
 
 // middleware actions
-const loginDB = (userinfo) => {
+const loginDB = (userInfo) => {
   return function (dispatch, getState, { history }) {
-    const { loginId, password } = userinfo;
+    console.log(userInfo)
+    // const { loginId, password } = userInfo;
     const data = {
-      loginId: loginId,
-      password: password,
+      loginId: userInfo.loginId,
+      password: userInfo.password,
     };
     apis
       .login(data)
@@ -40,7 +43,7 @@ const loginDB = (userinfo) => {
         localStorage.setItem("nickname", response.data.nickname);
 
         dispatch(setUser(response.data.loginId, response.data.nickname));
-        history.push(`/home`);
+        history.replace(`/home`);
       })
       .catch((err) => {
         console.log(err);
@@ -48,9 +51,17 @@ const loginDB = (userinfo) => {
   };
 };
 
-const signupDB = (userinfo) => {
+const logoutDB = () => {
   return function (dispatch, getState, { history }) {
-    const { loginId, nickname, password, passwordCheck } = userinfo;
+    dispatch(logout());
+    history.replace("/");
+    localStorage.clear();
+  };
+};
+
+const signupDB = (userInfo) => {
+  return function (dispatch, getState, { history }) {
+    const { loginId, nickname, password, passwordCheck } = userInfo;
     const data = {
       loginId: loginId,
       nickname: nickname,
@@ -59,7 +70,7 @@ const signupDB = (userinfo) => {
     };
     apis
       .signup(data)
-      .then((response) => {
+      .then(() => {
         window.alert("회원가입 성공 🔥");
         history.push("/logincard");
       })
@@ -74,9 +85,9 @@ const idCheckDB = (id) => {
     console.log(id)
     apis
       .idCheck(id)
-      .then((response) => {
+      .then(() => {
         window.alert("사용 가능한 아이디 입니다.");
-        dispatch(idCheck(response.data.result));
+        dispatch(idCheck(true));
       })
       .catch((err) => {
         window.alert("이미 사용중인 아이디 입니다.");
@@ -90,9 +101,9 @@ const nicknameCheckDB = (nickname) => {
     console.log(nickname)
     apis
       .nicknameCheck(nickname)
-      .then((response) => {
+      .then(() => {
         window.alert("사용 가능한 닉네임 입니다.");
-        dispatch(nicknameCheck(response.data.result));
+        dispatch(nicknameCheck(true));
       })
       .catch((err) => {
         window.alert("이미 사용중인 닉네임 입니다.");
@@ -109,6 +120,12 @@ export default handleActions(
         draft.nickname = action.payload.nickname;
         draft.loginId = action.payload.loginId;
         draft.is_login = true;
+      }),
+
+    [LOGOUT]: (state, action) =>
+      produce(state, (draft) => {
+        draft.loginId = null;
+        draft.nickname = null;
       }),
 
     [ID_CHECK]: (state, action) => 
@@ -128,6 +145,7 @@ export default handleActions(
 const actionCreators = {
   setUser,
   loginDB,
+  logoutDB,
   signupDB,
   idCheckDB,
   nicknameCheckDB,

@@ -37,7 +37,6 @@ const Detail = (props) => {
           {...article}
           is_me = {user_id === 'chung'? true : false} 
         /> 
-
         <Comment/>
       </CenterBox>
 
