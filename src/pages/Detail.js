@@ -31,27 +31,12 @@ const Detail = (props) => {
     <React.Fragment>
       <CenterBox>
         <HeadBox>
-          <CenterNavi text='Tweet'/>
+          <CenterNavi is_tweetNavi />
         </HeadBox>
         <DetailArticle 
           {...article}
           is_me = {user_id === 'chung'? true : false} 
         /> 
-
-        <Grid is_flex align padding='12px 0' borderB>
-          <Grid is_flex>
-            <LeftUser writeComment/>
-            <TextArea contentEditable={true} data-text="Tweet your reply"></TextArea>
-          </Grid>
-          <Button
-            height='40px'
-            font_color='#fff'
-            font_size='15px' 
-            padding='0 16px' 
-            margin='0 0 0 12px'
-            position='relative'
-            >Reply</Button>
-        </Grid>
 
         <Comment/>
       </CenterBox>
@@ -86,7 +71,6 @@ const CenterBox = styled.div`
   border-top: none;
   border-bottom: none;
   overflow-y: scroll;
-  padding: 0 13px;
 `;
 
 const HeadBox = styled.div`

@@ -40,7 +40,7 @@ const LeftUser = (props) => {
         </InfoBox>
         <ToggleBox>
           <Toggle onClick={toggleModalSetting} />
-          {settingModal === true ? <ModalOne is_userModal /> : <React.Fragment />}
+          {settingModal === true ? <ModalOne is_deleteModal /> : <React.Fragment />}
         </ToggleBox>
       </UserProfileBox>
     </React.Fragment>

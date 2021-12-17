@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const Grid = (props) => {
   const {
+    cursor,
     is_flex,
     is_wrap,
     column,
@@ -21,6 +22,7 @@ const Grid = (props) => {
     border,
     radius,
     bold,
+    borderT,
     borderB,
   } = props;
 
@@ -41,7 +43,9 @@ const Grid = (props) => {
     border: border,
     radius: radius,
     bold: bold,
+    borderT: borderT,
     borderB: borderB,
+    cursor: cursor,
   };
 
   return (
@@ -69,17 +73,18 @@ Grid.defaultProps = {
   align: false,
   overflow: "",
   radius: "",
+  borderT: false,
   borderB: false,
   _onClick: () => {},
-  
   border: false,
-  
+  cursor: false,
 };
 
 const GridBox = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   box-sizing: border-box;
+  ${(props) => (props.cursor ? `cursor: ${props.pointer};` : "")};
   ${(props) => (props.height ? `height: ${props.height};` : "")};
   ${(props) => (props.justify ? `justify-content: ${props.justify};` : "")};
   ${(props) => (props.align ? `align-items: ${props.align};` : "")};
@@ -94,8 +99,7 @@ const GridBox = styled.div`
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")};
   ${(props) => (props.is_wrap ? "flex-wrap: wrap" : "")};
   ${(props) => (props.column ? "flex-direction: column;" : "")};
-  ${(props) => (props.borderB ? "border-bottom: 1px solid #999;" : "")};
-
-  border: ${(props) => (props.border ? "1px solid #000;" : "")};
+  ${(props) => (props.borderT ? "border-top: 1px solid #efefef;" : "")};
+  ${(props) => (props.borderB ? "border-bottom: 1px solid #efefef;" : "")};
 `;
 export default Grid;
