@@ -1,5 +1,5 @@
 /* eslint-disable no-sequences */
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Text, Image } from "../elements";
 
@@ -15,7 +15,6 @@ import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
 
 const CenterFeed = (props) => {
-
   // 모달
   const [settingModal, setSettingModal] = React.useState(false);
 
@@ -28,10 +27,7 @@ const CenterFeed = (props) => {
     }
   };
   
-  const {
-    is_centerFeed,
-    is_commentFeed,
-  } = props;
+  const { is_centerFeed, is_commentFeed } = props;
 
   // 메인 피드
   if (is_centerFeed) {
@@ -57,13 +53,19 @@ const CenterFeed = (props) => {
               </UserInfo>
               <EditStory>
                 <EditIcon onClick={toggleModalSetting} />
-                {settingModal === true ? <ModalOne is_deleteModal2 /> : <React.Fragment />}
+                {settingModal === true ? (
+                  <ModalOne is_deleteModal2 />
+                ) : (
+                  <React.Fragment />
+                )}
               </EditStory>
             </TopUserInfo>
             <MainText>
-              <Text font_size="17px" line="22px">{props.feed.content}</Text>
+              <Text font_size="17px" line="22px">
+                {props.feed.content}
+              </Text>
             </MainText>
-            <Image main src={props.feed.img}/>
+            <Image main src={props.feed.img} />
             <BottomCheck>
               <MainIcons>
                 <Icons1 />
@@ -112,10 +114,12 @@ const CenterFeed = (props) => {
               </UserInfo>
               <EditStory>
                 <EditIcon onClick={toggleModalSetting} />
+
                 {settingModal === true
                   ? <ModalOne is_deleteModal2 is_me={props.is_me} article_id={props.article_id} com_id={props.com_id} is_me_={props.is_me_}/> 
                   : <React.Fragment 
                 />}
+
               </EditStory>
             </TopUserInfo>
             <MainText>
@@ -150,8 +154,7 @@ CenterFeed.defaultProps = {
   is_centerFeed: false,
   is_commentFeed: false,
   _onClick: () => {},
-}
-
+};
 
 const FeedBox = styled.div`
   width: 100%;
@@ -251,7 +254,6 @@ const MainText = styled.div`
   margin: 3px 0 10px 0;
   padding: 5px 10px;
 `;
-
 
 const BottomCheck = styled.div`
   width: 100%;

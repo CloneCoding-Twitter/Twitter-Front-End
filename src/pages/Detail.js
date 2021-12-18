@@ -66,7 +66,6 @@ const Detail = (props) => {
           })}
         </Grid>
       </CenterBox>
-
     </React.Fragment>
   )
 };

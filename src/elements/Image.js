@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
+
   const { main, shape, src, size, position } = props;
+
 
   const styles = {
     src: src,
@@ -73,7 +75,6 @@ const AspectOutter = styled.div`
 `;
 
 const AspectInner = styled.div`
-  position: relative;
   padding-top: 75%;
   border-radius: 10px;
   overflow: hidden;

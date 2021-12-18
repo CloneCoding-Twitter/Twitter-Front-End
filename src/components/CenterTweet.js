@@ -1,4 +1,4 @@
-import React from "react";
+import React, { userState, userRef } from "react";
 import styled from "styled-components";
 import { Input, Button, Image, Grid } from "../elements";
 
@@ -51,13 +51,13 @@ const CenterTweet = (props) => {
     setComment(e.target.value);
   };
 
-  const addArticle = () => {
+  const addArticle = (e) => {
     dispatch(articleActions.addArticleDB(content, image));
     setContent("");
     
     // console.log(content, image) //등록 후 초기화 시키기
   };
-  
+
   const addComment = () => {
     dispatch(commentActions.addCommentDB(article_id, comment));
     setComment("");
@@ -181,8 +181,8 @@ const CenterTweet = (props) => {
 CenterTweet.defaultProps = {
   is_mainTweet: false,
   is_commentTweet: false,
-  article_id: '',
-}
+  article_id: "",
+};
 
 const TweetBox = styled.div`
   width: 100%;
