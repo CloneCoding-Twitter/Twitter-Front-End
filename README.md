@@ -3,10 +3,8 @@
 <img src="./README/twitter.png" alt="twitter" width="100%" />
 > 항해99 트위터 클론코딩 주차 결과물 입니다.
 
-<br />   
-  
-- [\[사이트 바로가기\]](http://?)  
-- [\[시연영상 구경하기\]](http://??)
+<br />    
+- [\[시연영상 구경하기\]](https://gather.town/app/sKHydfD2S63h0l7A/hanghae99-4)
 
 <br />
 
