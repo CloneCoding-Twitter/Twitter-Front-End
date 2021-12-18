@@ -2,11 +2,12 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { main, preview, shape, src, size } = props;
+  const { main, shape, src, size, position } = props;
 
   const styles = {
     src: src,
     size: size,
+    position: position,
   };
 
   if (shape === "circle") {
@@ -38,6 +39,7 @@ Image.defaultProps = {
   shape: "",
   src: "../icons/pysick.jpg",
   size: '40',
+  position: false,
 };
 
 const ImageDefault = styled.div`
@@ -46,9 +48,23 @@ const ImageDefault = styled.div`
   height: var(--size);
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  /* display: ${(props) => (props.preview ? "block" : "none")}; */
+  ${(props) => (props.position ? `position: ${props.position};` : "")};
+  display: inline-block;
+  top: 0;
+  border-radius: 13px;
+  background-position: center;
+  border: 1px solid #efefef;
+  box-shadow: 0px 3px 7px rgb(0,0,0,0.4);
 
-  border: 1px solid green;
+  @media all and (min-width: 1240px) {
+    right: 18.5%;
+    top: 14%;
+  }
+
+  @media all and (min-width: 1920px) {
+    right: 19%;
+    top: 11.5%;
+  }
 `;
 
 const AspectOutter = styled.div`

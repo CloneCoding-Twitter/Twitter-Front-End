@@ -41,7 +41,7 @@ const CenterTweet = (props) => {
     };
   };
 
-  const { is_mainTweet, is_commentTweet, article_id } = props;
+  const { is_mainTweet, is_commentTweet, article_id} = props;
 
   const onTweet = (e) => {
     setContent(e.target.value);
@@ -54,14 +54,13 @@ const CenterTweet = (props) => {
   const addArticle = () => {
     dispatch(articleActions.addArticleDB(content, image));
     setContent("");
-    setImage("");
+    
     // console.log(content, image) //등록 후 초기화 시키기
   };
-
+  
   const addComment = () => {
     dispatch(commentActions.addCommentDB(article_id, comment));
     setComment("");
-    // console.log(comment) //등록 후 초기화 시키기
   };
 
   if (is_mainTweet) {
@@ -75,7 +74,6 @@ const CenterTweet = (props) => {
           </ImgBox>
           <CommentBox>
             <CommentField>
-              {/* 여기 수정했어요 */}
               <Input
                 label=""
                 size="20px"
@@ -83,13 +81,12 @@ const CenterTweet = (props) => {
                 padding="25px 0 0 0"
                 placeholder="What's happening?"
                 height="100%"
-                _onChange={onComment}
+                _onChange={onTweet}
                 value={content}
               />
-              {/* {preview
-                ? <Image size='50' src={preview} />
-                : null
-              } */}
+              {preview ? (
+                <Image position="absolute" size="60" src={preview} />
+              ) : null}
             </CommentField>
             <CommentMore>
               <MoreIcons>
@@ -142,7 +139,7 @@ const CenterTweet = (props) => {
           </Grid>
           <Grid
             width="68%"
-            height="60px;"
+            height="60px"
             is_flex
             justify="flex-start"
             align="center"
@@ -153,7 +150,7 @@ const CenterTweet = (props) => {
               placeholder="Tweet your reply"
               height="100%"
               _onChange={onComment}
-              value={content}
+              value={comment}
             />
           </Grid>
           <Grid
@@ -172,7 +169,7 @@ const CenterTweet = (props) => {
               bold="900"
               _onClick={addComment}
             >
-              Tweet
+              Reply
             </Button>
           </Grid>
         </Grid>

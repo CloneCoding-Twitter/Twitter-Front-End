@@ -5,10 +5,7 @@ import ellipses from "../icons/ellipses.svg";
 import testpic from "../img/test_pic.png";
 import ModalOne from "./ModalOne";
 
-import { useSelector } from "react-redux";
-
 const LeftUser = (props) => {
-  const user = useSelector(state => state.user)
   const loginId = localStorage.getItem('loginId')
   const nickname = localStorage.getItem('nickname')
 
@@ -48,9 +45,12 @@ const LeftUser = (props) => {
             </Text>
           </Grid>
           <Grid is_flex width="20%" align="center" justify="flex-end">
-            <Toggle onClick={toggleModalSetting} />
+            {props.is_me_
+              ?<Toggle onClick={toggleModalSetting} />
+              : null
+            }
             {settingModal === true ? (
-              <ModalOne is_deleteModal />
+              <ModalOne article_id={props.article_id} is_deleteModal />
             ) : (
               <React.Fragment />
             )}

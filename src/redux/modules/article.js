@@ -1,6 +1,8 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
+import { actionCreators as imageActions } from "./image";
+
 import { apis } from "../../shared/apis";
 
 // action
@@ -65,12 +67,13 @@ const addArticleDB = (content, image) => {
     form.append('img', image);
     form.append('content', content);
 
-    // console.log(content, image) 확인완료
+    console.log(content, image) //확인완료
     // axios 요청
     await apis
       .addArticle(form)
       .then((res) => {
         dispatch(addArticle(res.data.article));
+        dispatch(imageActions.setPreview(null))
       }).catch(err => {
         console.log("게시물 등록 오류", err)
       })
@@ -103,12 +106,12 @@ const deleteArticleDB = (id) => {
   return async function(dispatch, getState, {history}) {
     // console.log(id) 확인완료
     // axios 요청
-    
+    console.log(id)
     await apis
       .deleteArticle(id)
       .then(() => {
         dispatch(deleteArticle(id));
-        history.replace('/home')
+        history.goBack('/home');
       })
       .catch(err => {
         console.log('게시물 삭제 오류', err)
@@ -122,6 +125,7 @@ export default handleActions(
     [GET_ARTICLE]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(...action.payload.list);
+        // draft.list = action.payload.list;
 
         // list에 push를 하기 때문에 home으로 돌아갈때마다
         // 응답이 누적되어 중복되기 때문에 중복제거를 해준다.

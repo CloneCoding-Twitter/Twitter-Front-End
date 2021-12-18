@@ -17,10 +17,16 @@ const Detail = (props) => {
   const dispatch = useDispatch();
   const comment_list = useSelector(state => state.comment.list);
   const article_list = useSelector(state => state.article.list);
+  const _article_list = article_list? [...article_list] : null;
+
   const user_id = localStorage.getItem('loginId');
   const article_id = props.match.params.id;
-  const idx = article_list.findIndex(a => a.id === article_id);
-  const article = article_list[idx];
+  const idx = _article_list.findIndex(a => a.id === article_id);
+  const article = _article_list[idx];
+
+  // 새로고침하면 article 작성자의 id를 받을 수 없어 
+  // 예외처리로 article의 데이터가 존재하지 않을 때는 null을 주었다.
+  const loginId = article? article.loginId: null
 
   React.useEffect(() => {
     if(!article_id) {
@@ -38,9 +44,10 @@ const Detail = (props) => {
           <CenterNavi is_tweetNavi text="Tweet" />
         </HeadBox>
         <DetailArticle 
+          article_id={article_id}
           {...article}
-          // is_me = {user_id === article.loginId} 
-        /> 
+          is_me_ = {user_id === loginId} 
+        />
         <Grid is_flex="flex" borderB padding="15px 0 5px 0">
           <CenterTweet is_commentTweet article_id={article_id}/>
         </Grid>
@@ -53,7 +60,7 @@ const Detail = (props) => {
                 comment={c}
                 article_id={article_id}
                 com_id={c.id}
-                is_me = {user_id === c.loginId}
+                is_me_={c.loginId === user_id}
               />
             )
           })}
