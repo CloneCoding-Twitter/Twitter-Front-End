@@ -26,7 +26,7 @@ const CenterFeed = (props) => {
       setSettingModal(false);
     }
   };
-
+  
   const { is_centerFeed, is_commentFeed } = props;
 
   // 메인 피드
@@ -34,7 +34,7 @@ const CenterFeed = (props) => {
     return (
       <React.Fragment>
         <FeedBox onClick={props._onClick}>
-          <LeftUser>
+          <LeftUser article_id={props.article_id}>
             <UserImg />
           </LeftUser>
           <RightBox>
@@ -114,16 +114,12 @@ const CenterFeed = (props) => {
               </UserInfo>
               <EditStory>
                 <EditIcon onClick={toggleModalSetting} />
-                {settingModal === true ? (
-                  <ModalOne
-                    is_deleteModal2
-                    is_me={props.is_me}
-                    article_id={props.article_id}
-                    com_id={props.com_id}
-                  />
-                ) : (
-                  <React.Fragment />
-                )}
+
+                {settingModal === true
+                  ? <ModalOne is_deleteModal2 is_me={props.is_me} article_id={props.article_id} com_id={props.com_id} is_me_={props.is_me_}/> 
+                  : <React.Fragment 
+                />}
+
               </EditStory>
             </TopUserInfo>
             <MainText>

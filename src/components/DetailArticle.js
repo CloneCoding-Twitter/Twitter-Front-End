@@ -9,22 +9,14 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import IosShareIcon from '@mui/icons-material/IosShare';
 
-import { useDispatch } from "react-redux";
-import { actionCreators as articleActions } from "../redux/modules/article";
 
 const DetailArticle = (props) => {
-  const {content, id, img, is_me} = props;
-  const dispatch = useDispatch();
-
-  const deleteArticle = () => {
-    dispatch(articleActions.deleteArticleDB(id))
-  }
-
+  const {content, id, nickname, img, is_me_, article_id} = props;
   return(
     <React.Fragment>
       <Grid>
         <Grid is_flex justify='space-between'>
-          <LeftUser is_commentUser />
+          <LeftUser is_commentUser id={id} nickname={nickname} is_me_={is_me_} article_id={article_id} />
         </Grid>
 
         <Grid margin='10px 0 0' padding="0 20px">

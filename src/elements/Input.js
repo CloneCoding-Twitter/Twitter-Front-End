@@ -83,7 +83,7 @@ const Input = (props) => {
         <Text margin="0px" size="14px">
           {label}
         </Text>
-        <ElInput {...styles} type={type} placeholder={placeholder} onChange={_onChange} />
+        <ElInput {...styles} type={type} placeholder={placeholder} onChange={_onChange} value={value} />
       </Grid>
     </React.Fragment>
   );

@@ -2,7 +2,9 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { main, preview, shape, src, size, position } = props;
+
+  const { main, shape, src, size, position } = props;
+
 
   const styles = {
     src: src,
@@ -48,7 +50,6 @@ const ImageDefault = styled.div`
   height: var(--size);
   background-image: url("${(props) => props.src}");
   background-size: cover;
-  /* display: ${(props) => (props.preview ? "block" : "none")}; */
   ${(props) => (props.position ? `position: ${props.position};` : "")};
   display: inline-block;
   top: 0;

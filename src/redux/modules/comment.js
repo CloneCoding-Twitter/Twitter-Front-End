@@ -45,7 +45,6 @@ const getCommentDB = (articleId) => {
 
 const addCommentDB = (articleId, comment) => {
   return async function(dispatch) {
-
     await apis
       .addCom(articleId, comment)
       .then(res => {
@@ -84,7 +83,7 @@ export default handleActions(
     [ADD_COMMENT]: (state, action) => 
       produce(state, (draft) => {
         // draft.list[action.payload.id] = action.payload.comment
-        draft.list.push(action.payload.comment);
+        draft.list.unshift(action.payload.comment);
       }),
 
     [DELETE_COMMNET]: (state, action) =>

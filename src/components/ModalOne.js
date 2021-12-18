@@ -7,6 +7,7 @@ import testpic from "../img/test_pic.png";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as articleActions } from "../redux/modules/article";
 
 //icons
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -26,6 +27,10 @@ const ModalOne = (props) => {
 
   const deleteComment = () => {
     dispatch(commentActions.deleteCommentDB(props.article_id, props.com_id))
+  }
+
+  const deleteArticle = () => {
+    dispatch(articleActions.deleteArticleDB(props.article_id))
   }
 
   const { is_userModal, is_deleteModal, is_deleteModal2 } = props;
@@ -66,7 +71,7 @@ const ModalOne = (props) => {
     return (
       <React.Fragment>
         <ModalBoxTwo3>
-          <TextBox>
+          <TextBox onClick={deleteArticle}>
             {/* 댓글 */}
             <DeleteOutlineIcon style={{
               color:"red",
@@ -74,9 +79,10 @@ const ModalOne = (props) => {
               height: "20px",
               margin: "0 10px 0 4px",
             }}/>
-            {/* 삭제 1번 */}
+            
             <Text color="red">Delete</Text>
           </TextBox>
+          
           <TextBox>
           <ModeEditOutlineOutlinedIcon style={{
               width: "20px",
@@ -110,20 +116,19 @@ const ModalOne = (props) => {
     return (
       <React.Fragment>
         <ModalBoxTwo4>
-          <TextBox onClick={deleteComment}>
-          <DeleteOutlineIcon style={{
-              color:"red",
-              width: "20px",
-              height: "20px",
-              margin: "0 10px 0 4px",
-            }}/>
-            {/* 삭제 2번 */}
-            {/* {props.is_me
-              ?<Text color="red">Delete</Text>
-              :null
-            } */}
-            <Text color="red">Delete</Text>
-          </TextBox>
+          {/* 삭제 2번 */}
+          {props.is_me_
+            ?<TextBox onClick={deleteComment}>
+              <DeleteOutlineIcon style={{
+                  color:"red",
+                  width: "20px",
+                  height: "20px",
+                  margin: "0 10px 0 4px",
+                }}/>
+              <Text color="red">Delete</Text>
+            </TextBox>
+            :null
+          }
           <TextBox>
             <CodeOutlinedIcon style={{
               width: "20px",
