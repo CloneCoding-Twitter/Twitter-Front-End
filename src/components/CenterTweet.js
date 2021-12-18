@@ -1,4 +1,4 @@
-import React from "react";
+import React, { userState, userRef } from "react";
 import styled from "styled-components";
 import { Input, Button, Image, Grid } from "../elements";
 
@@ -51,14 +51,14 @@ const CenterTweet = (props) => {
     setComment(e.target.value);
   };
 
-  const addArticle = () => {
+  const addArticle = (e) => {
     dispatch(articleActions.addArticleDB(content, image));
     setContent("");
     setImage("");
     // console.log(content, image) //등록 후 초기화 시키기
   };
 
-  const addComment = () => {
+  const addComment = (e) => {
     dispatch(commentActions.addCommentDB(article_id, comment));
     setComment("");
     // console.log(comment) //등록 후 초기화 시키기
@@ -83,13 +83,12 @@ const CenterTweet = (props) => {
                 padding="25px 0 0 0"
                 placeholder="What's happening?"
                 height="100%"
-                _onChange={onComment}
+                _onChange={onTweet}
                 value={content}
               />
-              {/* {preview
-                ? <Image size='50' src={preview} />
-                : null
-              } */}
+              {preview ? (
+                <Image position="absolute" size="60" src={preview} />
+              ) : null}
             </CommentField>
             <CommentMore>
               <MoreIcons>
@@ -184,8 +183,8 @@ const CenterTweet = (props) => {
 CenterTweet.defaultProps = {
   is_mainTweet: false,
   is_commentTweet: false,
-  article_id: '',
-}
+  article_id: "",
+};
 
 const TweetBox = styled.div`
   width: 100%;
