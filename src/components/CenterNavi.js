@@ -111,6 +111,7 @@ const NaviBox2 = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  z-index: 9;
 `;
 
 const TextBox2 = styled.div`
