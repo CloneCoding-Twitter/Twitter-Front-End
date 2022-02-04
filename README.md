@@ -54,24 +54,24 @@
   <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=black">
   <img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=AmazonAWS&logoColor=white">
   <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">  
-  
+  <br />
   <br />
   
   - Styled-Component
-   * CSS-in-JS 라이브러리
-   * CSS 파일을 밖에 두지 않고, 컴포넌트 내부에 넣기 때문에, CSS가 전역으로 중첩되지 않도록 만들어주는 장점이 있다.
- 
+    * CSS-in-JS 라이브러리
+    * CSS 파일을 밖에 두지 않고, 컴포넌트 내부에 넣기 때문에, CSS가 전역으로 중첩되지 않도록 만들어주는 장점이 있다.
+  
   <br />
   
   - Redux, redux-actions, immer, redux-thunk / redux-logger
-     * state 관리를 전역으로 할 수 있고, 무분별한 prop-drilling을 방지한다.
-     * 데이터가 집중화 되어있어 예측가능하며 데이터 흐름이 단방향이라서 디버깅하기 쉽다는 장점이 있다.
-     * 미들웨어로 서버와의 비동기 액션보다 편하게 다루기 위해 redux-thunk, 개발환경에서 state / action 등 쉽게 추적하고 관리하기 위해 redux-logger사용
+    * state 관리를 전역으로 할 수 있고, 무분별한 prop-drilling을 방지한다.
+    * 데이터가 집중화 되어있어 예측가능하며 데이터 흐름이 단방향이라서 디버깅하기 쉽다는 장점이 있다.
+    * 미들웨어로 서버와의 비동기 액션보다 편하게 다루기 위해 redux-thunk, 개발환경에서 state / action 등 쉽게 추적하고 관리하기 위해 redux-logger사용
   
   <br />
   
   - axios
-     * 서버와 통신을 위한 라이브러리
+    * 서버와 통신을 위한 라이브러리
   
 </div>
 
