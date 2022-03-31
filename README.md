@@ -23,7 +23,7 @@
 
 - Back-end: [김주영](https://github.com/JooYoung2274), [이상협](https://github.com/23hh)
 - Front-end: [전용태](https://github.com/yong313), [정민수](https://github.com/Chungune)
-- [\[Front-End Github\]](https://github.com/CloneCoding-Twitter/Twitter-Front-End)
+- [\[Back-End Github\]](https://github.com/CloneCoding-Twitter/Twitter-Back-End)
   <br />
 
 # 🗓 프로젝트 기간
